@@ -1,0 +1,534 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-12T19:19:49.692720+00:00",
+  "dataset": {
+    "path": "data/evaluation/retrieval_eval.json",
+    "sha256": "82343e728a2480b4d5be2c1c17acf7075ee3c140cce5e4350ebf549c45b6eb29",
+    "version": "1.0"
+  },
+  "corpus": {
+    "path": "data/knowledge_base.json",
+    "sha256": "73370a248eb570c5c15dd8ff6822fd884e13d179a07ec6690bfb9623b3cc6586",
+    "entries": 11
+  },
+  "runtime": {
+    "python": "3.12.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "configuration": {
+    "strategy": "semantic",
+    "top_k": 10,
+    "repeats": 1,
+    "min_match_score": 1.0,
+    "semantic_min_similarity": 0.42,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "candidate_k": 20,
+    "reranker_enabled": false,
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "qdrant_collection": "telcoai_faq",
+    "tenant_id": "demotel",
+    "locale": "tr-TR",
+    "document_representation_version": "faq-question-keywords-answer-v1"
+  },
+  "initialization_ms": 2150.773792003747,
+  "metrics": {
+    "name": "semantic",
+    "hit_at_1": 0.76,
+    "hit_at_3": 0.8,
+    "mrr": 0.78,
+    "mrr_cutoff": 10,
+    "ood_false_accept_rate": 0.0,
+    "mean_latency_ms": 8.2810250302178,
+    "latency_p50_ms": 8.078915998339653,
+    "latency_p95_ms": 9.398750093532726,
+    "relevant_count": 25,
+    "ood_count": 10,
+    "repeats": 1,
+    "hit1_count": 19,
+    "hit3_count": 20,
+    "false_accept_count": 0
+  },
+  "queries": [
+    {
+      "id": "r01",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "price-001",
+        "price-002"
+      ],
+      "scores": [
+        0.7162327170372009,
+        0.47778642177581787,
+        0.46014732122421265
+      ],
+      "latency_ms": 8.65854200674221
+    },
+    {
+      "id": "r02",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "price-001",
+        "tech-001"
+      ],
+      "scores": [
+        0.6806795597076416,
+        0.556793749332428,
+        0.5032936334609985
+      ],
+      "latency_ms": 8.812707994366065
+    },
+    {
+      "id": "r03",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "pkg-001",
+        "price-001"
+      ],
+      "scores": [
+        0.6743178367614746,
+        0.5150877237319946,
+        0.4786264896392822
+      ],
+      "latency_ms": 8.94445800804533
+    },
+    {
+      "id": "r04",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-002"
+      ],
+      "scores": [
+        0.6841096878051758
+      ],
+      "latency_ms": 10.141457983991131
+    },
+    {
+      "id": "r05",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "pkg-001",
+        "pkg-002"
+      ],
+      "scores": [
+        0.621563732624054,
+        0.5610731244087219,
+        0.435954749584198
+      ],
+      "latency_ms": 9.517166996374726
+    },
+    {
+      "id": "r06",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "pkg-001"
+      ],
+      "scores": [
+        0.7069859504699707,
+        0.4468253254890442
+      ],
+      "latency_ms": 8.48258298356086
+    },
+    {
+      "id": "r07",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "retrieved_entry_ids": [
+        "price-002",
+        "bill-001"
+      ],
+      "scores": [
+        0.4695174992084503,
+        0.45548853278160095
+      ],
+      "latency_ms": 8.27437499538064
+    },
+    {
+      "id": "r08",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "retrieved_entry_ids": [
+        "price-002",
+        "bill-001"
+      ],
+      "scores": [
+        0.6246591210365295,
+        0.454751193523407
+      ],
+      "latency_ms": 7.750541000859812
+    },
+    {
+      "id": "r09",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "retrieved_entry_ids": [
+        "bill-001"
+      ],
+      "scores": [
+        0.6919113397598267
+      ],
+      "latency_ms": 7.949916005600244
+    },
+    {
+      "id": "r10",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 7.563749997643754
+    },
+    {
+      "id": "r11",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "retrieved_entry_ids": [
+        "bill-002",
+        "bill-003"
+      ],
+      "scores": [
+        0.7599782943725586,
+        0.4221034348011017
+      ],
+      "latency_ms": 7.739916996797547
+    },
+    {
+      "id": "r12",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "retrieved_entry_ids": [
+        "bill-002"
+      ],
+      "scores": [
+        0.49606087803840637
+      ],
+      "latency_ms": 7.608666026499122
+    },
+    {
+      "id": "r13",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003"
+      ],
+      "scores": [
+        0.520855188369751
+      ],
+      "latency_ms": 7.960916991578415
+    },
+    {
+      "id": "r14",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003"
+      ],
+      "scores": [
+        0.6017401218414307
+      ],
+      "latency_ms": 7.888209016527981
+    },
+    {
+      "id": "r15",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 7.404042000416666
+    },
+    {
+      "id": "r16",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 7.5964170100633055
+    },
+    {
+      "id": "r17",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 7.580000004963949
+    },
+    {
+      "id": "r18",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-002"
+      ],
+      "scores": [
+        0.6718354225158691
+      ],
+      "latency_ms": 7.561042002635077
+    },
+    {
+      "id": "r19",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-002"
+      ],
+      "scores": [
+        0.7175374031066895
+      ],
+      "latency_ms": 7.702333998167887
+    },
+    {
+      "id": "r20",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-003"
+      ],
+      "retrieved_entry_ids": [
+        "tech-003"
+      ],
+      "scores": [
+        0.6599658727645874
+      ],
+      "latency_ms": 7.97845798661001
+    },
+    {
+      "id": "r21",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004"
+      ],
+      "scores": [
+        0.6494435667991638
+      ],
+      "latency_ms": 7.981750008184463
+    },
+    {
+      "id": "r22",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004",
+        "bill-003"
+      ],
+      "scores": [
+        0.6302090883255005,
+        0.4531572163105011
+      ],
+      "latency_ms": 8.078915998339653
+    },
+    {
+      "id": "r23",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004"
+      ],
+      "scores": [
+        0.6539798974990845
+      ],
+      "latency_ms": 7.820333004929125
+    },
+    {
+      "id": "r24",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "bill-004",
+        "price-002"
+      ],
+      "scores": [
+        0.5797773003578186,
+        0.567798376083374,
+        0.42161041498184204
+      ],
+      "latency_ms": 7.833250012481585
+    },
+    {
+      "id": "r25",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.197874994948506
+    },
+    {
+      "id": "o01",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.62912498996593
+    },
+    {
+      "id": "o02",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.619917003670707
+    },
+    {
+      "id": "o03",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 7.956208020914346
+    },
+    {
+      "id": "o04",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 9.250625007553026
+    },
+    {
+      "id": "o05",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.410584006924182
+    },
+    {
+      "id": "o06",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 9.347999992314726
+    },
+    {
+      "id": "o07",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.717333985259756
+    },
+    {
+      "id": "o08",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.770709013333544
+    },
+    {
+      "id": "o09",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.525125012965873
+    },
+    {
+      "id": "o10",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.580624999012798
+    }
+  ],
+  "limitations": [
+    "Synthetic, small FAQ corpus; results do not establish production quality.",
+    "Latency excludes construction/warmup, transport, privacy, cache and graph overhead.",
+    "Qdrant needs an ingested corpus matching local data, tenant and locale; remote vector-store contents are not hashed.",
+    "Retriever scores and model confidence are not calibrated probabilities."
+  ]
+}

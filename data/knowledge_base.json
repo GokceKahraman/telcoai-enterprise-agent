@@ -1,0 +1,188 @@
+{
+  "company": "DemoTel",
+  "locale": "tr-TR",
+  "entries": [
+    {
+      "id": "pkg-001",
+      "category": "internet_paketleri",
+      "question": "Ev internet paketleriniz nelerdir?",
+      "keywords": [
+        "paket",
+        "internet",
+        "ev",
+        "fiber",
+        "hız",
+        "mbps",
+        "tarife"
+      ],
+      "answer": "DemoTel ev internet paketlerimiz: Başlangıç 50 Mbps, Aile 100 Mbps, Pro 250 Mbps ve Ultra 1000 Mbps fiber paketleridir. Tüm paketlerde sınırsız kullanım ve modem kiralama seçeneği sunulur."
+    },
+    {
+      "id": "pkg-002",
+      "category": "internet_paketleri",
+      "question": "Mobil internet paketleri var mı?",
+      "keywords": [
+        "mobil",
+        "telefon",
+        "gb",
+        "data",
+        "4g",
+        "5g",
+        "hat"
+      ],
+      "answer": "Evet. DemoTel mobil hatlarda 10 GB, 25 GB, 50 GB ve Sınırsız sosyal medya paketleri mevcuttur. Yurt içi dakika ve SMS kotası pakete göre değişir; detay için DemoTel uygulamasından paketinizi görüntüleyebilirsiniz."
+    },
+    {
+      "id": "price-001",
+      "category": "fiyatlandirma",
+      "question": "Ev internet paket fiyatları ne kadar?",
+      "keywords": [
+        "fiyat",
+        "ücret",
+        "tl",
+        "lira",
+        "ne kadar",
+        "aylık",
+        "50",
+        "100",
+        "250"
+      ],
+      "answer": "Güncel ev internet aylık ücretler (KDV dahil örnek fiyatlar): Başlangıç 50 Mbps 449 TL, Aile 100 Mbps 549 TL, Pro 250 Mbps 699 TL, Ultra 1000 Mbps 899 TL. Kampanyalı dönemlerde ilk 6 ay indirim uygulanabilir."
+    },
+    {
+      "id": "price-002",
+      "category": "fiyatlandirma",
+      "question": "Kurulum ve aktivasyon ücreti var mı?",
+      "keywords": [
+        "kurulum",
+        "aktivasyon",
+        "bağlantı",
+        "ücret",
+        "tek seferlik"
+      ],
+      "answer": "Standart fiber kurulum ücreti 750 TL'dir; online başvuruda sık sık ücretsiz kurulum kampanyası yapılır. Aktivasyon işlemi genelde 1–3 iş günü sürer; randevu günü teknisyen gelmeden önce SMS ile bilgilendirilirsiniz."
+    },
+    {
+      "id": "bill-001",
+      "category": "fatura",
+      "question": "Faturamı nereden ödeyebilirim?",
+      "keywords": [
+        "fatura",
+        "ödeme",
+        "ode",
+        "banka",
+        "uygulama",
+        "e-fatura"
+      ],
+      "answer": "Faturanızı DemoTel mobil uygulama, demoTel.com.tr müşteri paneli, anlaşmalı bankalar ve PTT üzerinden ödeyebilirsiniz. Otomatik ödeme talimatı vererek gecikme riskini azaltabilirsiniz."
+    },
+    {
+      "id": "bill-002",
+      "category": "fatura",
+      "question": "Fatura tarihim ve son ödeme günü nasıl öğrenilir?",
+      "keywords": [
+        "son ödeme",
+        "vade",
+        "fatura tarihi",
+        "kesim",
+        "ne zaman"
+      ],
+      "answer": "Fatura kesim tarihiniz abonelik başlangıcına göre her ay aynı gün oluşur. Son ödeme tarihi fatura üzerinde ve uygulamada 'Faturalarım' bölümünde görünür. Gecikmede hatırlatma SMS'i gönderilir."
+    },
+    {
+      "id": "bill-003",
+      "category": "fatura",
+      "question": "Yanlış fatura kalemi görüyorum, ne yapmalıyım?",
+      "keywords": [
+        "yanlış",
+        "itiraz",
+        "kalem",
+        "fazla",
+        "hatalı",
+        "düzeltme"
+      ],
+      "answer": "Fatura itirazınızı DemoTel uygulamasından 'Fatura İtirazı' formu ile veya 444 0 DEMO numaralı müşteri hizmetlerinden iletebilirsiniz. İnceleme süresi genelde 5 iş günüdür; haklı bulunursa düzeltme bir sonraki faturaya yansır."
+    },
+    {
+      "id": "bill-004",
+      "category": "fatura",
+      "question": "Fatura tutarı hangi nedenlerle artabilir?",
+      "keywords": [
+        "faturam",
+        "fatura",
+        "faturamın",
+        "aylık",
+        "ödeme",
+        "tutarım",
+        "ücretim",
+        "ödediğim",
+        "ücret",
+        "artış",
+        "arttı",
+        "artmış",
+        "yükseldi",
+        "yükselmiş",
+        "yüksek",
+        "fazla",
+        "zam",
+        "neden",
+        "sebep",
+        "sebebi",
+        "kampanya",
+        "taahhüt",
+        "paket dışı kullanım",
+        "ek ücret",
+        "ek hizmet"
+      ],
+      "answer": "DemoTel faturanız, kampanya veya taahhüt indiriminin sona ermesi, tarife değişikliği, paket dışı kullanım, ek hizmetler ya da tek seferlik ücretler nedeniyle önceki aylara göre artabilir. Kesin nedeni kontrol etmek için DemoTel uygulamasındaki Faturalarım > Fatura Detayı bölümünde bu ayın kalemlerini önceki ayla karşılaştırabilirsiniz. Bu demo asistanı hesabınıza erişemediğinden sizin faturanızı inceleyip kesin artış nedenini doğrulayamaz. Hatalı bir ücret varsa Fatura İtirazı bölümünü kullanabilirsiniz."
+    },
+    {
+      "id": "tech-001",
+      "category": "teknik_destek",
+      "question": "İnternetim yavaşlıyor veya bağlantım sürekli kesiliyor, ne yapabilirim?",
+      "keywords": [
+        "yavaş",
+        "hız",
+        "kopma",
+        "ping",
+        "wifi",
+        "modem",
+        "performans",
+        "bağlantım",
+        "kesiliyor",
+        "kopuyor",
+        "kesilme",
+        "sürekli kopma"
+      ],
+      "answer": "Önce modemi 30 saniye kapalı tutup yeniden başlatın. Mümkünse cihazı kablolu bağlayın veya modem ile bilgisayar arasında engel olmadığından emin olun. DemoTel uygulamasından 'Hız Testi' yapın; sorun devam ederse hat kaydı açılır ve uzaktan hat kontrolü yapılır."
+    },
+    {
+      "id": "tech-002",
+      "category": "teknik_destek",
+      "question": "Modem ışıkları kırmızı yanıyor, internet yok",
+      "keywords": [
+        "kırmızı",
+        "ışık",
+        "led",
+        "internet yok",
+        "bağlantı yok",
+        "fiber"
+      ],
+      "answer": "Kırmızı LOS veya internet ışığı genelde hat veya sinyal kaybını gösterir. Fiber kablonun gevşek olmadığını kontrol edin. Sorun sürerse 444 0 DEMO'dan arıza kaydı oluşturun; acil durumlarda saha ekibi yönlendirilir."
+    },
+    {
+      "id": "tech-003",
+      "category": "teknik_destek",
+      "question": "Wi-Fi şifremi nasıl değiştiririm?",
+      "keywords": [
+        "wifi",
+        "şifre",
+        "parola",
+        "ssid",
+        "ağ adı",
+        "modem arayüz"
+      ],
+      "answer": "Modem arayüzüne tarayıcıdan 192.168.1.1 adresine giderek (varsayılan kullanıcı adı/şifre modem etiketinde) Kablosuz Ayarlar bölümünden Wi-Fi adını ve şifresini güncelleyebilirsiniz. DemoTel uygulamasındaki 'Modem Yönetimi' ile de adım adım yapılabilir."
+    }
+  ]
+}

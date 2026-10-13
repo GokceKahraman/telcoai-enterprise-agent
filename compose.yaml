@@ -1,0 +1,77 @@
+name: telcoai
+services:
+  api:
+    image: telcoai:demo
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      TELCOAI_RETRIEVAL_STRATEGY: keyword
+      TELCOAI_STORAGE_BACKEND: memory
+      TELCOAI_GENERATION_BACKEND: extractive
+      TELCOAI_PRIVACY_MODE: presidio
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+
+  qdrant:
+    image: qdrant/qdrant:v1.19.2
+    profiles: [enterprise]
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      # Official slim image has Bash, but does not ship curl/wget.
+      test:
+        - CMD
+        - /bin/bash
+        - -c
+        - "exec 3<>/dev/tcp/127.0.0.1/6333; printf 'GET /healthz HTTP/1.0\r\n\r\n' >&3; read -r line <&3; [[ $$line == *200* ]]"
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.4.2-alpine
+    profiles: [enterprise]
+    command: [redis-server, --appendonly, "yes", --appendfsync, everysec]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  grpc:
+    image: telcoai:demo
+    build:
+      context: .
+    profiles: [grpc]
+    command: [python, -m, app.grpc.server]
+    ports:
+      - "127.0.0.1:50051:50051"
+    environment:
+      TELCOAI_RETRIEVAL_STRATEGY: keyword
+      TELCOAI_STORAGE_BACKEND: memory
+      TELCOAI_GENERATION_BACKEND: extractive
+      TELCOAI_PRIVACY_MODE: presidio
+      TELCOAI_GRPC_HOST: 0.0.0.0
+    healthcheck:
+      test: [CMD, python, -c, "import socket; socket.create_connection(('127.0.0.1', 50051), timeout=3).close()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    init: true
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+  redis_data:

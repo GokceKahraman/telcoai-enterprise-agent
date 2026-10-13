@@ -1,0 +1,31 @@
+syntax = "proto3";
+package telcoai.v1;
+
+service SupportService {
+  rpc Chat(ChatRequest) returns (ChatResponse);
+}
+message ChatRequest {
+  string message = 1;
+  string session_id = 2;
+  string category = 3;
+}
+message SourceInfo {
+  string entry_id = 1;
+  string category = 2;
+  string matched_question = 3;
+  double confidence = 4;
+}
+message ChatResponse {
+  string answer = 1;
+  SourceInfo source = 2;
+  bool fallback = 3;
+  string session_id = 4;
+  string trace_id = 5;
+  string intent = 6;
+  bool handoff = 7;
+  bool pii_redacted = 8;
+  bool cache_hit = 9;
+  double latency_ms = 10;
+  repeated string steps = 11;
+  string safe_message = 12;
+}

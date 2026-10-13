@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telcoai-config
+data:
+  TELCOAI_RETRIEVAL_STRATEGY: keyword
+  TELCOAI_STORAGE_BACKEND: memory
+  TELCOAI_GENERATION_BACKEND: extractive
+  TELCOAI_PRIVACY_MODE: presidio
+  TELCOAI_TENANT_ID: demotel
+  TELCOAI_LOCALE: tr-TR
+  TELCOAI_QDRANT_URL: http://qdrant:6333
+  TELCOAI_REDIS_URL: redis://redis:6379/0
+  TELCOAI_QDRANT_COLLECTION: telcoai_faq

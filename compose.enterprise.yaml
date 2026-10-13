@@ -1,0 +1,46 @@
+# Opt-in override: docker compose -f compose.yaml -f compose.enterprise.yaml --profile enterprise ...
+services:
+  api:
+    image: telcoai:enterprise
+    build:
+      args:
+        UV_EXTRAS: semantic
+    environment:
+      TELCOAI_RETRIEVAL_STRATEGY: qdrant_hybrid
+      TELCOAI_STORAGE_BACKEND: redis
+      TELCOAI_QDRANT_URL: http://qdrant:6333
+      TELCOAI_REDIS_URL: redis://redis:6379/0
+      TELCOAI_TENANT_ID: demotel
+      TELCOAI_LOCALE: tr-TR
+      TELCOAI_SEMANTIC_CACHE_ENABLED: "true"
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - model_cache:/home/app/.cache
+
+  grpc:
+    image: telcoai:enterprise
+    build:
+      args:
+        UV_EXTRAS: semantic
+    environment:
+      TELCOAI_RETRIEVAL_STRATEGY: qdrant_hybrid
+      TELCOAI_STORAGE_BACKEND: redis
+      TELCOAI_QDRANT_URL: http://qdrant:6333
+      TELCOAI_REDIS_URL: redis://redis:6379/0
+      TELCOAI_TENANT_ID: demotel
+      TELCOAI_LOCALE: tr-TR
+      TELCOAI_SEMANTIC_CACHE_ENABLED: "true"
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - model_cache:/home/app/.cache
+
+volumes:
+  model_cache:

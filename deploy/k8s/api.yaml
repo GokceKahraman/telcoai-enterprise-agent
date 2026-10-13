@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telcoai-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telcoai-api
+  template:
+    metadata:
+      labels:
+        app: telcoai-api
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: api
+          image: telcoai:demo
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: telcoai-config
+          env:
+            - name: TELCOAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: telcoai-secrets
+                  key: api-key
+                  optional: true
+            - name: TELCOAI_QDRANT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: telcoai-secrets
+                  key: qdrant-api-key
+                  optional: true
+            - name: TELCOAI_LLM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: telcoai-secrets
+                  key: llm-api-key
+                  optional: true
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 60
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: model-cache
+              mountPath: /home/app/.cache
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: model-cache
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telcoai-api
+spec:
+  type: ClusterIP
+  selector:
+    app: telcoai-api
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http

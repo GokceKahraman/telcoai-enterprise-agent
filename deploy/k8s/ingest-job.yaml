@@ -1,0 +1,54 @@
+# Apply explicitly after selecting the enterprise overlay; excluded from base kustomization.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: telcoai-ingest
+  namespace: telcoai
+spec:
+  backoffLimit: 1
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: ingest
+          image: telcoai:enterprise
+          imagePullPolicy: IfNotPresent
+          command: [python, scripts/ingest.py]
+          envFrom:
+            - configMapRef:
+                name: telcoai-config
+          env:
+            - name: TELCOAI_QDRANT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: telcoai-secrets
+                  key: qdrant-api-key
+                  optional: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: cache
+              mountPath: /home/app/.cache
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: cache
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}

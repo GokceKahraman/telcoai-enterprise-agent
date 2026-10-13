@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telcoai-config
+data:
+  TELCOAI_RETRIEVAL_STRATEGY: qdrant_hybrid
+  TELCOAI_STORAGE_BACKEND: redis
+  TELCOAI_SEMANTIC_CACHE_ENABLED: "true"

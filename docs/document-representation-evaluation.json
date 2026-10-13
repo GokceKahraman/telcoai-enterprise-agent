@@ -1,0 +1,1134 @@
+{
+  "created_at": "2026-10-12T19:19:02.916832+00:00",
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "dataset_sha256": "82343e728a2480b4d5be2c1c17acf7075ee3c140cce5e4350ebf549c45b6eb29",
+  "corpus_sha256": "73370a248eb570c5c15dd8ff6822fd884e13d179a07ec6690bfb9623b3cc6586",
+  "threshold": 0.42,
+  "selection_note": "Development set comparison only; no heldout quality claim or test label changes.",
+  "representations": {
+    "full_question_keywords_answer": {
+      "metrics": {
+        "hit_at_1": 0.76,
+        "hit_at_3": 0.8,
+        "mrr_at_10": 0.78,
+        "ood_false_accept_rate": 0.0,
+        "relevant_count": 25,
+        "ood_count": 10
+      },
+      "queries": [
+        {
+          "id": "r01",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "price-001",
+            "price-002"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.7162327766418457,
+          "expected_scores": {
+            "pkg-001": 0.7162327766418457
+          }
+        },
+        {
+          "id": "r02",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "price-001",
+            "tech-001"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.6806795597076416,
+          "expected_scores": {
+            "pkg-001": 0.6806795597076416
+          }
+        },
+        {
+          "id": "r03",
+          "retrieved_entry_ids": [
+            "pkg-002",
+            "pkg-001",
+            "price-001"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.6743178367614746,
+          "expected_scores": {
+            "pkg-002": 0.6743178367614746
+          }
+        },
+        {
+          "id": "r04",
+          "retrieved_entry_ids": [
+            "pkg-002"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.6841096878051758,
+          "expected_scores": {
+            "pkg-002": 0.6841096878051758
+          }
+        },
+        {
+          "id": "r05",
+          "retrieved_entry_ids": [
+            "price-001",
+            "pkg-001",
+            "pkg-002"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.621563732624054,
+          "expected_scores": {
+            "price-001": 0.621563732624054
+          }
+        },
+        {
+          "id": "r06",
+          "retrieved_entry_ids": [
+            "price-001",
+            "pkg-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.7069858312606812,
+          "expected_scores": {
+            "price-001": 0.7069858312606812
+          }
+        },
+        {
+          "id": "r07",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.4695175290107727,
+          "expected_scores": {
+            "price-002": 0.4695175290107727
+          }
+        },
+        {
+          "id": "r08",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.6246589422225952,
+          "expected_scores": {
+            "price-002": 0.6246589422225952
+          }
+        },
+        {
+          "id": "r09",
+          "retrieved_entry_ids": [
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.6919113397598267,
+          "expected_scores": {
+            "bill-001": 0.6919113397598267
+          }
+        },
+        {
+          "id": "r10",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.3766707181930542,
+          "expected_scores": {
+            "bill-001": 0.15024548768997192
+          }
+        },
+        {
+          "id": "r11",
+          "retrieved_entry_ids": [
+            "bill-002",
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.7599784135818481,
+          "expected_scores": {
+            "bill-002": 0.7599784135818481
+          }
+        },
+        {
+          "id": "r12",
+          "retrieved_entry_ids": [
+            "bill-002"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.496060848236084,
+          "expected_scores": {
+            "bill-002": 0.496060848236084
+          }
+        },
+        {
+          "id": "r13",
+          "retrieved_entry_ids": [
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.520855188369751,
+          "expected_scores": {
+            "bill-003": 0.520855188369751
+          }
+        },
+        {
+          "id": "r14",
+          "retrieved_entry_ids": [
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.6017401218414307,
+          "expected_scores": {
+            "bill-003": 0.6017401218414307
+          }
+        },
+        {
+          "id": "r15",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "tech-001",
+          "top_cosine": 0.308687299489975,
+          "expected_scores": {
+            "tech-001": 0.308687299489975
+          }
+        },
+        {
+          "id": "r16",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.3388134241104126,
+          "expected_scores": {
+            "tech-001": 0.2604522109031677
+          }
+        },
+        {
+          "id": "r17",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.39900481700897217,
+          "expected_scores": {
+            "tech-001": 0.3851308524608612
+          }
+        },
+        {
+          "id": "r18",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.6718356013298035,
+          "expected_scores": {
+            "tech-002": 0.6718356013298035
+          }
+        },
+        {
+          "id": "r19",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.7175374031066895,
+          "expected_scores": {
+            "tech-002": 0.7175374031066895
+          }
+        },
+        {
+          "id": "r20",
+          "retrieved_entry_ids": [
+            "tech-003"
+          ],
+          "top_without_threshold": "tech-003",
+          "top_cosine": 0.6599657535552979,
+          "expected_scores": {
+            "tech-003": 0.6599657535552979
+          }
+        },
+        {
+          "id": "r21",
+          "retrieved_entry_ids": [
+            "bill-004"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.6494438648223877,
+          "expected_scores": {
+            "bill-004": 0.6494438648223877
+          }
+        },
+        {
+          "id": "r22",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.63020920753479,
+          "expected_scores": {
+            "bill-004": 0.63020920753479
+          }
+        },
+        {
+          "id": "r23",
+          "retrieved_entry_ids": [
+            "bill-004"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.6539798974990845,
+          "expected_scores": {
+            "bill-004": 0.6539798974990845
+          }
+        },
+        {
+          "id": "r24",
+          "retrieved_entry_ids": [
+            "price-001",
+            "bill-004",
+            "price-002"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.5797773599624634,
+          "expected_scores": {
+            "bill-004": 0.567798376083374
+          }
+        },
+        {
+          "id": "r25",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.26680099964141846,
+          "expected_scores": {
+            "bill-004": 0.26680099964141846
+          }
+        },
+        {
+          "id": "o01",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.1557694971561432,
+          "expected_scores": {}
+        },
+        {
+          "id": "o02",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.07809986174106598,
+          "expected_scores": {}
+        },
+        {
+          "id": "o03",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.14399361610412598,
+          "expected_scores": {}
+        },
+        {
+          "id": "o04",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.3376806378364563,
+          "expected_scores": {}
+        },
+        {
+          "id": "o05",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.3943837881088257,
+          "expected_scores": {}
+        },
+        {
+          "id": "o06",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.12139053642749786,
+          "expected_scores": {}
+        },
+        {
+          "id": "o07",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.13692882657051086,
+          "expected_scores": {}
+        },
+        {
+          "id": "o08",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.23088878393173218,
+          "expected_scores": {}
+        },
+        {
+          "id": "o09",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.07465474307537079,
+          "expected_scores": {}
+        },
+        {
+          "id": "o10",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.22015784680843353,
+          "expected_scores": {}
+        }
+      ]
+    },
+    "question_keywords": {
+      "metrics": {
+        "hit_at_1": 0.84,
+        "hit_at_3": 0.84,
+        "mrr_at_10": 0.84,
+        "ood_false_accept_rate": 0.1,
+        "relevant_count": 25,
+        "ood_count": 10
+      },
+      "queries": [
+        {
+          "id": "r01",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "price-001",
+            "tech-001",
+            "tech-002"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.8174827098846436,
+          "expected_scores": {
+            "pkg-001": 0.8174827098846436
+          }
+        },
+        {
+          "id": "r02",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "tech-001",
+            "price-001"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.7902247905731201,
+          "expected_scores": {
+            "pkg-001": 0.7902247905731201
+          }
+        },
+        {
+          "id": "r03",
+          "retrieved_entry_ids": [
+            "pkg-002",
+            "pkg-001",
+            "price-001"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.6614007353782654,
+          "expected_scores": {
+            "pkg-002": 0.6614007353782654
+          }
+        },
+        {
+          "id": "r04",
+          "retrieved_entry_ids": [
+            "pkg-002"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.7267441749572754,
+          "expected_scores": {
+            "pkg-002": 0.7267441749572754
+          }
+        },
+        {
+          "id": "r05",
+          "retrieved_entry_ids": [
+            "price-001",
+            "pkg-001",
+            "tech-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.6277812123298645,
+          "expected_scores": {
+            "price-001": 0.6277812123298645
+          }
+        },
+        {
+          "id": "r06",
+          "retrieved_entry_ids": [
+            "price-001",
+            "bill-001",
+            "pkg-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.7315109968185425,
+          "expected_scores": {
+            "price-001": 0.7315109968185425
+          }
+        },
+        {
+          "id": "r07",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001",
+            "bill-004"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.5424103140830994,
+          "expected_scores": {
+            "price-002": 0.5424103140830994
+          }
+        },
+        {
+          "id": "r08",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001",
+            "price-001"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.7221096754074097,
+          "expected_scores": {
+            "price-002": 0.7221096754074097
+          }
+        },
+        {
+          "id": "r09",
+          "retrieved_entry_ids": [
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.729824960231781,
+          "expected_scores": {
+            "bill-001": 0.729824960231781
+          }
+        },
+        {
+          "id": "r10",
+          "retrieved_entry_ids": [
+            "pkg-001"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.5019822120666504,
+          "expected_scores": {
+            "bill-001": 0.18713071942329407
+          }
+        },
+        {
+          "id": "r11",
+          "retrieved_entry_ids": [
+            "bill-002",
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.878101110458374,
+          "expected_scores": {
+            "bill-002": 0.878101110458374
+          }
+        },
+        {
+          "id": "r12",
+          "retrieved_entry_ids": [
+            "bill-002"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.5600296854972839,
+          "expected_scores": {
+            "bill-002": 0.5600296854972839
+          }
+        },
+        {
+          "id": "r13",
+          "retrieved_entry_ids": [
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.7336817979812622,
+          "expected_scores": {
+            "bill-003": 0.7336817979812622
+          }
+        },
+        {
+          "id": "r14",
+          "retrieved_entry_ids": [
+            "bill-003",
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.919481635093689,
+          "expected_scores": {
+            "bill-003": 0.919481635093689
+          }
+        },
+        {
+          "id": "r15",
+          "retrieved_entry_ids": [
+            "tech-001"
+          ],
+          "top_without_threshold": "tech-001",
+          "top_cosine": 0.4622725248336792,
+          "expected_scores": {
+            "tech-001": 0.4622725248336792
+          }
+        },
+        {
+          "id": "r16",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.3365752696990967,
+          "expected_scores": {
+            "tech-001": 0.2613946497440338
+          }
+        },
+        {
+          "id": "r17",
+          "retrieved_entry_ids": [
+            "tech-002",
+            "tech-003"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.4532310664653778,
+          "expected_scores": {
+            "tech-001": 0.401813268661499
+          }
+        },
+        {
+          "id": "r18",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.7393719553947449,
+          "expected_scores": {
+            "tech-002": 0.7393719553947449
+          }
+        },
+        {
+          "id": "r19",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.7883709669113159,
+          "expected_scores": {
+            "tech-002": 0.7883709669113159
+          }
+        },
+        {
+          "id": "r20",
+          "retrieved_entry_ids": [
+            "tech-003"
+          ],
+          "top_without_threshold": "tech-003",
+          "top_cosine": 0.7389227151870728,
+          "expected_scores": {
+            "tech-003": 0.7389227151870728
+          }
+        },
+        {
+          "id": "r21",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "bill-003",
+            "bill-002"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.7174873948097229,
+          "expected_scores": {
+            "bill-004": 0.7174873948097229
+          }
+        },
+        {
+          "id": "r22",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.6267141699790955,
+          "expected_scores": {
+            "bill-004": 0.6267141699790955
+          }
+        },
+        {
+          "id": "r23",
+          "retrieved_entry_ids": [
+            "bill-004"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.7652491331100464,
+          "expected_scores": {
+            "bill-004": 0.7652491331100464
+          }
+        },
+        {
+          "id": "r24",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "price-001"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.6268913745880127,
+          "expected_scores": {
+            "bill-004": 0.6268913745880127
+          }
+        },
+        {
+          "id": "r25",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.32654324173927307,
+          "expected_scores": {
+            "bill-004": 0.32654324173927307
+          }
+        },
+        {
+          "id": "o01",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.15738260746002197,
+          "expected_scores": {}
+        },
+        {
+          "id": "o02",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.07042404264211655,
+          "expected_scores": {}
+        },
+        {
+          "id": "o03",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.19517526030540466,
+          "expected_scores": {}
+        },
+        {
+          "id": "o04",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.34023091197013855,
+          "expected_scores": {}
+        },
+        {
+          "id": "o05",
+          "retrieved_entry_ids": [
+            "price-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.47002363204956055,
+          "expected_scores": {}
+        },
+        {
+          "id": "o06",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.1804860532283783,
+          "expected_scores": {}
+        },
+        {
+          "id": "o07",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.1988358497619629,
+          "expected_scores": {}
+        },
+        {
+          "id": "o08",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.24865928292274475,
+          "expected_scores": {}
+        },
+        {
+          "id": "o09",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.07571824640035629,
+          "expected_scores": {}
+        },
+        {
+          "id": "o10",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.2532682418823242,
+          "expected_scores": {}
+        }
+      ]
+    },
+    "question_only": {
+      "metrics": {
+        "hit_at_1": 0.76,
+        "hit_at_3": 0.76,
+        "mrr_at_10": 0.76,
+        "ood_false_accept_rate": 0.1,
+        "relevant_count": 25,
+        "ood_count": 10
+      },
+      "queries": [
+        {
+          "id": "r01",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "price-001",
+            "pkg-002",
+            "tech-001"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.7132996916770935,
+          "expected_scores": {
+            "pkg-001": 0.7132996916770935
+          }
+        },
+        {
+          "id": "r02",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "tech-001",
+            "price-001",
+            "pkg-002"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.6357811689376831,
+          "expected_scores": {
+            "pkg-001": 0.6357811689376831
+          }
+        },
+        {
+          "id": "r03",
+          "retrieved_entry_ids": [
+            "pkg-002",
+            "price-001",
+            "pkg-001"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.5670180320739746,
+          "expected_scores": {
+            "pkg-002": 0.5670180320739746
+          }
+        },
+        {
+          "id": "r04",
+          "retrieved_entry_ids": [
+            "pkg-002",
+            "pkg-001"
+          ],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.6945849061012268,
+          "expected_scores": {
+            "pkg-002": 0.6945849061012268
+          }
+        },
+        {
+          "id": "r05",
+          "retrieved_entry_ids": [
+            "price-001",
+            "tech-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.6289209127426147,
+          "expected_scores": {
+            "price-001": 0.6289209127426147
+          }
+        },
+        {
+          "id": "r06",
+          "retrieved_entry_ids": [
+            "price-001",
+            "pkg-001",
+            "bill-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.8260849714279175,
+          "expected_scores": {
+            "price-001": 0.8260849714279175
+          }
+        },
+        {
+          "id": "r07",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001",
+            "price-001"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.5401912927627563,
+          "expected_scores": {
+            "price-002": 0.5401912927627563
+          }
+        },
+        {
+          "id": "r08",
+          "retrieved_entry_ids": [
+            "price-002",
+            "bill-001",
+            "price-001"
+          ],
+          "top_without_threshold": "price-002",
+          "top_cosine": 0.7947027087211609,
+          "expected_scores": {
+            "price-002": 0.7947027087211609
+          }
+        },
+        {
+          "id": "r09",
+          "retrieved_entry_ids": [
+            "bill-001",
+            "bill-003",
+            "price-002"
+          ],
+          "top_without_threshold": "bill-001",
+          "top_cosine": 0.6233791708946228,
+          "expected_scores": {
+            "bill-001": 0.6233791708946228
+          }
+        },
+        {
+          "id": "r10",
+          "retrieved_entry_ids": [
+            "pkg-001",
+            "pkg-002"
+          ],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.6473280787467957,
+          "expected_scores": {
+            "bill-001": 0.14818954467773438
+          }
+        },
+        {
+          "id": "r11",
+          "retrieved_entry_ids": [
+            "bill-002",
+            "bill-001",
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.8397552967071533,
+          "expected_scores": {
+            "bill-002": 0.8397552967071533
+          }
+        },
+        {
+          "id": "r12",
+          "retrieved_entry_ids": [
+            "bill-002"
+          ],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.5880559682846069,
+          "expected_scores": {
+            "bill-002": 0.5880559682846069
+          }
+        },
+        {
+          "id": "r13",
+          "retrieved_entry_ids": [
+            "bill-003",
+            "bill-001",
+            "bill-002"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.7127215266227722,
+          "expected_scores": {
+            "bill-003": 0.7127215266227722
+          }
+        },
+        {
+          "id": "r14",
+          "retrieved_entry_ids": [
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.9159524440765381,
+          "expected_scores": {
+            "bill-003": 0.9159524440765381
+          }
+        },
+        {
+          "id": "r15",
+          "retrieved_entry_ids": [
+            "tech-001"
+          ],
+          "top_without_threshold": "tech-001",
+          "top_cosine": 0.5533570051193237,
+          "expected_scores": {
+            "tech-001": 0.5533570051193237
+          }
+        },
+        {
+          "id": "r16",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.3145603537559509,
+          "expected_scores": {
+            "tech-001": 0.2839282751083374
+          }
+        },
+        {
+          "id": "r17",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.4537346661090851,
+          "expected_scores": {
+            "tech-001": 0.316495418548584
+          }
+        },
+        {
+          "id": "r18",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.7775523066520691,
+          "expected_scores": {
+            "tech-002": 0.7775523066520691
+          }
+        },
+        {
+          "id": "r19",
+          "retrieved_entry_ids": [
+            "tech-002"
+          ],
+          "top_without_threshold": "tech-002",
+          "top_cosine": 0.7904948592185974,
+          "expected_scores": {
+            "tech-002": 0.7904948592185974
+          }
+        },
+        {
+          "id": "r20",
+          "retrieved_entry_ids": [
+            "tech-003"
+          ],
+          "top_without_threshold": "tech-003",
+          "top_cosine": 0.750656008720398,
+          "expected_scores": {
+            "tech-003": 0.750656008720398
+          }
+        },
+        {
+          "id": "r21",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "bill-003",
+            "bill-002",
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.5719260573387146,
+          "expected_scores": {
+            "bill-004": 0.5719260573387146
+          }
+        },
+        {
+          "id": "r22",
+          "retrieved_entry_ids": [
+            "bill-003"
+          ],
+          "top_without_threshold": "bill-003",
+          "top_cosine": 0.5910910367965698,
+          "expected_scores": {
+            "bill-004": 0.41065359115600586
+          }
+        },
+        {
+          "id": "r23",
+          "retrieved_entry_ids": [
+            "bill-004",
+            "bill-001"
+          ],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.5865585803985596,
+          "expected_scores": {
+            "bill-004": 0.5865585803985596
+          }
+        },
+        {
+          "id": "r24",
+          "retrieved_entry_ids": [
+            "price-001",
+            "tech-001"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.6224703788757324,
+          "expected_scores": {
+            "bill-004": 0.41353926062583923
+          }
+        },
+        {
+          "id": "r25",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-004",
+          "top_cosine": 0.29124435782432556,
+          "expected_scores": {
+            "bill-004": 0.29124435782432556
+          }
+        },
+        {
+          "id": "o01",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.1448933333158493,
+          "expected_scores": {}
+        },
+        {
+          "id": "o02",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.05976815149188042,
+          "expected_scores": {}
+        },
+        {
+          "id": "o03",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.21981066465377808,
+          "expected_scores": {}
+        },
+        {
+          "id": "o04",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.31368088722229004,
+          "expected_scores": {}
+        },
+        {
+          "id": "o05",
+          "retrieved_entry_ids": [
+            "price-001",
+            "bill-001",
+            "price-002"
+          ],
+          "top_without_threshold": "price-001",
+          "top_cosine": 0.5047630071640015,
+          "expected_scores": {}
+        },
+        {
+          "id": "o06",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.2669106125831604,
+          "expected_scores": {}
+        },
+        {
+          "id": "o07",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "bill-002",
+          "top_cosine": 0.21563802659511566,
+          "expected_scores": {}
+        },
+        {
+          "id": "o08",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.2539730966091156,
+          "expected_scores": {}
+        },
+        {
+          "id": "o09",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-002",
+          "top_cosine": 0.15453027188777924,
+          "expected_scores": {}
+        },
+        {
+          "id": "o10",
+          "retrieved_entry_ids": [],
+          "top_without_threshold": "pkg-001",
+          "top_cosine": 0.31796979904174805,
+          "expected_scores": {}
+        }
+      ]
+    }
+  }
+}
