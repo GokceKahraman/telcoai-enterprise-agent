@@ -12,7 +12,7 @@ The demo website now presents DemoTel as a fictional consumer telecom brand. Ope
 
 The main page is a fictional telecom company website in [`static/index.html`](static/index.html). The assistant opens from the floating icon at the lower-right corner. Its compact panel is anchored near the bottom edge and contains only the conversation, with a Turkish/English selector in the header. Switching to **ENG 🇺🇸** starts the English conversation; **TR 🇹🇷** starts the Turkish conversation. Each language has its own session.
 
-For a complete preview with working RAG responses, start the FastAPI app and open **http://127.0.0.1:8000/**. Opening `static/index.html` directly from disk now loads its CSS and JavaScript for a visual preview, but browser security prevents `file://` pages from calling the local chat API.
+For a complete preview with working RAG responses, start the FastAPI app and open **http://127.0.0.1:8000/**. The interface uses same-origin static assets and API requests, so run it through FastAPI instead of opening the HTML file directly.
 
 The project includes focused tests for greeting/thanks, retrieval, source grounding, privacy masking and human handoff. See [verification evidence and limits](docs/verification.md) for the last full-suite run and its environment constraints.
 
