@@ -6,7 +6,10 @@
     <meta name="theme-color" content="#112c39" />
     <meta name="description" content="DemoTel ile ev interneti, mobil bağlantı ve insan odaklı dijital destek deneyimini keşfet. DemoTel Asistan’a sorunuzu sorun." />
     <title>DemoTel · Bağlantının yeni hali</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <script>
+      window.DEMOTEL_STATIC_BASE = location.protocol === "file:" ? "./" : "/static/";
+      document.write(`<link rel="stylesheet" href="${window.DEMOTEL_STATIC_BASE}css/style.css" />`);
+    </script>
   </head>
   <body>
 
@@ -109,6 +112,8 @@
     </div>
     </div>
     </section>
-    <script src="/static/js/chat.js" defer></script>
+    <script>
+      document.write(`<script src="${window.DEMOTEL_STATIC_BASE}js/chat.js"><\/script>`);
+    </script>
   </body>
 </html>
