@@ -15,7 +15,7 @@
         "mbps",
         "tarife"
       ],
-      "answer": "DemoTel ev internet paketlerimiz: Başlangıç 50 Mbps, Aile 100 Mbps, Pro 250 Mbps ve Ultra 1000 Mbps fiber paketleridir. Tüm paketlerde sınırsız kullanım ve modem kiralama seçeneği sunulur."
+      "answer": "DemoTel’in kurgusal ev interneti kataloğunda Başlangıç 50 Mbps, Aile 100 Mbps, Pro 250 Mbps ve Ultra 1000 Mbps seçenekleri bulunur. Bunlar portföy demosu için oluşturulmuş örnek paket adlarıdır; gerçek operatör teklifi veya adresinizdeki altyapı taahhüdü değildir. Örneğin aynı evde görüntülü görüşme ve yayın izleme birlikte yapılıyorsa Aile/Pro gibi daha yüksek kapasiteli seçenekleri değerlendirebilirsiniz. Gerçek satın alma öncesinde adres bazlı altyapı ve güncel koşullar doğrulanmalıdır."
     },
     {
       "id": "pkg-002",
@@ -30,7 +30,7 @@
         "5g",
         "hat"
       ],
-      "answer": "Evet. DemoTel mobil hatlarda 10 GB, 25 GB, 50 GB ve Sınırsız sosyal medya paketleri mevcuttur. Yurt içi dakika ve SMS kotası pakete göre değişir; detay için DemoTel uygulamasından paketinizi görüntüleyebilirsiniz."
+      "answer": "Kurgusal DemoTel mobil örnek kataloğunda 10 GB, 25 GB ve 50 GB internet seçenekleri ile sosyal medya kullanımına yönelik örnek bir paket vardır. Dakika, SMS, paylaşım ve yurt dışı kullanım kapsamı seçeneğe göre değişir; bu demoda gerçek tarife/ücret bulunmaz. Örneğin ay sonunda sık sık kota bitiyorsa uygulamadaki son birkaç dönemin kullanımını karşılaştırıp ihtiyaca uygun kota seçilebilir. Asistan gerçek hattınızı veya kalan kotanızı göremez."
     },
     {
       "id": "price-001",
@@ -47,7 +47,7 @@
         "100",
         "250"
       ],
-      "answer": "Güncel ev internet aylık ücretler (KDV dahil örnek fiyatlar): Başlangıç 50 Mbps 449 TL, Aile 100 Mbps 549 TL, Pro 250 Mbps 699 TL, Ultra 1000 Mbps 899 TL. Kampanyalı dönemlerde ilk 6 ay indirim uygulanabilir."
+      "answer": "Bu portföy demosunda örnek aylık bedeller Başlangıç 50 Mbps için 449 TL, Aile 100 Mbps için 549 TL, Pro 250 Mbps için 699 TL ve Ultra 1000 Mbps için 899 TL olarak tanımlanmıştır. Bunlar yalnızca sentetik demo verisidir; güncel piyasa fiyatı, kampanya, vergi hesabı veya gerçek DemoTel teklifi değildir. Gerçek hizmette toplam maliyet; adres uygunluğu, kampanya süresi, modem/kurulum ve sözleşme koşullarıyla birlikte resmi teklif ekranında doğrulanmalıdır."
     },
     {
       "id": "price-002",
@@ -60,7 +60,7 @@
         "ücret",
         "tek seferlik"
       ],
-      "answer": "Standart fiber kurulum ücreti 750 TL'dir; online başvuruda sık sık ücretsiz kurulum kampanyası yapılır. Aktivasyon işlemi genelde 1–3 iş günü sürer; randevu günü teknisyen gelmeden önce SMS ile bilgilendirilirsiniz."
+      "answer": "Demo kataloğundaki 750 TL kurulum bedeli ve 1–3 iş günü aktivasyon bilgisi kurgusal örneklerdir. Gerçek bir abonelikte kurulumun ücretli olup olmadığı; altyapı, teknik keşif, cihaz mülkiyeti ve kampanya koşullarına göre değişebilir. Randevuya hazırlanırken bina girişindeki altyapı erişimini ve evde bulunacak kişiyi planlamak işe yarar; kesin tarih ve bedel yalnızca doğrulanmış sipariş ekranından öğrenilmelidir."
     },
     {
       "id": "bill-001",
@@ -183,6 +183,359 @@
         "modem arayüz"
       ],
       "answer": "Modem arayüzüne tarayıcıdan 192.168.1.1 adresine giderek (varsayılan kullanıcı adı/şifre modem etiketinde) Kablosuz Ayarlar bölümünden Wi-Fi adını ve şifresini güncelleyebilirsiniz. DemoTel uygulamasındaki 'Modem Yönetimi' ile de adım adım yapılabilir."
+    },
+    {
+      "id": "pkg-003",
+      "category": "internet_paketleri",
+      "question": "Evde aynı anda kaç cihaz kullanabiliriz?",
+      "keywords": [
+        "ev interneti",
+        "çok cihaz",
+        "aile",
+        "wifi",
+        "cihaz sayısı",
+        "video görüşme"
+      ],
+      "answer": "Wi-Fi deneyimi yalnızca paketin Mbps değerine değil; modem konumu, duvarlar, cihazların kablosuz standardı ve aynı anda yapılan işlere bağlıdır. Örneğin iki kişi 4K yayın izlerken bir başkası görüntülü görüşme yapıyorsa kablolu bağlantı veya mesh kapsama çözümü gerekebilir. DemoTel gerçek ev ağınızı ölçmez; önce bir cihazı modeme yakınken, sonra mümkünse Ethernet kablosuyla test ederek Wi-Fi ile hat performansını ayırın."
+    },
+    {
+      "id": "pkg-004",
+      "category": "internet_paketleri",
+      "question": "Fiber adresimde var mı, nasıl öğrenirim?",
+      "keywords": [
+        "fiber altyapı",
+        "adres sorgulama",
+        "kapsama",
+        "altyapı kontrol",
+        "ev interneti başvuru"
+      ],
+      "answer": "Fiber uygunluğu bina ve daire adresine göre değişebildiği için yalnızca il/ilçe bilgisiyle kesinleştirilemez. DemoTel demosunda canlı altyapı sorgusu yoktur. Gerçek başvuruda resmi adres sorgulama ekranında il, ilçe, mahalle, sokak, bina ve daire bilgisini doğrulayın; sonuç yoksa bina yönetimi veya yetkili operatör kanalı üzerinden altyapı talebi olup olmadığını sorun. Buraya açık adres yazmayın."
+    },
+    {
+      "id": "pkg-005",
+      "category": "internet_paketleri",
+      "question": "Numaramı taşırken mevcut hattım kapanır mı?",
+      "keywords": [
+        "numara taşıma",
+        "hat taşıma",
+        "geçiş",
+        "operatör değişikliği"
+      ],
+      "answer": "Numara taşıma talebi ve geçiş zamanı alıcı operatörün resmi başvuru akışında doğrulanır; başvuru tamamlanmadan mevcut hattı kendiniz iptal etmek numaranın korunmasını riske atabilir. SIM/eSIM teslimi ve geçiş zamanı için resmi bildirimleri izleyin. Bu DemoTel asistanı gerçek taşıma başvurusu alamaz, uygunluk veya tamamlanma zamanı sorgulayamaz."
+    },
+    {
+      "id": "price-003",
+      "category": "fiyatlandirma",
+      "question": "Kampanya fiyatı bitince ne olur?",
+      "keywords": [
+        "kampanya bitişi",
+        "indirim sona erdi",
+        "taahhüt",
+        "fiyat artışı"
+      ],
+      "answer": "Kampanya dönemindeki indirim sona erince, sözleşme veya tarife koşullarında yazan dönem sonrası ücret uygulanabilir; tutarı bu demo tahmin edemez. Örneğin ilk aylarda indirimli görünen sabit internet bedelini değerlendirirken kampanya süresi, sonraki dönem bedeli, modem/ek hizmet kalemleri ve varsa taahhüt koşullarını birlikte okuyun. Kendi teklifiniz için resmi sözleşme ve uygulamadaki kampanya ayrıntısı esas alınmalıdır."
+    },
+    {
+      "id": "price-004",
+      "category": "fiyatlandirma",
+      "question": "Taahhüdüm bitmeden paket değiştirirsem cayma bedeli çıkar mı?",
+      "keywords": [
+        "cayma bedeli",
+        "taahhüt bozma",
+        "paket değiştirme",
+        "iptal ücreti"
+      ],
+      "answer": "Cayma bedeli veya indirim iadesi; sözleşme, kampanya şartları, kalan süre ve geçiş yapılacak pakete göre değişebilir. Asistan hesabınızı ve sözleşmenizi göremediği için tutar hesaplayamaz. İşlem öncesinde uygulamada taahhüt bitiş tarihini ve gösterilen toplam bedeli inceleyin, sonra resmi müşteri hizmetlerinden yazılı/izlenebilir teyit alın. Tahmini bir bedeli kesin bilgi gibi kabul etmeyin."
+    },
+    {
+      "id": "bill-005",
+      "category": "fatura",
+      "question": "Faturam beklediğimden yüksek geldi, nasıl inceleyeyim?",
+      "keywords": [
+        "yüksek fatura",
+        "fatura artışı",
+        "ek ücret",
+        "paket aşımı",
+        "fatura detayı"
+      ],
+      "answer": "Fatura detayında bu dönem ile önceki dönemi yan yana karşılaştırın: sabit tarife, kampanya indirimi, paket aşımı, tek seferlik kurulum/cihaz, katma değerli servis ve dönemsel vergi/ücret satırlarını kontrol edin. Örneğin artış yalnızca bir kez görünüyorsa tek seferlik kaleme; her ay tekrarlıyorsa tarife veya indirim koşuluna bakın. Bu demo hesabınıza erişemez ve artışın kesin nedenini söyleyemez; anlaşılmayan kalem için resmi fatura itirazı kanalına başvurun."
+    },
+    {
+      "id": "bill-006",
+      "category": "fatura",
+      "question": "Ödeme yaptım ama faturada hâlâ borç görünüyor, ne yapmalıyım?",
+      "keywords": [
+        "ödeme yansıması",
+        "borç görünüyor",
+        "dekont",
+        "fatura ödedim"
+      ],
+      "answer": "Banka veya ödeme kanalının işlem durumu ile operatör ekranındaki borç bilgisinin güncellenmesi aynı anda olmayabilir. Önce işlemin tamamlandı durumunda olduğunu ve doğru müşteri/abonelik için yapıldığını kendi ödeme kanalınızdan doğrulayın; tekrar ödeme yapmadan önce resmi uygulamayı daha sonra yenileyip işlem referansını saklayın. Bu demoda ödeme sorgusu yapılmaz. Tutar çekildiği hâlde borç sürüyorsa dekontu yalnızca doğrulanmış resmi destek kanalına iletin."
+    },
+    {
+      "id": "bill-007",
+      "category": "fatura",
+      "question": "Otomatik ödeme talimatı verirken nelere dikkat etmeliyim?",
+      "keywords": [
+        "otomatik ödeme",
+        "talimat",
+        "banka kartı",
+        "fatura ödeme"
+      ],
+      "answer": "Talimatı yalnızca operatörün resmi uygulaması veya bankanızın kendi kanalı üzerinden oluşturun. Abone/hesap eşleşmesini, ödeme gününü ve talimat vereceğiniz kart ya da hesabın limit durumunu kontrol edin. Örneğin son ödeme günü hafta sonuna denk geliyorsa bankanın tahsilat zamanını ayrıca inceleyin. Asistan ödeme başlatmaz ve kart bilgisi istemez; kart numarası veya güvenlik kodunu sohbete yazmayın."
+    },
+    {
+      "id": "bill-008",
+      "category": "fatura",
+      "question": "Faturamı ödeyemedim, hattım hemen kapanır mı?",
+      "keywords": [
+        "ödenmemiş fatura",
+        "hat kısıtlama",
+        "gecikme",
+        "son ödeme tarihi"
+      ],
+      "answer": "Hattın kısıtlanması ve yeniden açılması operatörün bilgilendirme süreci, sözleşme ve geçerli düzenlemelere bağlıdır; bu demo kesin süre veya hesabınızın durumunu veremez. Faturadaki son ödeme tarihini ve resmi bildirimleri kontrol edin, borç varsa doğrulanmış kanaldan ödeme/ödeme seçeneklerini sorun. Ödeme yaptıysanız dekontu saklayın. Acil erişim gerekiyorsa resmi müşteri hizmetlerine başvurun."
+    },
+    {
+      "id": "bill-009",
+      "category": "fatura",
+      "question": "Faturamı e-posta ile almak güvenli mi?",
+      "keywords": [
+        "e fatura",
+        "elektronik fatura",
+        "fatura eposta",
+        "kağıtsız fatura"
+      ],
+      "answer": "Elektronik fatura tercihinde e-posta adresinin doğru ve size ait olduğunu, hesabınızda güncel tutulduğunu kontrol edin; bildirim bağlantılarını açmadan önce göndereni ve alan adını doğrulayın. Fatura içeriği kişisel veri barındırabileceğinden ortak cihaz veya paylaşılan posta kutusu kullanırken dikkatli olun. DemoTel demosu gerçek e-fatura tercihinizi değiştiremez; bunu yalnızca resmi hesap ayarlarından yönetin."
+    },
+    {
+      "id": "bill-010",
+      "category": "fatura",
+      "question": "Fatura itirazı hazırlarken hangi bilgileri toplamalıyım?",
+      "keywords": [
+        "fatura itirazı",
+        "hatalı ücret",
+        "başvuru",
+        "itiraz süreci"
+      ],
+      "answer": "İtiraz edeceğiniz fatura dönemini ve kalem adını not edin; varsa aynı hizmetin önceki dönem faturası ve işlem referansını karşılaştırma için saklayın. Örneğin kullanmadığınızı düşündüğünüz bir servis kaleminde tarih ve açıklama, incelemeyi kolaylaştırır. Kimlik veya ödeme belgesi gerekiyorsa yalnızca resmi ve güvenli başvuru kanalına yükleyin. Bu sohbet üzerinden resmi itiraz kaydı açılmaz ve belge göndermeyin."
+    },
+    {
+      "id": "tech-004",
+      "category": "teknik_destek",
+      "question": "Wi-Fi bazı odalarda çekmiyor, ne deneyebilirim?",
+      "keywords": [
+        "wifi çekmiyor",
+        "kapsama",
+        "mesh",
+        "sinyal zayıf",
+        "oda internet"
+      ],
+      "answer": "Modemi kapalı dolap, TV arkası veya zeminden alıp evin daha merkezi ve açık bir noktasına yerleştirin; mikrodalga ve yoğun kablosuz cihazların yanından uzak tutun. Aynı odada telefon ve bilgisayarla karşılaştırmalı hız testi yapın. Sorun yalnızca uzak odadaysa kapsama/mesh konusu, her yerde ve kablolu bağlantıda da varsa hat veya modem konusu olabilir. DemoTel ev planınızı ölçmez; modem modeline uygun üretici talimatlarını kullanın."
+    },
+    {
+      "id": "tech-005",
+      "category": "teknik_destek",
+      "question": "İnternetim tamamen kesildi, hangi sırayla kontrol edeyim?",
+      "keywords": [
+        "internet yok",
+        "bağlantı kesildi",
+        "modem yeniden başlatma",
+        "arıza"
+      ],
+      "answer": "Önce bölgesel kesinti duyurusu bulunup bulunmadığını resmi hizmet durum ekranından kontrol edin. Modem güç, DSL/PON ve internet ışıklarını gözleyin; kabloları zorlamadan yerlerine oturduğunu kontrol edin, modemi bir kez kapatıp yaklaşık 30 saniye sonra açın ve yeniden başlaması için birkaç dakika bekleyin. Fiber kabloyu bükmeyin veya optik uca dokunmayın. Kablolu cihazda da bağlantı yoksa saat ve ışık durumunu not edip resmi arıza kanalına başvurun."
+    },
+    {
+      "id": "tech-006",
+      "category": "teknik_destek",
+      "question": "Hız testinde hangi koşullara dikkat etmeliyim?",
+      "keywords": [
+        "hız testi",
+        "indirme hızı",
+        "upload",
+        "Mbps",
+        "wifi hız"
+      ],
+      "answer": "Karşılaştırılabilir sonuç için testi aynı cihazda, arka plandaki indirme/yayınları durdurarak ve mümkünse Ethernet bağlantısıyla tekrarlayın. Wi-Fi testi yapıyorsanız modem yakını/uzaklığı, 2.4 veya 5 GHz ağı ve bağlı cihaz sayısını not edin. Tek test anlık görüntüdür; birkaç farklı saatte ölçüm sorunun yoğun saatlere bağlı olup olmadığını gösterir. Ekrandaki Mbps paket hızının garanti edilen sürekli hızı anlamına gelmez; tarifedeki ölçüm koşullarını kontrol edin."
+    },
+    {
+      "id": "tech-007",
+      "category": "teknik_destek",
+      "question": "Modemi yeniden başlatınca ayarlarım silinir mi?",
+      "keywords": [
+        "modem reset",
+        "yeniden başlatma",
+        "fabrika ayarları",
+        "modem ayarı"
+      ],
+      "answer": "Gücü kapatıp açmak genellikle yeniden başlatmadır; cihazın arkasındaki RESET düğmesine uzun basmak ise fabrika ayarlarına döndürebilir ve Wi-Fi adı/şifresi gibi ayarları silebilir. Örneğin yalnızca bağlantı yavaşlığında önce güç döngüsünü deneyin; RESET düğmesine basmayın. Modelin kullanım kılavuzunu kontrol etmeden sıfırlama yapmayın. Kurumsal/operatör yapılandırmalı cihazda resmi teknik destekten yönlendirme alın."
+    },
+    {
+      "id": "tech-008",
+      "category": "teknik_destek",
+      "question": "Wi-Fi şifremi değiştirdikten sonra cihazlar bağlanmıyor, ne yapmalıyım?",
+      "keywords": [
+        "wifi şifre değişti",
+        "cihaz bağlanmıyor",
+        "ağ unut",
+        "kablosuz şifre"
+      ],
+      "answer": "Yeni ağ adını seçip güncel parolayı yeniden girin; eski kayıtlı ağı cihazdan unutturup tekrar bağlanmak gerekebilir. Harf büyüklüğü ve boşluklara dikkat edin, önce tek bir cihazda deneyin. Akıllı ev cihazları eski parolayı kullanmaya devam ediyorsa onları da yeni ağa yeniden tanıtın. Parolanızı destek ekibiyle veya bu sohbetle paylaşmayın."
+    },
+    {
+      "id": "tech-009",
+      "category": "teknik_destek",
+      "question": "Mobil internetim çekmiyor veya çok yavaş, ne yapabilirim?",
+      "keywords": [
+        "mobil internet yavaş",
+        "şebeke yok",
+        "uçak modu",
+        "mobil veri"
+      ],
+      "answer": "Önce aynı yerde başka bir uygulama/siteyle deneyin ve mobil verinin açık olduğunu kontrol edin; uçak modunu kısa süre açıp kapatmak cihazın şebekeye yeniden bağlanmasına yardımcı olabilir. İç mekân, yoğunluk, cihaz desteği ve kapsama koşulları sonucu etkileyebilir. Bulunduğunuz yeri herkese açık sohbette paylaşmayın; gerekiyorsa resmi uygulamanın kapsama/arıza aracını kullanın. DemoTel canlı şebeke veya konum kontrolü yapamaz."
+    },
+    {
+      "id": "tech-010",
+      "category": "teknik_destek",
+      "question": "Yeni SIM kartım çalışmıyor, neyi kontrol etmeliyim?",
+      "keywords": [
+        "sim kart çalışmıyor",
+        "sim aktivasyon",
+        "pin puk",
+        "hat açılmadı"
+      ],
+      "answer": "SIM’in cihaza doğru takıldığını ve cihazın yeniden başlatıldığını kontrol edin; ekranda görünen hata mesajını not edin. Yeni hat, SIM değişikliği veya numara taşıma aktivasyonu operatör sisteminde doğrulanmalıdır. PIN/PUK kodu veya kimlik belgesini sohbete yazmayın. Hata sürerse SIM ve hattın durumunu yalnızca resmi uygulama/mağaza/müşteri hizmetleri üzerinden doğrulatın."
+    },
+    {
+      "id": "tech-011",
+      "category": "teknik_destek",
+      "question": "Yurt dışında telefonum şebekeye bağlanmıyor, ne yapmalıyım?",
+      "keywords": [
+        "roaming",
+        "yurt dışı",
+        "dolaşım",
+        "uluslararası kullanım"
+      ],
+      "answer": "Ülkeye gitmeden önce hattınızda yurt dışı kullanımın ve uygun paketin açık olup olmadığını resmi kanaldan doğrulayın; ücretler ülke ve anlaşmalı şebekeye göre değişebilir. Bağlanmıyorsa telefonu yeniden başlatın, otomatik operatör seçimini deneyin ve veri dolaşımını yalnızca olası ücretleri kabul ederek açın. Gemide/uçakta uydu şebekesi çok yüksek ücret çıkarabilir. DemoTel gerçek hattınızın dolaşım yetkisini veya fiyatını göremez."
+    },
+    {
+      "id": "tech-012",
+      "category": "teknik_destek",
+      "question": "Arıza kaydı açarken hangi detayları vermeliyim?",
+      "keywords": [
+        "arıza kaydı",
+        "teknik destek",
+        "bağlantı problemi",
+        "modem ışığı"
+      ],
+      "answer": "Resmi destek kanalında sorunun başladığı yaklaşık zamanı, kesintinin sürekli mi aralıklı mı olduğunu, etkilenen cihazları, kablolu test sonucunu ve modem ışıklarını paylaşın. Örneğin yalnızca akşamları Wi-Fi yavaşlıyorsa bunu ayrıca belirtin. Güvenli olmayan herkese açık sohbette açık adres, abone numarası, kimlik veya parola göndermeyin. Bu demo gerçek arıza kaydı açmaz."
+    },
+    {
+      "id": "tech-013",
+      "category": "teknik_destek",
+      "question": "İnternet kesintisi sırasında ev telefonu veya acil çağrı çalışır mı?",
+      "keywords": [
+        "internet kesintisi",
+        "sabit telefon",
+        "acil çağrı",
+        "voip"
+      ],
+      "answer": "Sabit telefon hizmetinin çalışması bağlantı türüne, cihazın elektriğine ve operatör altyapısına bağlıdır; internet/elektrik kesintisinde VoIP tabanlı hizmet etkilenebilir. Bu nedenle acil çağrı erişimini bu demodan teyit etmeyin ve kritik iletişim için mobil alternatif bulundurun. Acil durumda yerel acil yardım numarasını kullanın; hizmetinize özel koşullar için operatörün resmi teknik bilgisine bakın."
+    },
+    {
+      "id": "taahhut-001",
+      "category": "taahhut",
+      "question": "Taahhüt bitiş tarihimi nereden görebilirim?",
+      "keywords": [
+        "taahhüt bitiş tarihi",
+        "sözleşme",
+        "kampanya süresi"
+      ],
+      "answer": "Taahhüt veya kampanya bitişi genellikle resmi uygulamadaki abonelik/taahhüt detayında ve sözleşme belgelerinde gösterilir. Birden fazla hattınız veya hizmetiniz varsa doğru aboneliği seçtiğinizi kontrol edin. Bu demo hesabınıza erişmez ve bitiş tarihini tahmin edemez; değişiklik yapmadan önce resmi ekranda görünen tarihi ve sonraki dönem koşullarını teyit edin."
+    },
+    {
+      "id": "taahhut-002",
+      "category": "taahhut",
+      "question": "Ev internetimi taşınırken yeni adresime nakledebilir miyim?",
+      "keywords": [
+        "adres değişikliği",
+        "nakil",
+        "taşınma",
+        "internet taşıma"
+      ],
+      "answer": "Yeni adreste aynı teknoloji veya kapasite bulunmayabilir; nakil uygunluğu adres sorgusu ve operatör altyapı kontrolüyle netleşir. Taşınma tarihinizi belirleyince resmi kanaldan yeni adres uygunluğu, işlem süresi, olası ücret ve mevcut kampanyanın devam koşullarını birlikte sorun. DemoTel canlı altyapı kontrolü yapmadığı için adresinizi buraya yazmayın ve hizmeti iptal etmeden önce nakil seçeneğini doğrulayın."
+    },
+    {
+      "id": "taahhut-003",
+      "category": "taahhut",
+      "question": "Aboneliğimi iptal etmek veya dondurmak istiyorum, ne bilmeliyim?",
+      "keywords": [
+        "abonelik iptali",
+        "hat dondurma",
+        "fesih",
+        "cayma bedeli"
+      ],
+      "answer": "İptal, dondurma ve numara taşıma farklı süreçlerdir. Başvuru öncesi kalan taahhüt, dönem sonu faturası, cihaz taksiti/iadeye tabi ekipman ve dondurma süresince devam edebilecek ücretleri sözleşme ve resmi hesap ekranından kontrol edin. İptal talebini yalnızca resmi kanaldan verin ve başvuru numarasını saklayın. Bu demo işlem yapmaz, ücret hesaplamaz veya talep açmaz."
+    },
+    {
+      "id": "general-001",
+      "category": "genel",
+      "question": "Bu asistan neleri yapabilir?",
+      "keywords": [
+        "asistan",
+        "yardım",
+        "demo",
+        "hangi konular"
+      ],
+      "answer": "DemoTel Asistan; örnek paketleri, fatura süreçlerini ve temel bağlantı sorun giderme adımlarını kurgusal bilgi tabanında arar, kaynak göstererek açıklar ve selamlaşma gibi gündelik mesajlara doğal yanıt verir. Hesaba giriş yapamaz; ödeme, paket değişikliği, arıza kaydı veya iptal gerçekleştiremez. Gerçek kişisel verilerinizi paylaşmadan genel sorular sorabilirsiniz."
+    },
+    {
+      "id": "general-002",
+      "category": "genel",
+      "question": "Canlı müşteri temsilcisine nasıl ulaşabilirim?",
+      "keywords": [
+        "canlı destek",
+        "temsilci",
+        "insan desteği",
+        "müşteri hizmetleri"
+      ],
+      "answer": "Kimlik doğrulaması, fatura incelemesi, ödeme, iptal veya aboneliğe özel işlem gerektiğinde resmi uygulamadaki destek/iletişim kanalını ya da operatörün doğrulanmış web sitesini kullanın. Bu portföy demosu gerçek bir destek ekibine mesaj iletmez. Temsilciye aktarırken elinizde varsa hata metni ve başvuru referansını yalnızca güvenli resmi kanalda paylaşın."
+    },
+    {
+      "id": "general-003",
+      "category": "genel",
+      "question": "Kişisel bilgilerimi sohbete yazmalı mıyım?",
+      "keywords": [
+        "kişisel veri",
+        "gizlilik",
+        "telefon numarası",
+        "kimlik bilgisi"
+      ],
+      "answer": "Hayır. Bu kurgusal demoda gerçek hesaba erişim yoktur; telefon numarası, T.C. kimlik numarası, açık adres, parola, kart bilgisi, tek kullanımlık kod veya PUK paylaşmayın. Bazı yaygın örüntüler maskeleme filtresiyle kapatılabilir, ancak bu her kişisel veriyi yakalama garantisi değildir. Gerçek kimlik doğrulamasını yalnızca operatörün resmi ve güvenli kanalında yapın."
+    },
+    {
+      "id": "general-004",
+      "category": "genel",
+      "question": "Sohbet geçmişim ne kadar süre saklanıyor?",
+      "keywords": [
+        "sohbet geçmişi",
+        "geçmiş silme",
+        "oturum",
+        "gizlilik"
+      ],
+      "answer": "Bu demoda sohbet geçmişi yapılandırılmış depoda sınırlı oturum süresi boyunca tutulabilir; tarayıcıdaki oturum kimliği geçmişin kendisi değildir. Arayüzdeki sohbeti sil seçeneği etkin sunucu oturumu için silme isteği gönderir. Gerçek dağıtımda saklama süresi ortam ayarlarına bağlıdır; bu açık kaynak demosunda gerçek müşteri kaydı bulunmamalıdır. Hassas bilgi girmeyin."
+    },
+    {
+      "id": "general-005",
+      "category": "genel",
+      "question": "Sohbet botu verdiği bilgiden emin değilse ne yapıyor?",
+      "keywords": [
+        "yanlış yanıt",
+        "emin değil",
+        "kaynak",
+        "bilgi tabanı"
+      ],
+      "answer": "Asistan ilgili bilgi tabanı kaynağı bulunmadığında kesin konuşmak yerine kapsamını belirtip genel yönlendirme yapmalıdır. Yanıtın altındaki kaynak kartı eşleşen kayıt başlığını gösterir; bu, hesabınıza özel bilgilerin doğrulandığı anlamına gelmez. Yanıt hatalı veya eksik görünüyorsa resmi operatör kanalından teyit edin; bu demoda geri bildirim gerçek bir vaka olarak ekibe iletilmez."
     }
   ]
 }

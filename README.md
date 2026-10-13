@@ -1,6 +1,6 @@
 # TelcoAI · Privacy-aware telecom support agent
 
-Türkçe telekom müşteri desteği için geliştirilen portföy projesi. DemoTel adlı kurgusal operatörün SSS verisini kullanır; fatura, paket ve teknik destek sorularını kaynak göstererek yanıtlar, kişisel bilgi örüntülerini maskeler ve hesap işlemlerini insan desteğine yönlendirir. Amaç; kurumsal yapay zekâ geliştirme becerilerini çalışan kod, ölçülebilir değerlendirme ve açık mimari kararlarla göstermek.
+Türkçe telekom müşteri desteği için geliştirilen portföy projesi. Kurgusal DemoTel ana sayfasına gömülü, ikonla açılan sohbet paneli ve 40 sentetik destek kaydı içerir. DemoTel adlı kurgusal operatörün SSS verisini kullanır; fatura, paket ve teknik destek sorularını kaynak göstererek yanıtlar, kişisel bilgi örüntülerini maskeler ve hesap işlemlerini insan desteğine yönlendirir. Amaç; kurumsal yapay zekâ geliştirme becerilerini çalışan kod, ölçülebilir değerlendirme ve açık mimari kararlarla göstermek.
 
 **Hızlı başlangıç:** Python 3.12 veya 3.13 ve [uv](https://docs.astral.sh/uv/getting-started/installation/) kurun, ardından `uv sync --frozen --extra dev` ve `uv run --frozen --no-sync uvicorn app.main:app --reload` çalıştırın. [Arayüz](http://127.0.0.1:8000), [OpenAPI](http://127.0.0.1:8000/docs). Varsayılan demo API anahtarı veya model indirmesi gerektirmez. Qdrant ve Redis için aşağıdaki enterprise profilini kullanın.
 
@@ -8,7 +8,9 @@ This project demonstrates a Turkish telecom support workflow with a practical up
 
 ![DemoTel support demo: cited billing answer, masked input and workflow details](docs/assets/demo-desktop.jpg)
 
-The recorded full suite passed **110 tests** with one live-Qdrant-server test skipped and **90% application coverage**. After the conversational-chat update, **26 focused tests** pass; the full suite and coverage report have not been rerun. See [verification evidence and limits](docs/verification.md).
+The demo website now presents DemoTel as a fictional consumer telecom brand. Open the floating support icon to try the assistant; the expanded [conversation guide](docs/conversation-design.md) explains the synthetic corpus, research references, support journeys and boundaries.
+
+The project includes focused tests for greeting/thanks, retrieval, source grounding, privacy masking and human handoff. See [verification evidence and limits](docs/verification.md) for the last full-suite run and its environment constraints.
 
 ## What a reviewer can try
 
@@ -17,7 +19,8 @@ The recorded full suite passed **110 tests** with one live-Qdrant-server test sk
 3. Ask for an account cancellation and inspect the human handoff decision.
 4. Ask an unrelated question and inspect the abstention/fallback behavior.
 5. Continue a session, inspect its redacted history, then delete it.
-6. Run the retrieval benchmark and inspect individual failures instead of relying on a headline score.
+6. Open the floating assistant on the DemoTel homepage, try a greeting, then follow a troubleshooting prompt.
+7. Run the retrieval benchmark and inspect individual failures instead of relying on a headline score.
 
 ## Stack and implementation
 
@@ -140,7 +143,7 @@ make evaluate
 make ragas-export
 ```
 
-The existing benchmark contains **25 relevant queries and 10 out-of-domain queries**. Retrieval evaluation defaults to keyword mode and writes a JSON report with corpus/dataset SHA-256 hashes, runtime configuration, per-query rankings, counts and measured latency. The checked-in reports record real development-set runs; they are not held-out or production performance claims.
+The expanded benchmark contains **54 relevant queries and 10 out-of-domain queries** covering the 40-entry synthetic corpus. Retrieval evaluation defaults to keyword mode and writes a JSON report with corpus/dataset SHA-256 hashes, runtime configuration, per-query rankings, counts and measured latency. The latest [keyword](docs/keyword-expanded-corpus-evaluation.json) and [semantic](docs/semantic-expanded-corpus-evaluation.json) reports record 59.3%/74.1% Hit@1 respectively; both are development-set measurements, not held-out or production performance claims. The older reports below use the earlier corpus and 25-query dataset, so their scores are not directly comparable.
 
 ```bash
 uv run --frozen --no-sync python scripts/evaluate_retrieval.py --strategy semantic

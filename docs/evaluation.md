@@ -1,6 +1,6 @@
 # Evaluation methodology
 
-Evaluation reports are evidence about a particular run, not a claim of production quality. The bundled labeled set has 25 relevant paraphrases and 10 unrelated queries across a small fictional FAQ corpus. All labels can be inspected in `data/evaluation/retrieval_eval.json`.
+Evaluation reports are evidence about a particular run, not a claim of production quality. The expanded development set has 54 relevant paraphrases and 10 unrelated queries across the 40-entry fictional FAQ corpus. All labels can be inspected in `data/evaluation/retrieval_eval.json`. It is not a held-out test set.
 
 ## Offline retrieval benchmark
 
@@ -34,11 +34,13 @@ JSON reports include timestamps, runtime, corpus/dataset SHA-256 hashes, public 
 
 | Raw retriever | Hit@1 | Hit@3 | MRR@10 | OOD false acceptance | Report |
 | --- | --- | --- | --- | --- | --- |
-| Keyword | 88% | 96% | 0.930 | 10% | [JSON](evaluation-baseline.json) |
-| Local dense | 92% | 92% | 0.920 | 10% | [JSON](semantic-evaluation.json) |
-| Dense + BM25/RRF | 96% | 100% | 0.973 | 50% | [JSON](hybrid-evaluation.json) |
+| Keyword, expanded 40-record corpus | 59.3% | 81.5% | 0.702 | 20% | [JSON](keyword-expanded-corpus-evaluation.json) |
+| Local dense, expanded 40-record corpus | 74.1% | 85.2% | 0.804 | 10% | [JSON](semantic-expanded-corpus-evaluation.json) |
+| Keyword, earlier 11-record corpus | 88% | 96% | 0.930 | 10% | [JSON](evaluation-baseline.json) |
+| Local dense, earlier corpus | 92% | 92% | 0.920 | 10% | [JSON](semantic-evaluation.json) |
+| Dense + BM25/RRF, earlier corpus | 96% | 100% | 0.973 | 50% | [JSON](hybrid-evaluation.json) |
 
-All reports use the same unchanged 25 relevant/10 OOD labels and current corpus hash. The dense/hybrid runs used real MiniLM weights; hybrid used the in-memory Qdrant query engine with real BM25. Local mode does not exercise remote payload indexes, HNSW, server latency or BGE re-ranking. Its 50% OOD acceptance exposes a limitation of rank fusion: finding candidate matches does not decide whether a query belongs to the support domain.
+The three earlier reports use the same 25 relevant/10 OOD labels and an earlier corpus; they are preserved for historical comparison and do not describe the expanded corpus. The expanded dense run used cached MiniLM weights. Local mode does not exercise remote payload indexes, HNSW, server latency or BGE re-ranking. The expanded development scores show that broadening the FAQ corpus created more retrieval ambiguity; the expanded semantic model ranked the expected answer first on 40/54 queries. Improve or re-label the corpus with a separate holdout before presenting a quality claim. Earlier hybrid results also expose a limitation of rank fusion: candidate retrieval alone does not decide whether a query belongs to the support domain.
 
 ## Guarded workflow evaluation
 
@@ -50,7 +52,7 @@ uv run --frozen --no-sync python scripts/evaluate_workflow.py --strategy semanti
 
 This evaluator measures `ChatService` including input masking, domain/policy routing, graph execution, retrieval and output validation. Each query gets a fresh service, session and memory cache over the warmed shared retriever. LLM generation, external tracing, Redis and re-ranking are disabled. Latency excludes graph construction, initial warmup and HTTP/gRPC transport. The reports therefore measure extractive grounded workflow behavior, not generated conversational answer quality.
 
-The committed [keyword workflow report](workflow-evaluation.json) records source Hit@1 **88%**, OOD false answers **0/10**, 10 fallbacks/handoffs and exact grounding for **25/25** sourced responses. The scope policy abstains on unrelated questions before retrieval, including generic price questions outside telecom. The [hybrid workflow report](hybrid-workflow-evaluation.json) records source Hit@1 **96% (24/25)**, OOD false answers **0/10** and exact grounding for **25/25** sourced responses using real MiniLM/BM25 and local Qdrant. These abstention outcomes apply only to the ten bundled OOD examples. Exact agreement with a cited FAQ cannot establish that the citation is the right answer: three relevant-query selections remain wrong in the keyword run and one in the hybrid run.
+The latest [expanded keyword workflow report](keyword-expanded-workflow-evaluation.json) records source Hit@1 **50% (27/54)**, OOD false answers **0/10**, 9 relevant fallbacks and exact grounding for **45/45** sourced responses. This is a useful signal that the expanded keyword baseline needs more retrieval tuning; the guarded workflow declines unsupported questions rather than inventing an account answer. The older committed keyword and hybrid reports below describe the earlier 25-query corpus and dataset. Their abstention outcomes apply only to the ten bundled OOD examples. Exact agreement with a cited FAQ cannot establish that the citation is the right answer. Re-run `scripts/evaluate_workflow.py` to measure an alternative strategy through the guarded response workflow.
 
 To reproduce the local Qdrant measurements without a server (first run downloads model assets):
 

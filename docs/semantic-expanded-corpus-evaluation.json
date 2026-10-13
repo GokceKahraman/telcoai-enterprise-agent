@@ -1,0 +1,1429 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-13T16:40:21.837595+00:00",
+  "dataset": {
+    "path": "data/evaluation/retrieval_eval.json",
+    "sha256": "83a486cd57dbc6293602139de3b95b0a37f6eb9ae780dbf4ed2467ff72807c46",
+    "version": "1.0"
+  },
+  "corpus": {
+    "path": "data/knowledge_base.json",
+    "sha256": "68413cce1ba079ab0e789cb25cb69dfb30dd45ecf8c5bec8b661d475929a950d",
+    "entries": 40
+  },
+  "runtime": {
+    "python": "3.12.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "configuration": {
+    "strategy": "semantic",
+    "top_k": 10,
+    "repeats": 1,
+    "min_match_score": 1.0,
+    "semantic_min_similarity": 0.42,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "document_representation_version": "faq-question-keywords-v2",
+    "candidate_k": 20,
+    "reranker_enabled": false,
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "qdrant_collection": "telcoai_faq",
+    "tenant_id": "demotel",
+    "locale": "tr-TR"
+  },
+  "initialization_ms": 25823.755374993198,
+  "metrics": {
+    "name": "semantic",
+    "hit_at_1": 0.7407407407407407,
+    "hit_at_3": 0.8518518518518519,
+    "mrr": 0.8036008230452675,
+    "mrr_cutoff": 10,
+    "ood_false_accept_rate": 0.1,
+    "mean_latency_ms": 15.894493529231113,
+    "latency_p50_ms": 10.624229005770758,
+    "latency_p95_ms": 14.597335607686546,
+    "relevant_count": 54,
+    "ood_count": 10,
+    "repeats": 1,
+    "hit1_count": 40,
+    "hit3_count": 46,
+    "false_accept_count": 1
+  },
+  "queries": [
+    {
+      "id": "r01",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "pkg-004",
+        "pkg-003",
+        "tech-004",
+        "price-001",
+        "tech-001",
+        "tech-009",
+        "tech-002",
+        "tech-013"
+      ],
+      "scores": [
+        0.8174828290939331,
+        0.760555624961853,
+        0.6226840615272522,
+        0.5573771595954895,
+        0.4756312966346741,
+        0.4483099579811096,
+        0.44160833954811096,
+        0.4396322965621948,
+        0.4354936480522156
+      ],
+      "latency_ms": 10.555207991274074
+    },
+    {
+      "id": "r02",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "pkg-003",
+        "tech-009",
+        "tech-006",
+        "tech-001",
+        "price-001",
+        "tech-013",
+        "pkg-004",
+        "tech-004"
+      ],
+      "scores": [
+        0.7902248501777649,
+        0.6713958382606506,
+        0.5817200541496277,
+        0.5708701610565186,
+        0.5426756143569946,
+        0.5229207277297974,
+        0.5190135836601257,
+        0.474449098110199,
+        0.43446430563926697
+      ],
+      "latency_ms": 10.566999990260229
+    },
+    {
+      "id": "r03",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "pkg-003",
+        "tech-009",
+        "pkg-001",
+        "price-001",
+        "tech-013"
+      ],
+      "scores": [
+        0.6614007949829102,
+        0.6275691986083984,
+        0.5325586199760437,
+        0.531258761882782,
+        0.5188726782798767,
+        0.4958065152168274
+      ],
+      "latency_ms": 9.89324998226948
+    },
+    {
+      "id": "r04",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "tech-009"
+      ],
+      "scores": [
+        0.7267441749572754,
+        0.45345109701156616
+      ],
+      "latency_ms": 9.695166983874515
+    },
+    {
+      "id": "r05",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "pkg-001",
+        "pkg-003"
+      ],
+      "scores": [
+        0.6277811527252197,
+        0.5488415956497192,
+        0.5060003995895386
+      ],
+      "latency_ms": 10.36187499994412
+    },
+    {
+      "id": "r06",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "bill-001",
+        "pkg-001",
+        "pkg-004"
+      ],
+      "scores": [
+        0.7315110564231873,
+        0.47766032814979553,
+        0.47433599829673767,
+        0.4543638825416565
+      ],
+      "latency_ms": 9.870749985566363
+    },
+    {
+      "id": "r07",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "retrieved_entry_ids": [
+        "price-004",
+        "price-002",
+        "bill-001",
+        "bill-006",
+        "bill-004",
+        "bill-008",
+        "bill-007",
+        "bill-005"
+      ],
+      "scores": [
+        0.560032069683075,
+        0.5424103140830994,
+        0.5064526796340942,
+        0.48463013768196106,
+        0.4642487168312073,
+        0.46179693937301636,
+        0.4513362944126129,
+        0.43026605248451233
+      ],
+      "latency_ms": 14.65170897427015
+    },
+    {
+      "id": "r08",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "retrieved_entry_ids": [
+        "price-002",
+        "price-004",
+        "bill-001",
+        "price-001",
+        "bill-007",
+        "price-003"
+      ],
+      "scores": [
+        0.7221096754074097,
+        0.5501587986946106,
+        0.5250658392906189,
+        0.458484947681427,
+        0.455599308013916,
+        0.43424898386001587
+      ],
+      "latency_ms": 10.783874982735142
+    },
+    {
+      "id": "r09",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "retrieved_entry_ids": [
+        "bill-001",
+        "bill-007",
+        "bill-006",
+        "bill-009",
+        "bill-008",
+        "price-004"
+      ],
+      "scores": [
+        0.7298249006271362,
+        0.6320171356201172,
+        0.5789191722869873,
+        0.5729089975357056,
+        0.5636797547340393,
+        0.43243736028671265
+      ],
+      "latency_ms": 11.920749995624647
+    },
+    {
+      "id": "r10",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "pkg-003"
+      ],
+      "scores": [
+        0.5019822120666504,
+        0.4330097436904907
+      ],
+      "latency_ms": 14.613667008234188
+    },
+    {
+      "id": "r11",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "retrieved_entry_ids": [
+        "bill-002",
+        "taahhut-001",
+        "bill-008",
+        "bill-006",
+        "bill-001",
+        "bill-007"
+      ],
+      "scores": [
+        0.8781012296676636,
+        0.7087733745574951,
+        0.695305585861206,
+        0.5660148859024048,
+        0.5429949164390564,
+        0.47979259490966797
+      ],
+      "latency_ms": 340.53991601103917
+    },
+    {
+      "id": "r12",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "retrieved_entry_ids": [
+        "bill-002",
+        "taahhut-001"
+      ],
+      "scores": [
+        0.5600297451019287,
+        0.5156493186950684
+      ],
+      "latency_ms": 10.208042018348351
+    },
+    {
+      "id": "r13",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003",
+        "bill-006",
+        "bill-008",
+        "bill-010",
+        "price-004",
+        "bill-005",
+        "bill-007"
+      ],
+      "scores": [
+        0.7336817979812622,
+        0.6536480188369751,
+        0.6200888156890869,
+        0.5249660015106201,
+        0.5162171125411987,
+        0.4827248752117157,
+        0.44869866967201233
+      ],
+      "latency_ms": 12.790874985512346
+    },
+    {
+      "id": "r14",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003",
+        "bill-006",
+        "bill-010",
+        "bill-008",
+        "bill-009",
+        "bill-007",
+        "bill-005",
+        "bill-001"
+      ],
+      "scores": [
+        0.9194817543029785,
+        0.6447352170944214,
+        0.5991858839988708,
+        0.5436884164810181,
+        0.5310021638870239,
+        0.4960912764072418,
+        0.4744350016117096,
+        0.44793179631233215
+      ],
+      "latency_ms": 9.409207996213809
+    },
+    {
+      "id": "r15",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [
+        "tech-001",
+        "tech-009",
+        "tech-005"
+      ],
+      "scores": [
+        0.5971863269805908,
+        0.4355558753013611,
+        0.43088072538375854
+      ],
+      "latency_ms": 8.259083988377824
+    },
+    {
+      "id": "r16",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [
+        "tech-001",
+        "tech-005"
+      ],
+      "scores": [
+        0.5017244815826416,
+        0.4682031571865082
+      ],
+      "latency_ms": 9.567416011122987
+    },
+    {
+      "id": "r17",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [
+        "tech-007",
+        "tech-001",
+        "tech-005",
+        "tech-012",
+        "tech-008",
+        "tech-002",
+        "tech-003",
+        "tech-009",
+        "tech-004"
+      ],
+      "scores": [
+        0.5365158319473267,
+        0.4991607964038849,
+        0.47250717878341675,
+        0.4610825181007385,
+        0.4555966258049011,
+        0.45323115587234497,
+        0.45182639360427856,
+        0.4386436939239502,
+        0.4291478395462036
+      ],
+      "latency_ms": 10.073249984998256
+    },
+    {
+      "id": "r18",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-002",
+        "tech-012"
+      ],
+      "scores": [
+        0.7393717765808105,
+        0.42194443941116333
+      ],
+      "latency_ms": 8.906458999263123
+    },
+    {
+      "id": "r19",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-002",
+        "tech-004",
+        "tech-005",
+        "tech-001",
+        "pkg-004",
+        "tech-012"
+      ],
+      "scores": [
+        0.7883710265159607,
+        0.5635016560554504,
+        0.4935702979564667,
+        0.4524015486240387,
+        0.4422053098678589,
+        0.4370831549167633
+      ],
+      "latency_ms": 8.919333980884403
+    },
+    {
+      "id": "r20",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-003"
+      ],
+      "retrieved_entry_ids": [
+        "tech-003",
+        "tech-008",
+        "taahhut-002"
+      ],
+      "scores": [
+        0.7389227151870728,
+        0.5830241441726685,
+        0.4986727237701416
+      ],
+      "latency_ms": 10.300499998265877
+    },
+    {
+      "id": "r21",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004",
+        "bill-005",
+        "bill-006",
+        "bill-008",
+        "bill-003",
+        "price-003",
+        "price-004",
+        "bill-007",
+        "bill-002"
+      ],
+      "scores": [
+        0.7174872159957886,
+        0.7030016183853149,
+        0.640221893787384,
+        0.6125506162643433,
+        0.5015026926994324,
+        0.4945244789123535,
+        0.469079852104187,
+        0.46468204259872437,
+        0.43826746940612793
+      ],
+      "latency_ms": 9.289958019508049
+    },
+    {
+      "id": "r22",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-005",
+        "bill-004",
+        "bill-006",
+        "bill-003",
+        "bill-008",
+        "price-003"
+      ],
+      "scores": [
+        0.6618643403053284,
+        0.6267140507698059,
+        0.5872512459754944,
+        0.5852876901626587,
+        0.5254027843475342,
+        0.45161426067352295
+      ],
+      "latency_ms": 8.628333016531542
+    },
+    {
+      "id": "r23",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004",
+        "bill-005",
+        "bill-006",
+        "bill-008"
+      ],
+      "scores": [
+        0.7652491927146912,
+        0.7453066110610962,
+        0.5329155921936035,
+        0.43973004817962646
+      ],
+      "latency_ms": 9.559124999213964
+    },
+    {
+      "id": "r24",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004",
+        "bill-005",
+        "price-001",
+        "tech-001"
+      ],
+      "scores": [
+        0.6268913745880127,
+        0.566232442855835,
+        0.5279582738876343,
+        0.4618879556655884
+      ],
+      "latency_ms": 11.318125005345792
+    },
+    {
+      "id": "r25",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-005"
+      ],
+      "scores": [
+        0.5261908769607544
+      ],
+      "latency_ms": 9.011457994347438
+    },
+    {
+      "id": "r26",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-003"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-003"
+      ],
+      "scores": [
+        0.45607417821884155
+      ],
+      "latency_ms": 12.471249996451661
+    },
+    {
+      "id": "r27",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-004"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-004",
+        "pkg-001"
+      ],
+      "scores": [
+        0.7039340734481812,
+        0.5550411343574524
+      ],
+      "latency_ms": 14.50479100458324
+    },
+    {
+      "id": "r28",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-005"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-005",
+        "price-004",
+        "bill-008"
+      ],
+      "scores": [
+        0.5534510612487793,
+        0.4903412461280823,
+        0.43190091848373413
+      ],
+      "latency_ms": 11.377416987670586
+    },
+    {
+      "id": "r29",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-003"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "bill-001",
+        "price-002",
+        "bill-008",
+        "tech-009",
+        "tech-001",
+        "bill-002",
+        "tech-013",
+        "price-003",
+        "tech-005"
+      ],
+      "scores": [
+        0.6633660793304443,
+        0.534337043762207,
+        0.527240514755249,
+        0.5224884748458862,
+        0.516459584236145,
+        0.4943746030330658,
+        0.48143771290779114,
+        0.4527159631252289,
+        0.4524378180503845,
+        0.4494694471359253
+      ],
+      "latency_ms": 12.29537499602884
+    },
+    {
+      "id": "r30",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-004"
+      ],
+      "retrieved_entry_ids": [
+        "price-004",
+        "bill-006",
+        "bill-008",
+        "price-003",
+        "bill-007",
+        "bill-005",
+        "bill-001",
+        "bill-009",
+        "bill-004",
+        "price-002"
+      ],
+      "scores": [
+        0.8565223217010498,
+        0.64357990026474,
+        0.6071239113807678,
+        0.5555406808853149,
+        0.5373826026916504,
+        0.5147901177406311,
+        0.48617252707481384,
+        0.48072221875190735,
+        0.47892311215400696,
+        0.46090710163116455
+      ],
+      "latency_ms": 10.324625007342547
+    },
+    {
+      "id": "r31",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-005"
+      ],
+      "retrieved_entry_ids": [
+        "bill-006",
+        "bill-003",
+        "bill-002"
+      ],
+      "scores": [
+        0.4797642230987549,
+        0.4677485227584839,
+        0.4327605366706848
+      ],
+      "latency_ms": 10.265333985444158
+    },
+    {
+      "id": "r32",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-006"
+      ],
+      "retrieved_entry_ids": [
+        "tech-010",
+        "bill-009",
+        "bill-006",
+        "bill-007",
+        "bill-008",
+        "bill-001"
+      ],
+      "scores": [
+        0.5781582593917847,
+        0.4991493821144104,
+        0.4873056709766388,
+        0.44648951292037964,
+        0.4394252896308899,
+        0.42285555601119995
+      ],
+      "latency_ms": 12.088000017683953
+    },
+    {
+      "id": "r33",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-007"
+      ],
+      "retrieved_entry_ids": [
+        "bill-007",
+        "bill-006",
+        "bill-008",
+        "bill-001",
+        "bill-002",
+        "bill-003",
+        "bill-009",
+        "bill-010"
+      ],
+      "scores": [
+        0.7939093112945557,
+        0.6042069792747498,
+        0.5918111801147461,
+        0.5846336483955383,
+        0.5525335073471069,
+        0.5237414240837097,
+        0.5199722051620483,
+        0.49512380361557007
+      ],
+      "latency_ms": 11.955916997976601
+    },
+    {
+      "id": "r34",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-008"
+      ],
+      "retrieved_entry_ids": [
+        "tech-001",
+        "tech-005",
+        "tech-009",
+        "tech-013",
+        "bill-008",
+        "pkg-001"
+      ],
+      "scores": [
+        0.6649866104125977,
+        0.6202107071876526,
+        0.6117193102836609,
+        0.5414645671844482,
+        0.48486730456352234,
+        0.4318210482597351
+      ],
+      "latency_ms": 10.107665992109105
+    },
+    {
+      "id": "r35",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-009"
+      ],
+      "retrieved_entry_ids": [
+        "bill-009",
+        "bill-001",
+        "bill-007",
+        "bill-010",
+        "bill-003",
+        "bill-006",
+        "bill-008"
+      ],
+      "scores": [
+        0.746440589427948,
+        0.559398889541626,
+        0.5082944631576538,
+        0.5074037313461304,
+        0.47039785981178284,
+        0.4556509554386139,
+        0.43449074029922485
+      ],
+      "latency_ms": 10.939166997559369
+    },
+    {
+      "id": "r36",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-010"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003",
+        "bill-010",
+        "bill-001",
+        "bill-008",
+        "bill-006",
+        "bill-007",
+        "bill-005"
+      ],
+      "scores": [
+        0.6801798939704895,
+        0.67488694190979,
+        0.5603076219558716,
+        0.5417313575744629,
+        0.5395854115486145,
+        0.5245486497879028,
+        0.42423662543296814
+      ],
+      "latency_ms": 11.58433299860917
+    },
+    {
+      "id": "r37",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-004"
+      ],
+      "retrieved_entry_ids": [
+        "tech-004",
+        "tech-005",
+        "tech-003",
+        "tech-012",
+        "tech-009",
+        "tech-007",
+        "tech-008",
+        "tech-002",
+        "tech-001",
+        "tech-010"
+      ],
+      "scores": [
+        0.7246847152709961,
+        0.538235068321228,
+        0.5314006805419922,
+        0.5276639461517334,
+        0.5153496265411377,
+        0.507315456867218,
+        0.5068409442901611,
+        0.5038280487060547,
+        0.4591636061668396,
+        0.43375781178474426
+      ],
+      "latency_ms": 10.656375001417473
+    },
+    {
+      "id": "r38",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-005"
+      ],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "tech-002",
+        "tech-004",
+        "tech-001",
+        "tech-009",
+        "tech-012",
+        "tech-007",
+        "tech-008",
+        "tech-003",
+        "tech-013"
+      ],
+      "scores": [
+        0.7842673659324646,
+        0.7048195004463196,
+        0.678918182849884,
+        0.6249939203262329,
+        0.6160535216331482,
+        0.5391002893447876,
+        0.534737765789032,
+        0.48768967390060425,
+        0.480891615152359,
+        0.48064127564430237
+      ],
+      "latency_ms": 10.864917014259845
+    },
+    {
+      "id": "r39",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-006"
+      ],
+      "retrieved_entry_ids": [
+        "tech-006",
+        "pkg-001",
+        "tech-001"
+      ],
+      "scores": [
+        0.7441906332969666,
+        0.4776402711868286,
+        0.4413032829761505
+      ],
+      "latency_ms": 11.390082974685356
+    },
+    {
+      "id": "r40",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-007"
+      ],
+      "retrieved_entry_ids": [
+        "tech-008",
+        "tech-005",
+        "tech-003",
+        "tech-007",
+        "tech-004",
+        "tech-002",
+        "tech-001",
+        "tech-010",
+        "tech-009",
+        "tech-012"
+      ],
+      "scores": [
+        0.7403983473777771,
+        0.6998581886291504,
+        0.6850125789642334,
+        0.6460374593734741,
+        0.6311308145523071,
+        0.5785439610481262,
+        0.532950758934021,
+        0.5103763341903687,
+        0.4649031162261963,
+        0.46471837162971497
+      ],
+      "latency_ms": 10.184540995396674
+    },
+    {
+      "id": "r41",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-008"
+      ],
+      "retrieved_entry_ids": [
+        "tech-008",
+        "tech-003"
+      ],
+      "scores": [
+        0.5397456884384155,
+        0.4846622049808502
+      ],
+      "latency_ms": 11.053416994400322
+    },
+    {
+      "id": "r42",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-009"
+      ],
+      "retrieved_entry_ids": [
+        "tech-009",
+        "tech-001",
+        "tech-004",
+        "tech-011",
+        "tech-013",
+        "tech-012",
+        "tech-010"
+      ],
+      "scores": [
+        0.6188613176345825,
+        0.5570769906044006,
+        0.5378289222717285,
+        0.44151437282562256,
+        0.43871939182281494,
+        0.43254634737968445,
+        0.421229749917984
+      ],
+      "latency_ms": 10.664792003808543
+    },
+    {
+      "id": "r43",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-010"
+      ],
+      "retrieved_entry_ids": [
+        "tech-010",
+        "pkg-002",
+        "pkg-005",
+        "tech-008",
+        "tech-009",
+        "tech-011",
+        "tech-013"
+      ],
+      "scores": [
+        0.5962051749229431,
+        0.4815137982368469,
+        0.47567662596702576,
+        0.45527738332748413,
+        0.4541507363319397,
+        0.4537351131439209,
+        0.44422563910484314
+      ],
+      "latency_ms": 9.2555420123972
+    },
+    {
+      "id": "r44",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-011"
+      ],
+      "retrieved_entry_ids": [
+        "tech-011"
+      ],
+      "scores": [
+        0.5601102709770203
+      ],
+      "latency_ms": 11.626082996372133
+    },
+    {
+      "id": "r45",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-012"
+      ],
+      "retrieved_entry_ids": [
+        "tech-012",
+        "tech-001",
+        "tech-011",
+        "tech-004",
+        "pkg-004",
+        "tech-009",
+        "tech-008"
+      ],
+      "scores": [
+        0.5283178687095642,
+        0.4788092076778412,
+        0.4626617431640625,
+        0.46037763357162476,
+        0.45099973678588867,
+        0.4299872815608978,
+        0.4229152202606201
+      ],
+      "latency_ms": 10.767791012767702
+    },
+    {
+      "id": "r46",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-013"
+      ],
+      "retrieved_entry_ids": [
+        "tech-013",
+        "tech-009",
+        "pkg-002",
+        "pkg-003",
+        "tech-002",
+        "tech-010",
+        "tech-011",
+        "tech-004",
+        "tech-008"
+      ],
+      "scores": [
+        0.5845996737480164,
+        0.5117300152778625,
+        0.5055695176124573,
+        0.4699155390262604,
+        0.46226128935813904,
+        0.4604039788246155,
+        0.45564067363739014,
+        0.4533239006996155,
+        0.4383872151374817
+      ],
+      "latency_ms": 10.723125014919788
+    },
+    {
+      "id": "r47",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-001"
+      ],
+      "retrieved_entry_ids": [
+        "taahhut-001",
+        "bill-002",
+        "bill-008",
+        "price-003"
+      ],
+      "scores": [
+        0.864629864692688,
+        0.6041403412818909,
+        0.566259503364563,
+        0.5451986193656921
+      ],
+      "latency_ms": 11.938291980186477
+    },
+    {
+      "id": "r48",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-002"
+      ],
+      "retrieved_entry_ids": [
+        "taahhut-002",
+        "tech-009",
+        "tech-004",
+        "tech-011",
+        "tech-001",
+        "pkg-003",
+        "pkg-001",
+        "tech-002",
+        "tech-005",
+        "pkg-004"
+      ],
+      "scores": [
+        0.7215391397476196,
+        0.5845597982406616,
+        0.5635407567024231,
+        0.5383817553520203,
+        0.5333357453346252,
+        0.5205607414245605,
+        0.48954179883003235,
+        0.47002455592155457,
+        0.4653186500072479,
+        0.460915744304657
+      ],
+      "latency_ms": 12.436624994734302
+    },
+    {
+      "id": "r49",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-003"
+      ],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "tech-004",
+        "tech-009",
+        "tech-013",
+        "tech-012",
+        "tech-007",
+        "tech-001",
+        "tech-002",
+        "pkg-001",
+        "pkg-004"
+      ],
+      "scores": [
+        0.7379726767539978,
+        0.5856617093086243,
+        0.558900773525238,
+        0.5567558407783508,
+        0.5461013913154602,
+        0.5435203313827515,
+        0.5227957963943481,
+        0.4991157054901123,
+        0.4632446765899658,
+        0.4626076817512512
+      ],
+      "latency_ms": 13.098209019517526
+    },
+    {
+      "id": "r50",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-001"
+      ],
+      "retrieved_entry_ids": [
+        "general-001"
+      ],
+      "scores": [
+        0.5828286409378052
+      ],
+      "latency_ms": 14.800583012402058
+    },
+    {
+      "id": "r51",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-002"
+      ],
+      "retrieved_entry_ids": [
+        "general-002"
+      ],
+      "scores": [
+        0.4872777462005615
+      ],
+      "latency_ms": 10.826250014360994
+    },
+    {
+      "id": "r52",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-009"
+      ],
+      "scores": [
+        0.42651909589767456
+      ],
+      "latency_ms": 10.748542001238093
+    },
+    {
+      "id": "r53",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-004"
+      ],
+      "retrieved_entry_ids": [
+        "general-004"
+      ],
+      "scores": [
+        0.5443466305732727
+      ],
+      "latency_ms": 11.950166983297095
+    },
+    {
+      "id": "r54",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-005"
+      ],
+      "retrieved_entry_ids": [
+        "bill-010",
+        "general-005",
+        "general-001"
+      ],
+      "scores": [
+        0.5989490747451782,
+        0.44341355562210083,
+        0.43620917201042175
+      ],
+      "latency_ms": 10.978042002534494
+    },
+    {
+      "id": "o01",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 9.79254097910598
+    },
+    {
+      "id": "o02",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 10.797084018122405
+    },
+    {
+      "id": "o03",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 9.102624986553565
+    },
+    {
+      "id": "o04",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.580791996791959
+    },
+    {
+      "id": "o05",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "price-001"
+      ],
+      "scores": [
+        0.4700237512588501
+      ],
+      "latency_ms": 9.833708987571299
+    },
+    {
+      "id": "o06",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 10.592083010124043
+    },
+    {
+      "id": "o07",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.87720799073577
+    },
+    {
+      "id": "o08",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 8.782124990830198
+    },
+    {
+      "id": "o09",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 10.211250017164275
+    },
+    {
+      "id": "o10",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "latency_ms": 9.106583980610594
+    }
+  ],
+  "limitations": [
+    "Synthetic, small FAQ corpus; results do not establish production quality.",
+    "Latency excludes construction/warmup, transport, privacy, cache and graph overhead.",
+    "Qdrant needs an ingested corpus matching local data, tenant and locale; remote vector-store contents are not hashed.",
+    "Retriever scores and model confidence are not calibrated probabilities."
+  ]
+}

@@ -20,6 +20,10 @@ const statusBtn = document.getElementById("service-status");
 const connectionForm = document.getElementById("connection-form");
 const tokenInput = document.getElementById("api-token");
 const settingsEl = document.getElementById("connection-settings");
+const chatWidget = document.getElementById("chat-widget");
+const chatBackdrop = document.getElementById("chat-backdrop");
+const chatLauncher = document.getElementById("chat-launcher");
+const chatClose = document.getElementById("chat-close");
 const promptButtons = [...document.querySelectorAll("[data-prompt]")];
 const CATEGORY_LABELS = {
   internet_paketleri: "İnternet paketleri",
@@ -40,6 +44,42 @@ let apiToken = "";
 let busy = false;
 let statusBusy = false;
 let turnCount = 0;
+let chatWasOpened = false;
+
+function openChat(prompt = "") {
+  chatWidget.classList.add("is-open");
+  chatWidget.setAttribute("aria-hidden", "false");
+  chatWidget.inert = false;
+  chatBackdrop.hidden = false;
+  document.body.classList.add("chat-open");
+  chatLauncher.setAttribute("aria-expanded", "true");
+  chatWasOpened = true;
+  if (prompt && !busy) {
+    input.value = prompt;
+    input.dispatchEvent(new Event("input"));
+  }
+  window.setTimeout(() => input.focus(), 160);
+}
+
+function closeChat() {
+  chatWidget.classList.remove("is-open");
+  chatWidget.setAttribute("aria-hidden", "true");
+  chatWidget.inert = true;
+  chatBackdrop.hidden = true;
+  document.body.classList.remove("chat-open");
+  chatLauncher.setAttribute("aria-expanded", "false");
+  if (chatWasOpened) chatLauncher.focus();
+}
+
+document.querySelectorAll("[data-open-chat]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    if (button.tagName === "A") event.preventDefault();
+    openChat(button.dataset.prompt || "");
+  });
+});
+chatLauncher.addEventListener("click", () => openChat());
+chatClose.addEventListener("click", closeChat);
+chatBackdrop.addEventListener("click", closeChat);
 
 function readSession() {
   try {
@@ -379,12 +419,20 @@ async function clearConversation() {
 clearChatBtn.addEventListener("click", clearConversation);
 mobileClearBtn.addEventListener("click", clearConversation);
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !chatWidget.inert) {
+    closeChat();
+    return;
+  }
   if (event.key === "Escape" && settingsEl.open) {
     settingsEl.open = false;
     settingsEl.querySelector("summary").focus();
   }
 });
 document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-prompt]") && !event.target.closest(".prompt-card, .topic-button")) {
+    const button = event.target.closest("[data-prompt]");
+    if (button && button.hasAttribute("data-open-chat")) openChat(button.dataset.prompt || "");
+  }
   if (settingsEl.open && !settingsEl.contains(event.target) && !statusBtn.contains(event.target)) settingsEl.open = false;
 });
 

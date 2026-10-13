@@ -1,15 +1,27 @@
 # Local verification
 
-Recorded on 12 October 2026, Python 3.12.15, uv 0.13.0, macOS arm64.
-
 ## Automated checks
+
+### Latest website and corpus update — 13 October 2026
+
+- Ruff lint and formatting: passed (71 Python files checked).
+- JavaScript syntax and HTML parser checks: passed.
+- Complete offline suite (`pytest -m "not integration"`): **113 passed, 2 integration tests deselected**. The deselected tests require a live Qdrant server.
+- Browser smoke test: homepage loaded, floating assistant opened/closed as a dialog, and “Selam” received a natural Turkish greeting.
+- Expanded 40-record corpus loaded and passed schema plus PII-pattern validation.
+- Retrieval set expanded to 54 relevant paraphrases and 10 unrelated queries. Current keyword and local dense results are recorded separately in the expanded corpus reports; see [evaluation methodology](evaluation.md) for their limits.
+- The optional dense model was already cached locally. Hugging Face metadata checks retried because external network access is unavailable, then the model loaded from its cached weights.
+
+### Earlier baseline verification — 12 October 2026
+
+Python 3.12.15, uv 0.13.0, macOS arm64.
 
 - Ruff lint and formatting: passed.
 - JavaScript syntax (`node --check static/js/chat.js`): passed.
 - `uv lock --check --offline`: passed; the lock covers all declared extras.
 - Editable package installation with development dependencies: passed.
 - Complete pytest run with semantic and Guardrails extras: **110 passed, 1 skipped**.
-- Follow-up conversational-chat changes: **26 focused tests passed** across chat routing, structured generation, workflow, API and status reporting. The complete suite and coverage report were not rerun after this change.
+- At that earlier checkpoint, **26 focused tests passed** after the conversational-chat update; the full suite has since been rerun as reported above.
 - Application coverage: **90%**, including checked-in generated Protobuf modules.
 - The skipped test requires a live Qdrant server to verify actual payload indexes.
 
