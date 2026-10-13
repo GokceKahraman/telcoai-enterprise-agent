@@ -63,14 +63,22 @@ class KeywordRetriever:
         normalized_message = self._normalize(raw_message)
 
         question_norm = self._normalize(entry.question)
-        if question_norm and question_norm in normalized_message:
+        question_en = self._normalize(entry.question_en or "")
+        if (question_norm and question_norm in normalized_message) or (
+            question_en and question_en in normalized_message
+        ):
             score += 4.0
 
-        entry_tokens = self._tokenize(entry.question) | self._tokenize(" ".join(entry.keywords))
+        entry_tokens = (
+            self._tokenize(entry.question)
+            | self._tokenize(" ".join(entry.keywords))
+            | self._tokenize(entry.question_en or "")
+            | self._tokenize(" ".join(entry.keywords_en))
+        )
         overlap = user_tokens & entry_tokens
         score += len(overlap) * 1.5
 
-        for keyword in entry.keywords:
+        for keyword in (*entry.keywords, *entry.keywords_en):
             kw = self._normalize(keyword)
             if len(kw) >= 3 and kw in normalized_message:
                 score += 1.0

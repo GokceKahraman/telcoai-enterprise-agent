@@ -11,4 +11,4 @@ router = APIRouter(prefix="/chat", tags=["chat"])
 def post_chat(
     payload: ChatRequest, service: ChatService = Depends(get_chat_service)
 ) -> ChatResponse:
-    return service.reply(payload.message, payload.session_id, payload.category)
+    return service.reply(payload.message, payload.session_id, payload.category, payload.locale)

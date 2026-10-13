@@ -36,7 +36,13 @@
     <button id="chat-launcher" class="chat-launcher" type="button" aria-label="DemoTel Asistan ile sohbeti aç" aria-haspopup="dialog" aria-controls="chat-widget"><span class="launcher-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 4 12a8.5 8.5 0 0 1 8.5-8.5h.4a8.5 8.5 0 0 1 7.6 7.6v.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span><span>Size nasıl yardımcı olabilirim?</span><i class="launcher-pulse"></i></button>
     <div id="chat-backdrop" class="chat-backdrop" hidden></div>
     <section id="chat-widget" class="chat-widget" role="dialog" aria-modal="true" aria-label="DemoTel Asistan sohbeti" aria-hidden="true" inert>
-      <div class="widget-topbar"><div class="widget-agent"><span class="widget-agent-avatar">D<span></span></span><span><b>DemoTel Asistan</b><small><i></i> Çevrimiçi · Sana yardımcı olmaya hazır</small></span></div><button id="chat-close" class="chat-close" type="button" aria-label="Sohbeti kapat">×</button></div>
+      <div class="widget-topbar">
+        <div class="widget-language-row"><span class="language-label" id="language-label">SOHBET DİLİ</span><div class="language-switch" role="group" aria-label="Sohbet dili">
+          <button class="language-option" type="button" data-locale="tr-TR" aria-pressed="true"><span class="language-flag" aria-hidden="true">🇹🇷</span><span>TR</span></button>
+          <button class="language-option" type="button" data-locale="en-US" aria-pressed="false"><span class="language-flag" aria-hidden="true">🇺🇸</span><span>ENG</span></button>
+        </div></div>
+        <div class="widget-agent-row"><div class="widget-agent"><span class="widget-agent-avatar">D<span></span></span><span><b id="agent-name">DemoTel Asistan</b><small id="agent-status"><i></i> Çevrimiçi · Sana yardımcı olmaya hazır</small></span></div><div class="widget-controls"><button id="widget-new-chat" type="button" class="widget-new-chat" aria-label="Yeni sohbet başlat" title="Yeni sohbet">＋</button><button id="chat-close" class="chat-close" type="button" aria-label="Sohbeti kapat">×</button></div></div>
+      </div>
       <div class="widget-body"><a class="skip-link" href="#message-input">Mesaj alanına geç</a>
     <div class="app">
       <aside class="sidebar" aria-label="Destek menüsü">
@@ -83,21 +89,21 @@
         <section id="chat-scroll" class="conversation" aria-label="Sohbet alanı">
           <div id="welcome" class="welcome">
             <div class="welcome-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m16 3 3.7 9.3L29 16l-9.3 3.7L16 29l-3.7-9.3L3 16l9.3-3.7L16 3Z" fill="currentColor"/><path d="m27 2 1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z" fill="currentColor"/></svg></div>
-            <p class="eyebrow">DEMOTEL ASİSTAN</p><h2>Size nasıl yardımcı olabiliriz?</h2><p class="welcome-description">Paketleri keşfedin, faturanızı anlayın veya bağlantı sorununuza çözüm bulun. Bir soruyla başlayın.</p>
+            <p class="eyebrow" id="welcome-eyebrow">DEMOTEL ASİSTAN</p><h2 id="welcome-title">Merhaba! Size nasıl yardımcı olabilirim?</h2><p class="welcome-description" id="welcome-description">Paketler, fatura veya bağlantı sorunları hakkında bana yazın. Size doğru bilgiyi bulayım.</p>
             <div class="prompt-grid" aria-label="Örnek sorular">
-              <button class="prompt-card" type="button" data-prompt="Ev interneti paketleriniz nelerdir?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong>Bana uygun paketi bul</strong><span>Ev interneti seçenekleri neler?</span></button>
-              <button class="prompt-card" type="button" data-prompt="Faturamı hangi kanallardan ödeyebilirim?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong>Faturamı yönet</strong><span>Ödeme kanallarını öğren.</span></button>
-              <button class="prompt-card" type="button" data-prompt="İnternet bağlantım yavaş, ne yapabilirim?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong>Bağlantımı iyileştir</strong><span>Yavaş internet için yardım al.</span></button>
-              <button class="prompt-card" type="button" data-prompt="Kurulum ve aktivasyon ücreti var mı?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong>Kurulumu planla</strong><span>Kurulum ücretlerini öğren.</span></button>
+              <button class="prompt-card" type="button" data-prompt="Ev internet paketleriniz nelerdir?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong data-en="Explore home plans">Ev internet paketleri</strong><span data-en="What options are available?">Hangi seçenekler var?</span></button>
+              <button class="prompt-card" type="button" data-prompt="Faturamı nereden ödeyebilirim?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong data-en="Manage my bill">Fatura ve ödeme</strong><span data-en="Where can I pay?">Nereden ödeme yapabilirim?</span></button>
+              <button class="prompt-card" type="button" data-prompt="İnternetim yavaş, ne yapabilirim?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong data-en="Improve my connection">Bağlantı desteği</strong><span data-en="My internet is slow.">İnternetim yavaşlıyor.</span></button>
+              <button class="prompt-card" type="button" data-prompt="Kurulum ve aktivasyon ücreti var mı?"><span class="prompt-symbol" aria-hidden="true">↗</span><strong data-en="Plan an installation">Kurulum ve aktivasyon</strong><span data-en="Is there an installation fee?">Kurulum ücreti var mı?</span></button>
             </div>
-            <div class="welcome-note"><span aria-hidden="true">✓</span> Bilgi tabanına dayalı yanıtlar <span class="note-divider" aria-hidden="true">·</span> Görünür kaynaklar</div>
+            <div class="welcome-note"><span aria-hidden="true">✓</span><span id="welcome-note">Bilgi tabanına dayalı yanıtlar · Kaynaklarıyla birlikte</span></div>
           </div>
           <ol id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Sohbet mesajları"></ol>
           <div id="loading" class="loading hidden" role="status"><span class="assistant-avatar" aria-hidden="true">D</span><span class="loading-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Yanıt hazırlanıyor…</span></div>
         </section>
         <div class="composer-area">
           <form id="chat-form" class="composer" autocomplete="off"><label class="sr-only" for="message-input">Destek sorunuz</label><textarea id="message-input" name="message" rows="1" placeholder="DemoTel hakkında bir soru sorun…" maxlength="2000" required aria-describedby="composer-hint"></textarea><button type="submit" id="send-btn" aria-label="Mesajı gönder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 19 0-14M6 11l6-6 6 6"/></svg></button></form>
-          <div class="composer-footer"><p id="composer-hint"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m10 2 6 3v4c0 4-6 8-6 8S4 13 4 9V5l6-3Z"/><path d="m7 9 2 2 4-4"/></svg>Kurgusal DemoTel · Sentetik bilgi tabanı. Kişisel bilgi paylaşmayın; gerçek hesaplara erişilmez.</p><span class="keyboard-hint">Enter ile gönder</span></div>
+          <div class="composer-footer"><p id="composer-hint"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m10 2 6 3v4c0 4-6 8-6 8S4 13 4 9V5l6-3Z"/><path d="m7 9 2 2 4-4"/></svg><span id="privacy-note">DemoTel kurgusal bir operatördür. Kişisel bilgilerinizi paylaşmayın.</span></p><span class="keyboard-hint" id="keyboard-hint">Enter ile gönder</span></div>
         </div>
       </main>
     </div>

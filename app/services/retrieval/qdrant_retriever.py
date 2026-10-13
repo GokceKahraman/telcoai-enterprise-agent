@@ -285,6 +285,9 @@ class QdrantRetriever:
                 question=record.question,
                 keywords=tuple(record.keywords),
                 answer=record.answer,
+                question_en=record.question_en,
+                keywords_en=tuple(record.keywords_en),
+                answer_en=record.answer_en,
                 tenant_id=record.tenant_id,
                 locale=record.locale,
             )

@@ -17,6 +17,9 @@ class FAQRecord(BaseModel):
     question: str = Field(min_length=1, max_length=2000)
     keywords: list[str] = Field(default_factory=list, max_length=100)
     answer: str = Field(min_length=1, max_length=6000)
+    question_en: str | None = Field(default=None, min_length=1, max_length=2000)
+    keywords_en: list[str] = Field(default_factory=list, max_length=100)
+    answer_en: str | None = Field(default=None, min_length=1, max_length=6000)
     tenant_id: str = Field(default="demotel", pattern=r"^[a-z0-9_-]{1,64}$")
     locale: str = Field(default="tr-TR", pattern=r"^[a-z]{2,3}-[A-Z]{2}$")
 
@@ -28,6 +31,9 @@ class FAQEntry:
     question: str
     keywords: tuple[str, ...]
     answer: str
+    question_en: str | None = None
+    keywords_en: tuple[str, ...] = ()
+    answer_en: str | None = None
     tenant_id: str = "demotel"
     locale: str = "tr-TR"
 
@@ -82,7 +88,14 @@ class KnowledgeBase:
         if any(
             privacy.redact(text).changed
             for r in records
-            for text in (r.question, r.answer, " ".join(r.keywords))
+            for text in (
+                r.question,
+                r.answer,
+                " ".join(r.keywords),
+                r.question_en or "",
+                r.answer_en or "",
+                " ".join(r.keywords_en),
+            )
         ):
             raise ValueError(
                 "Knowledge base contains recognized personal data; redact before ingestion"
@@ -94,6 +107,9 @@ class KnowledgeBase:
                 question=item["question"],
                 keywords=tuple(item.get("keywords", [])),
                 answer=item["answer"],
+                question_en=item.get("question_en"),
+                keywords_en=tuple(item.get("keywords_en", [])),
+                answer_en=item.get("answer_en"),
                 tenant_id=item.get("tenant_id", raw.get("tenant_id", "demotel")),
                 locale=item.get("locale", raw.get("locale", "tr-TR")),
             )

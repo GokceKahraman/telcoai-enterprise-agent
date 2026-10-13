@@ -9,11 +9,51 @@ class PolicyService:
     def normalize(text: str) -> str:
         return unicodedata.normalize("NFKC", text).lower().replace("\u0307", "").replace("ı", "i")
 
-    def supported(self, text: str) -> bool:
+    def supported(self, text: str, locale: str = "tr-TR") -> bool:
         """Conservative demo scope; generic prices or advice need telecom context."""
         query = self.normalize(text).replace("wi-fi", "wifi")
-        if self.is_smalltalk(text):
+        if self.is_smalltalk(text, locale):
             return True
+        if locale == "en-US":
+            english_terms = (
+                "demotel",
+                "internet",
+                "wifi",
+                "wi-fi",
+                "fiber",
+                "mobile",
+                "data",
+                "bill",
+                "payment",
+                "pay",
+                "invoice",
+                "subscription",
+                "plan",
+                "package",
+                "price",
+                "fee",
+                "modem",
+                "router",
+                "connection",
+                "signal",
+                "sim",
+                "roaming",
+                "activation",
+                "installation",
+                "contract",
+                "commitment",
+                "outage",
+                "speed",
+                "gb",
+                "mbps",
+                "network",
+                "customer service",
+                "support",
+                "account",
+                "cancel",
+                "refund",
+            )
+            return any(term in query for term in english_terms)
         stems = (
             "demotel",
             "internet",
@@ -50,10 +90,50 @@ class PolicyService:
         tokens = re.findall(r"[a-zçğöşü0-9]+", query)
         return any(token.startswith(stem) for token in tokens for stem in stems)
 
-    def is_smalltalk(self, text: str) -> bool:
+    def is_smalltalk(self, text: str, locale: str = "tr-TR") -> bool:
         """Recognize short social turns without sending them to FAQ retrieval."""
         query = re.sub(r"[^a-zçğıöşü ]", " ", self.normalize(text))
         query = " ".join(query.split())
+        if locale == "en-US":
+            english = {
+                "hi",
+                "hello",
+                "hey",
+                "hello there",
+                "good morning",
+                "good afternoon",
+                "good evening",
+                "thanks",
+                "thank you",
+                "thanks a lot",
+                "bye",
+                "goodbye",
+                "how are you",
+                "how are you doing",
+                "what can you do",
+                "how can you help me",
+                "can you help me",
+                "who are you",
+            }
+            if query in english:
+                return True
+            greeting, separator, remainder = query.partition(" ")
+            return bool(
+                separator
+                and greeting in {"hi", "hello", "hey", "good"}
+                and remainder
+                in {
+                    "there",
+                    "how are you",
+                    "how are you doing",
+                    "morning",
+                    "afternoon",
+                    "evening",
+                    "can you help me",
+                    "how can you help me",
+                    "what can you do",
+                }
+            )
         phrases = {
             "selam",
             "selamlar",
@@ -101,8 +181,23 @@ class PolicyService:
         ]
         return any(re.search(pattern, query) for pattern in patterns)
 
-    def handoff(self, text: str) -> bool:
+    def handoff(self, text: str, locale: str = "tr-TR") -> bool:
         query = self.normalize(text)
+        if locale == "en-US":
+            return any(
+                phrase in query
+                for phrase in (
+                    "cancel my",
+                    "cancel subscription",
+                    "close my account",
+                    "speak to a person",
+                    "human agent",
+                    "customer representative",
+                    "refund",
+                    "change my plan",
+                    "upgrade my plan",
+                )
+            )
         return any(
             phrase in query
             for phrase in (
@@ -119,8 +214,47 @@ class PolicyService:
             )
         )
 
-    def intent(self, text: str) -> str:
+    def intent(self, text: str, locale: str = "tr-TR") -> str:
         query = self.normalize(text)
+        if locale == "en-US":
+            if any(
+                word in query for word in ("bill", "payment", "pay", "invoice", "charge", "refund")
+            ):
+                return "billing"
+            if any(
+                word in query
+                for word in (
+                    "modem",
+                    "router",
+                    "wifi",
+                    "wi-fi",
+                    "slow",
+                    "disconnect",
+                    "connection",
+                    "signal",
+                    "sim",
+                    "roaming",
+                    "outage",
+                    "password",
+                )
+            ):
+                return "technical"
+            if any(
+                word in query
+                for word in (
+                    "plan",
+                    "package",
+                    "price",
+                    "fiber",
+                    "mobile",
+                    "data",
+                    "gb",
+                    "mbps",
+                    "tariff",
+                )
+            ):
+                return "packages"
+            return "general"
         if any(
             word in query for word in ("fatura", "ödeme", "odeme", "tutar", "itiraz", "ücretim")
         ):
@@ -149,4 +283,17 @@ class PolicyService:
 
     def followup(self, text: str) -> bool:
         query = self.normalize(text).strip()
-        return query.startswith(("peki", "bunu", "bunun", "o zaman", "bu durumda"))
+        return query.startswith(
+            (
+                "peki",
+                "bunu",
+                "bunun",
+                "o zaman",
+                "bu durumda",
+                "what about",
+                "and ",
+                "then",
+                "how about",
+                "what if",
+            )
+        )

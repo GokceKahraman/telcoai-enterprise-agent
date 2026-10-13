@@ -2,6 +2,35 @@
 
 const API_URL = "/api/v1/chat";
 const SESSION_KEY = "demotel.session_id";
+const LANGUAGE_KEY = "demotel.locale";
+const UI = {
+  "tr-TR": {
+    lang:"SOHBET DİLİ", agent:"DemoTel Asistan", status:"Çevrimiçi · Sana yardımcı olmaya hazır", close:"Sohbeti kapat", fresh:"Yeni sohbet başlat", eyebrow:"DEMOTEL ASİSTAN",
+    welcome:"Merhaba! Size nasıl yardımcı olabilirim?", intro:"Paketler, fatura veya bağlantı sorunları hakkında bana yazın. Size doğru bilgiyi bulayım.", note:"Bilgi tabanına dayalı yanıtlar · Kaynaklarıyla birlikte", privacy:"DemoTel kurgusal bir operatördür. Kişisel bilgilerinizi paylaşmayın.", keyboard:"Enter ile gönder",
+    placeholder:"DemoTel hakkında bir soru sorun…", input:"Destek sorunuz", send:"Mesajı gönder", loading:"Yanıt hazırlanıyor…", author:"DemoTel Asistan", you:"Siz: ", source:"Bilgi kaynağı",
+    fallback:"DemoTel bilgi tabanında bu soruya güvenilir bir yanıt bulamadım. Paketler, fatura veya teknik destek hakkında daha belirgin bir soru sorabilirsiniz.", handoff:"Uzman desteği gerekli", more:"Ek bilgi gerekli", masked:"Kişisel bilgiler maskelendi",
+    category:{internet_paketleri:"İnternet paketleri",fiyatlandirma:"Fiyatlandırma",fatura:"Fatura ve ödemeler",teknik_destek:"Teknik destek",taahhut:"Taahhüt",genel:"Genel bilgiler",billing:"Fatura ve ödemeler",technical:"Teknik destek",packages:"Paketler",general:"Genel bilgiler"},
+    intent:{billing:"Fatura",technical:"Teknik destek",packages:"Paketler",general:"Genel destek"}, label:{topic:"Destek konusu",latency:"Yanıt süresi",cache:"Önbellek",privacy:"Gizlilik filtresi",source:"Kaynak kimliği",trace:"İşlem kimliği",steps:"İşlem adımları"},
+    details:"Yanıt ayrıntıları",cached:"Önbellekten yanıtlandı",new:"Yeni yanıt",redacted:"Maskeleme uygulandı",noPattern:"Desteklenen veri örüntüsü bulunmadı",auth:"Servis erişim anahtarı gerektiriyor. Sağ üstteki bağlantı ayarlarından anahtarı girip yeniden deneyin.",
+    errors:["Kısa sürede çok fazla istek gönderdiniz. Biraz bekleyip tekrar deneyin.","Mesajınızı kontrol edip tekrar gönderin. En fazla 2000 karakter kullanabilirsiniz.","Yanıt şu anda hazırlanamadı. Lütfen biraz sonra tekrar deneyin."], unavailable:"Servise ulaşılamadı veya yanıt süresi aşıldı. Bağlantınızı kontrol edip tekrar deneyin.",
+    historyExpired:"Önceki sohbetin süresi dolmuş. Yeni bir sohbet başlatabilirsiniz.",historyError:"Sohbet geçmişi şu anda yüklenemiyor. Yeni bir soru sorabilir veya tekrar deneyebilirsiniz.",
+    suggestions:["Ev internet paketleriniz nelerdir?","Faturamı nereden ödeyebilirim?","İnternetim yavaş, ne yapabilirim?","Kurulum ve aktivasyon ücreti var mı?"]
+  },
+  "en-US": {
+    lang:"CHAT LANGUAGE", agent:"DemoTel Assistant", status:"Online · Here to help", close:"Close chat", fresh:"Start a new chat", eyebrow:"DEMOTEL ASSISTANT",
+    welcome:"Hello! How can I help you today?", intro:"Ask me about plans, billing or connection issues. I’ll help you find the right information.", note:"Knowledge-based answers · Sources included", privacy:"DemoTel is a fictional operator. Please do not share personal information.", keyboard:"Press Enter to send",
+    placeholder:"Ask a question about DemoTel…", input:"Your support question", send:"Send message", loading:"Preparing an answer…", author:"DemoTel Assistant", you:"You: ", source:"Knowledge source",
+    fallback:"I could not find a reliable answer in the DemoTel knowledge base. Try a more specific question about plans, billing or technical support.", handoff:"Customer support may be needed", more:"More details needed", masked:"Personal information was masked",
+    category:{internet_paketleri:"Internet plans",fiyatlandirma:"Pricing",fatura:"Billing and payments",teknik_destek:"Technical support",taahhut:"Commitments",genel:"General information",billing:"Billing and payments",technical:"Technical support",packages:"Plans",general:"General support"},
+    intent:{billing:"Billing",technical:"Technical support",packages:"Plans",general:"General support"}, label:{topic:"Support topic",latency:"Response time",cache:"Cache",privacy:"Privacy filter",source:"Source ID",trace:"Trace ID",steps:"Workflow steps"},
+    details:"Response details",cached:"Answered from cache",new:"Fresh answer",redacted:"Masking applied",noPattern:"No known sensitive pattern found",auth:"This service requires an access key. Enter it under connection settings above and try again.",
+    errors:["You’ve sent too many requests. Please wait a moment and try again.","Please check your message and try again. Messages can be up to 2,000 characters.","I couldn’t prepare a response just now. Please try again shortly."], unavailable:"I couldn’t reach the service or the request timed out. Check your connection and try again.",
+    historyExpired:"Your previous chat has expired. You can start a new conversation.",historyError:"Your chat history could not be loaded. Ask a new question or try again.",
+    suggestions:["What home internet plans do you offer?","Where can I pay my bill?","My internet is slow. What can I try?","Is there an installation fee?"]
+  }
+};
+let locale = (() => { try { return localStorage.getItem(LANGUAGE_KEY) === "en-US" ? "en-US" : "tr-TR"; } catch { return "tr-TR"; } })();
+const t = () => UI[locale];
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const form = document.getElementById("chat-form");
 const input = document.getElementById("message-input");
@@ -20,31 +49,35 @@ const statusBtn = document.getElementById("service-status");
 const connectionForm = document.getElementById("connection-form");
 const tokenInput = document.getElementById("api-token");
 const settingsEl = document.getElementById("connection-settings");
+document.querySelector(".widget-controls").appendChild(settingsEl);
+const newChatBtnVisible = document.getElementById("widget-new-chat");
 const chatWidget = document.getElementById("chat-widget");
 const chatBackdrop = document.getElementById("chat-backdrop");
 const chatLauncher = document.getElementById("chat-launcher");
 const chatClose = document.getElementById("chat-close");
 const promptButtons = [...document.querySelectorAll("[data-prompt]")];
-const CATEGORY_LABELS = {
-  internet_paketleri: "İnternet paketleri",
-  fiyatlandirma: "Fiyatlandırma",
-  fatura: "Fatura ve ödemeler",
-  teknik_destek: "Teknik destek",
-  taahhut: "Taahhüt",
-  genel: "Genel bilgiler",
-  billing: "Fatura ve ödemeler",
-  technical: "Teknik destek",
-  packages: "Paketler",
-  general: "Genel bilgiler",
-};
-const INTENT_LABELS = { billing: "Fatura", technical: "Teknik destek", packages: "Paketler", general: "Genel destek" };
-const AUTH_NOTICE = "Servis erişim anahtarı gerektiriyor. Sağ üstteki bağlantı ayarlarından anahtarı girip yeniden deneyin.";
+const chatPromptButtons = [...document.querySelectorAll(".widget-body [data-prompt]")];
+const languageButtons = [...document.querySelectorAll(".language-option")];
+const newChatWidgetButton = document.getElementById("widget-new-chat");
+const AUTH_NOTICE = () => t().auth;
+let activeSessionKey = SESSION_KEY + "." + locale;
 let sessionId = readSession();
 let apiToken = "";
 let busy = false;
 let statusBusy = false;
 let turnCount = 0;
 let chatWasOpened = false;
+
+function localizedPrompt(prompt) {
+  if (locale !== "en-US") return prompt;
+  const known = {
+    "İnternetim akşamları yavaşlıyor, nereden başlamalıyım?": "My internet is slow in the evening. Where should I start?",
+    "Faturam beklediğimden yüksek, nasıl inceleyeyim?": "My bill is higher than expected. How should I review it?",
+    "Numaramı taşımayı düşünüyorum, nelere dikkat etmeliyim?": "What should I know before transferring my number?",
+    "Kişisel bilgilerimi sohbette paylaşmalı mıyım?": "Should I share personal information in this chat?"
+  };
+  return known[prompt] || prompt;
+}
 
 function openChat(prompt = "") {
   chatWidget.classList.add("is-open");
@@ -55,7 +88,7 @@ function openChat(prompt = "") {
   chatLauncher.setAttribute("aria-expanded", "true");
   chatWasOpened = true;
   if (prompt && !busy) {
-    input.value = prompt;
+    input.value = localizedPrompt(prompt);
     input.dispatchEvent(new Event("input"));
   }
   window.setTimeout(() => input.focus(), 160);
@@ -83,7 +116,7 @@ chatBackdrop.addEventListener("click", closeChat);
 
 function readSession() {
   try {
-    const value = sessionStorage.getItem(SESSION_KEY);
+    const value = sessionStorage.getItem(activeSessionKey);
     return value && UUID_PATTERN.test(value) ? value : null;
   } catch {
     return null;
@@ -93,8 +126,8 @@ function readSession() {
 function saveSession(value) {
   sessionId = typeof value === "string" && UUID_PATTERN.test(value) ? value : null;
   try {
-    if (sessionId) sessionStorage.setItem(SESSION_KEY, sessionId);
-    else sessionStorage.removeItem(SESSION_KEY);
+    if (sessionId) sessionStorage.setItem(activeSessionKey, sessionId);
+    else sessionStorage.removeItem(activeSessionKey);
   } catch {
     // The session still works in memory when browser storage is unavailable.
   }
@@ -113,12 +146,85 @@ function showNotice(text = "") {
   noticeEl.classList.toggle("hidden", !text);
 }
 
+function applyLocale() {
+  const copy = t();
+  document.documentElement.lang = locale === "en-US" ? "en" : "tr";
+  chatWidget.setAttribute("aria-label", locale === "en-US" ? "DemoTel Assistant chat" : "DemoTel Asistan sohbeti");
+  document.querySelector(".widget-body>.skip-link").textContent = locale === "en-US" ? "Skip to message field" : "Mesaj alanına geç";
+  document.getElementById("chat-scroll").setAttribute("aria-label", locale === "en-US" ? "Conversation" : "Sohbet alanı");
+  messagesEl.setAttribute("aria-label", locale === "en-US" ? "Chat messages" : "Sohbet mesajları");
+  settingsEl.querySelector("summary").setAttribute("aria-label", locale === "en-US" ? "Connection settings" : "Bağlantı ve sohbet ayarları");
+  settingsEl.querySelector("summary").title = locale === "en-US" ? "Connection settings" : "Bağlantı ve sohbet ayarları";
+  document.getElementById("language-label").textContent = copy.lang;
+  document.querySelector(".language-switch").setAttribute("aria-label", copy.lang);
+  languageButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.locale === locale)));
+  document.getElementById("agent-name").textContent = copy.agent;
+  document.getElementById("agent-status").lastChild.textContent = " " + copy.status;
+  chatClose.setAttribute("aria-label", copy.close);
+  newChatBtnVisible.setAttribute("aria-label", copy.fresh);
+  newChatBtnVisible.title = copy.fresh;
+  document.getElementById("welcome-eyebrow").textContent = copy.eyebrow;
+  document.getElementById("welcome-title").textContent = copy.welcome;
+  document.getElementById("welcome-description").textContent = copy.intro;
+  document.getElementById("welcome-note").textContent = copy.note;
+  document.getElementById("privacy-note").textContent = copy.privacy;
+  document.getElementById("keyboard-hint").textContent = copy.keyboard;
+  input.placeholder = copy.placeholder;
+  input.labels[0].textContent = copy.input;
+  sendBtn.setAttribute("aria-label", copy.send);
+  loadingEl.lastElementChild.textContent = copy.loading;
+  chatPromptButtons.filter((button) => button.classList.contains("prompt-card")).forEach((button, index) => {
+    button.dataset.prompt = copy.suggestions[index];
+    const englishText = button.querySelectorAll("[data-en]");
+    if (locale === "en-US") englishText.forEach((element) => { element.textContent = element.dataset.en; });
+    else {
+      const trStrong = ["Ev internet paketleri","Fatura ve ödeme","Bağlantı desteği","Kurulum ve aktivasyon"];
+      const trDetail = ["Hangi seçenekler var?","Nereden ödeme yapabilirim?","İnternetim yavaşlıyor.","Kurulum ücreti var mı?"];
+      englishText.forEach((element) => { element.textContent = element.tagName === "STRONG" ? trStrong[index] : trDetail[index]; });
+    }
+  });
+  const settings = document.querySelector("#connection-form");
+  if (locale === "en-US") {
+    settings.querySelector("label").childNodes[0].textContent = "API access key ";
+    settings.querySelector("label span").textContent = "Optional";
+    tokenInput.placeholder = "For protected services";
+    document.getElementById("token-hint").textContent = "The key is kept only while this page is open. Demo mode does not require one.";
+    settings.querySelector("button").textContent = "Reconnect";
+    mobileHistoryBtn.textContent = "Refresh chat history";
+    mobileClearBtn.textContent = "Delete chat history";
+  } else {
+    settings.querySelector("label").childNodes[0].textContent = "API erişim anahtarı ";
+    settings.querySelector("label span").textContent = "İsteğe bağlı";
+    tokenInput.placeholder = "Korumalı servisler için";
+    document.getElementById("token-hint").textContent = "Anahtar yalnızca bu sayfa açıkken tutulur. Varsayılan demo anahtar gerektirmez.";
+    settings.querySelector("button").textContent = "Bağlantıyı yenile";
+    mobileHistoryBtn.textContent = "Sohbet geçmişini yenile";
+    mobileClearBtn.textContent = "Sohbet geçmişini sil";
+  }
+  document.getElementById("session-summary").textContent = turnCount ? (locale === "en-US" ? turnCount + " messages · This browser session" : turnCount + " mesaj · Bu tarayıcı oturumu") : (locale === "en-US" ? "A fresh start" : "Yeni bir başlangıç");
+}
+
+async function changeLocale(nextLocale) {
+  if (busy || !["tr-TR", "en-US"].includes(nextLocale) || nextLocale === locale) return;
+  locale = nextLocale;
+  activeSessionKey = SESSION_KEY + "." + locale;
+  try { localStorage.setItem(LANGUAGE_KEY, locale); } catch { /* Keep language in memory. */ }
+  sessionId = readSession();
+  messagesEl.replaceChildren();
+  turnCount = 0;
+  welcomeEl.classList.remove("hidden");
+  showNotice();
+  applyLocale();
+  updateSessionSummary();
+  await restoreConversation();
+}
+
 function scrollToLatest() {
   scrollEl.scrollTop = scrollEl.scrollHeight;
 }
 
 function updateSessionSummary() {
-  document.getElementById("session-summary").textContent = turnCount ? `${turnCount} mesaj · Bu tarayıcı oturumu` : "Yeni bir başlangıç";
+  document.getElementById("session-summary").textContent = turnCount ? (locale === "en-US" ? `${turnCount} messages · This browser session` : `${turnCount} mesaj · Bu tarayıcı oturumu`) : (locale === "en-US" ? "A fresh start" : "Yeni bir başlangıç");
   clearChatBtn.disabled = busy || !sessionId;
   mobileClearBtn.disabled = busy || !sessionId;
   historyBtn.disabled = busy;
@@ -129,34 +235,34 @@ function appendSource(content, source) {
   if (!source || typeof source.matched_question !== "string") return;
   const card = node("div", "source-card");
   const heading = node("div", "source-heading");
-  heading.append(node("span", "source-number", "1"), node("span", "", `Bilgi kaynağı · ${CATEGORY_LABELS[source.category] || "DemoTel bilgi tabanı"}`));
+  heading.append(node("span", "source-number", "1"), node("span", "", `${t().source} · ${t().category[source.category] || (locale === "en-US" ? "DemoTel knowledge base" : "DemoTel bilgi tabanı")}`));
   card.append(heading, node("p", "source-question", source.matched_question));
   content.appendChild(card);
 }
 
 function appendResponseDetails(content, data) {
   const tags = node("div", "response-tags");
-  if (data.handoff) tags.appendChild(node("span", "response-tag handoff", "Uzman desteği gerekli"));
-  else if (data.fallback) tags.appendChild(node("span", "response-tag handoff", "Ek bilgi gerekli"));
-  if (data.pii_redacted) tags.appendChild(node("span", "response-tag", "Kişisel bilgiler maskelendi"));
+  if (data.handoff) tags.appendChild(node("span", "response-tag handoff", t().handoff));
+  else if (data.fallback) tags.appendChild(node("span", "response-tag handoff", t().more));
+  if (data.pii_redacted) tags.appendChild(node("span", "response-tag", t().masked));
   if (tags.childElementCount) content.appendChild(tags);
 
   const rows = [];
-  if (INTENT_LABELS[data.intent]) rows.push(["Destek konusu", INTENT_LABELS[data.intent]]);
-  if (typeof data.latency_ms === "number" && Number.isFinite(data.latency_ms)) rows.push(["Yanıt süresi", `${Math.round(data.latency_ms)} ms`]);
-  if (typeof data.cache_hit === "boolean") rows.push(["Önbellek", data.cache_hit ? "Önbellekten yanıtlandı" : "Yeni yanıt"]);
-  if (typeof data.pii_redacted === "boolean") rows.push(["Gizlilik filtresi", data.pii_redacted ? "Maskeleme uygulandı" : "Desteklenen veri örüntüsü bulunmadı"]);
-  if (data.source && typeof data.source.entry_id === "string") rows.push(["Kaynak kimliği", data.source.entry_id]);
-  if (typeof data.trace_id === "string") rows.push(["İşlem kimliği", data.trace_id]);
+  if (t().intent[data.intent]) rows.push([t().label.topic, t().intent[data.intent]]);
+  if (typeof data.latency_ms === "number" && Number.isFinite(data.latency_ms)) rows.push([t().label.latency, `${Math.round(data.latency_ms)} ms`]);
+  if (typeof data.cache_hit === "boolean") rows.push([t().label.cache, data.cache_hit ? t().cached : t().new]);
+  if (typeof data.pii_redacted === "boolean") rows.push([t().label.privacy, data.pii_redacted ? t().redacted : t().noPattern]);
+  if (data.source && typeof data.source.entry_id === "string") rows.push([t().label.source, data.source.entry_id]);
+  if (typeof data.trace_id === "string") rows.push([t().label.trace, data.trace_id]);
   if (Array.isArray(data.steps)) {
     const steps = data.steps.filter((step) => typeof step === "string").slice(0, 12);
-    if (steps.length) rows.push(["İşlem adımları", steps.join(" → ")]);
+    if (steps.length) rows.push([t().label.steps, steps.join(" → ")]);
   }
   if (!rows.length) return;
   const details = node("details", "response-details");
   const definition = node("dl");
   rows.forEach(([label, value]) => definition.append(node("dt", "", label), node("dd", "", value)));
-  details.append(node("summary", "", "Yanıt ayrıntıları"), definition);
+  details.append(node("summary", "", t().details), definition);
   content.appendChild(details);
 }
 
@@ -168,9 +274,9 @@ function appendMessage(text, role, data = null, isError = false) {
     const avatar = node("span", "assistant-avatar", "D");
     avatar.setAttribute("aria-hidden", "true");
     item.appendChild(avatar);
-    content.appendChild(node("span", "message-author", "DemoTel Asistan"));
+    content.appendChild(node("span", "message-author", t().author));
   } else {
-    content.appendChild(node("span", "sr-only", "Siz: "));
+    content.appendChild(node("span", "sr-only", t().you));
   }
   const body = node("div", "message-text", text);
   content.appendChild(body);
@@ -193,9 +299,11 @@ function setBusy(value, withLoading = true) {
   sendBtn.disabled = value;
   input.disabled = value;
   newChatBtn.disabled = value;
+  newChatBtnVisible.disabled = value;
   tokenInput.disabled = value;
   connectionForm.querySelector("button").disabled = value;
   promptButtons.forEach((button) => { button.disabled = value; });
+  languageButtons.forEach((button) => { button.disabled = value; });
   updateSessionSummary();
   if (value && withLoading) scrollToLatest();
 }
@@ -232,11 +340,11 @@ async function restoreConversation() {
     const response = await request(`/api/v1/sessions/${encodeURIComponent(sessionId)}`);
     if (response.status === 404 || response.status === 410) {
       resetConversation();
-      showNotice("Önceki sohbetin süresi dolmuş. Yeni bir sohbet başlatabilirsiniz.");
+      showNotice(t().historyExpired);
       return;
     }
     if (response.status === 401 || response.status === 403) {
-      showNotice(AUTH_NOTICE);
+      showNotice(AUTH_NOTICE());
       return;
     }
     if (!response.ok) throw new Error("session_unavailable");
@@ -251,7 +359,7 @@ async function restoreConversation() {
     updateSessionSummary();
     showNotice();
   } catch {
-    showNotice("Sohbet geçmişi şu anda yüklenemiyor. Yeni bir soru sorabilir veya tekrar deneyebilirsiniz.");
+    showNotice(t().historyError);
   } finally {
     setBusy(false, false);
   }
@@ -273,7 +381,7 @@ async function updateServiceStatus() {
       const row = node("div");
       row.append(node("dt", "", "Erişim"), node("dd", "", "Anahtar gerekli"));
       document.getElementById("service-info").replaceChildren(row);
-      showNotice(AUTH_NOTICE);
+      showNotice(AUTH_NOTICE());
       return;
     }
     if (!response.ok) throw new Error("status_unavailable");
@@ -330,7 +438,7 @@ form.addEventListener("submit", async (event) => {
   input.style.height = "";
   setBusy(true);
   try {
-    const payload = { message };
+    const payload = { message, locale };
     if (sessionId) payload.session_id = sessionId;
     const response = await request(API_URL, {
       method: "POST",
@@ -339,12 +447,12 @@ form.addEventListener("submit", async (event) => {
     });
     if (!response.ok) {
       const error = response.status === 401 || response.status === 403
-        ? AUTH_NOTICE
+        ? AUTH_NOTICE()
         : response.status === 429
-          ? "Kısa sürede çok fazla istek gönderdiniz. Biraz bekleyip tekrar deneyin."
+          ? t().errors[0]
           : response.status === 422
-            ? "Mesajınızı kontrol edip tekrar gönderin. En fazla 2000 karakter kullanabilirsiniz."
-            : "Yanıt şu anda hazırlanamadı. Lütfen biraz sonra tekrar deneyin.";
+            ? t().errors[1]
+            : t().errors[2];
       appendMessage(error, "assistant", null, true);
       return;
     }
@@ -354,7 +462,7 @@ form.addEventListener("submit", async (event) => {
     if (typeof data.session_id === "string" && UUID_PATTERN.test(data.session_id)) saveSession(data.session_id);
     appendMessage(data.answer, "assistant", data);
   } catch {
-    appendMessage("Servise ulaşılamadı veya yanıt süresi aşıldı. Bağlantınızı kontrol edip tekrar deneyin.", "assistant", null, true);
+    appendMessage(t().unavailable, "assistant", null, true);
   } finally {
     setBusy(false);
     input.focus();
@@ -373,11 +481,13 @@ input.addEventListener("keydown", (event) => {
 });
 promptButtons.forEach((button) => button.addEventListener("click", () => {
   if (busy) return;
-  input.value = button.dataset.prompt;
+  input.value = localizedPrompt(button.dataset.prompt);
   input.dispatchEvent(new Event("input"));
   input.focus();
 }));
 newChatBtn.addEventListener("click", () => { if (!busy) resetConversation(); });
+newChatBtnVisible.addEventListener("click", () => { if (!busy) resetConversation(); });
+languageButtons.forEach((button) => button.addEventListener("click", () => changeLocale(button.dataset.locale)));
 historyBtn.addEventListener("click", restoreConversation);
 mobileHistoryBtn.addEventListener("click", async () => { await restoreConversation(); settingsEl.open = false; });
 statusBtn.addEventListener("click", () => {
@@ -402,15 +512,15 @@ async function clearConversation() {
   try {
     const response = await request(`/api/v1/sessions/${encodeURIComponent(sessionId)}`, { method: "DELETE" });
     if (response.status === 401 || response.status === 403) {
-      showNotice(AUTH_NOTICE);
+      showNotice(AUTH_NOTICE());
       return;
     }
     if (!response.ok && response.status !== 404) throw new Error("delete_failed");
     resetConversation();
-    showNotice("Bu sohbetin sunucudaki geçmişi silindi.");
+      showNotice(locale === "en-US" ? "This chat history was deleted from the server." : "Bu sohbetin sunucudaki geçmişi silindi.");
     settingsEl.open = false;
   } catch {
-    showNotice("Sohbet geçmişi silinemedi. Lütfen tekrar deneyin.");
+    showNotice(locale === "en-US" ? "The chat history could not be deleted. Please try again." : "Sohbet geçmişi silinemedi. Lütfen tekrar deneyin.");
   } finally {
     setBusy(false, false);
     input.focus();
@@ -437,5 +547,6 @@ document.addEventListener("click", (event) => {
 });
 
 updateSessionSummary();
+applyLocale();
 updateServiceStatus();
 restoreConversation();

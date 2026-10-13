@@ -18,6 +18,7 @@ class ChatRequest(BaseModel):
     category: Literal["internet_paketleri", "fiyatlandirma", "fatura", "teknik_destek"] | None = (
         None
     )
+    locale: Literal["tr-TR", "en-US"] = "tr-TR"
 
     @field_validator("message")
     @classmethod

@@ -21,19 +21,34 @@ FALLBACK_ANSWER = (
     "Paketler, fatura veya teknik destek hakkında daha açık bir soru yazabilirsiniz. "
     "Hesabınıza özel konular için müşteri temsilcisine başvurun."
 )
+EN_FALLBACK_ANSWER = (
+    "I could not find a reliable answer in the DemoTel knowledge base. Ask a more specific "
+    "question about plans, billing or technical support. For account-specific help, contact "
+    "customer support."
+)
 HANDOFF_ANSWER = (
     "Bu işlem için kimlik doğrulaması yapan bir müşteri temsilcisine başvurmalısınız. "
     "Bu demo hesabınıza erişmez, abonelik değiştirmez ve gerçek destek kaydı açmaz. "
     "Kişisel bilgilerinizi burada paylaşmadan DemoTel uygulamasındaki destek kanalını kullanın."
 )
+EN_HANDOFF_ANSWER = (
+    "This request needs an authenticated customer support representative. This demo cannot "
+    "access your account, change a subscription or create a real support case. Please use the "
+    "support channel in the DemoTel app and do not share personal information here."
+)
 BLOCKED_ANSWER = (
     "Destek akışının talimatlarını değiştiremiyorum. DemoTel paketleri, "
     "fatura ve teknik destek hakkında yardımcı olabilirim."
+)
+EN_BLOCKED_ANSWER = (
+    "I can’t change the support assistant’s instructions. I can help with DemoTel plans, "
+    "billing and technical support."
 )
 
 
 class SupportState(TypedDict, total=False):
     query: str
+    locale: str
     category: str | None
     intent: str
     blocked: bool
@@ -100,17 +115,18 @@ class ChatService:
     def _step(self, state: SupportState, name: str) -> list[str]:
         return [*state.get("steps", []), name]
 
-    def _cache_key(self, query: str, category: str | None = None) -> str:
-        return f"{self._fingerprint}:{category or 'all'}:{cache_key(query)}"
+    def _cache_key(self, query: str, category: str | None = None, locale: str = "tr-TR") -> str:
+        return f"{self._fingerprint}:{locale}:{category or 'all'}:{cache_key(query)}"
 
     def _classify(self, state: SupportState) -> dict:
         query = state["query"]
-        greeting = self._policy.is_smalltalk(query)
+        locale = state.get("locale", "tr-TR")
+        greeting = self._policy.is_smalltalk(query, locale)
         return {
-            "intent": "greeting" if greeting else self._policy.intent(query),
+            "intent": "greeting" if greeting else self._policy.intent(query, locale),
             "blocked": self._policy.blocked(query),
-            "out_of_scope": not self._policy.supported(query),
-            "handoff": self._policy.handoff(query),
+            "out_of_scope": not self._policy.supported(query, locale),
+            "handoff": self._policy.handoff(query, locale),
             "steps": self._step(state, "classify"),
         }
 
@@ -130,7 +146,9 @@ class ChatService:
         }
         if not state["cacheable"]:
             return update
-        cached = self.store.cache_get(self._cache_key(state["query"], state.get("category")))
+        cached = self.store.cache_get(
+            self._cache_key(state["query"], state.get("category"), state.get("locale", "tr-TR"))
+        )
         if cached:
             return {**update, "cache_hit": True, "cached": cached}
         if self.settings.semantic_cache_enabled and self._embedder is not None:
@@ -169,13 +187,33 @@ class ChatService:
         return {"hits": hits, "cache_hit": accepted, "steps": self._step(state, "retrieve")}
 
     def _answer(self, state: SupportState) -> dict:
+        english = state.get("locale") == "en-US"
         common = {"source": None, "fallback": True, "steps": self._step(state, "answer")}
         if state["blocked"]:
-            return {**common, "answer": BLOCKED_ANSWER}
+            return {**common, "answer": EN_BLOCKED_ANSWER if english else BLOCKED_ANSWER}
         if state["handoff"]:
-            return {**common, "answer": HANDOFF_ANSWER}
+            return {**common, "answer": EN_HANDOFF_ANSWER if english else HANDOFF_ANSWER}
         if state["intent"] == "greeting":
             query = self._policy.normalize(state["query"])
+            if english:
+                if "thank" in query:
+                    answer = "You’re welcome! Is there anything else I can help you with?"
+                elif "how are you" in query:
+                    answer = (
+                        "I’m doing well, thanks for asking! How can I help with your bill, "
+                        "mobile plan or internet connection?"
+                    )
+                elif "bye" in query or "goodbye" in query:
+                    answer = (
+                        "Goodbye! I’m here whenever you need help with billing, plans or "
+                        "technical support."
+                    )
+                else:
+                    answer = (
+                        "Hello! I’m the DemoTel support assistant. How can I help with your "
+                        "bill, internet plan or connection today?"
+                    )
+                return {**common, "answer": answer, "fallback": False}
             if "teşekkür" in query or "tesekkur" in query or "sağ ol" in query or "sag ol" in query:
                 answer = "Rica ederim! Başka bir konuda yardımcı olabilir miyim?"
             elif "nasılsın" in query or "nasilsin" in query:
@@ -200,7 +238,11 @@ class ChatService:
                 )
             return {**common, "answer": answer, "fallback": False}
         if state["out_of_scope"]:
-            return {**common, "answer": FALLBACK_ANSWER, "handoff": True}
+            return {
+                **common,
+                "answer": EN_FALLBACK_ANSWER if english else FALLBACK_ANSWER,
+                "handoff": True,
+            }
         if state.get("cache_hit"):
             cached = state["cached"]
             return {
@@ -211,14 +253,23 @@ class ChatService:
             }
         hits = state.get("hits", [])
         if not hits:
-            return {**common, "answer": FALLBACK_ANSWER, "handoff": True}
+            return {
+                **common,
+                "answer": EN_FALLBACK_ANSWER if english else FALLBACK_ANSWER,
+                "handoff": True,
+            }
         best = hits[0]
         steps = common["steps"]
         if self._generator is not None:
             try:
-                best, generated_answer = self._generator.respond(
-                    state["query"], hits, state.get("history_context", [])
-                )
+                if english:
+                    best, generated_answer = self._generator.respond(
+                        state["query"], hits, state.get("history_context", []), language="en-US"
+                    )
+                else:
+                    best, generated_answer = self._generator.respond(
+                        state["query"], hits, state.get("history_context", [])
+                    )
                 steps = [*steps, "structured_generation"]
             except Exception:
                 generated_answer = None
@@ -228,11 +279,14 @@ class ChatService:
         source = SourceInfo(
             entry_id=best.entry.id,
             category=best.entry.category,
-            matched_question=best.entry.question,
+            matched_question=(best.entry.question_en or best.entry.question)
+            if english
+            else best.entry.question,
             confidence=round(float(best.confidence), 4),
         )
         return {
-            "answer": generated_answer or best.entry.answer,
+            "answer": generated_answer
+            or ((best.entry.answer_en or EN_FALLBACK_ANSWER) if english else best.entry.answer),
             "source": source,
             "fallback": False,
             "steps": steps,
@@ -248,7 +302,11 @@ class ChatService:
         return {"answer": safe.text, "source": source, "steps": self._step(state, "validate")}
 
     def reply(
-        self, message: str, session_id: UUID | None = None, category: str | None = None
+        self,
+        message: str,
+        session_id: UUID | None = None,
+        category: str | None = None,
+        locale: str = "tr-TR",
     ) -> ChatResponse:
         started = perf_counter()
         session_id = session_id or uuid4()
@@ -263,6 +321,7 @@ class ChatService:
         state = self.graph.invoke(
             {
                 "query": query,
+                "locale": locale,
                 "category": category,
                 "history_context": history_context,
                 "cacheable": not redacted.changed and not history,
@@ -292,7 +351,7 @@ class ChatService:
             and not response.cache_hit
         ):
             self.store.cache_set(
-                self._cache_key(query, category),
+                self._cache_key(query, category, locale),
                 {
                     "answer": response.answer,
                     "source": response.source.model_dump(),

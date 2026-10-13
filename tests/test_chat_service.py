@@ -36,6 +36,26 @@ def test_chat_thanks_gets_a_natural_reply(keyword_retriever):
     assert response.answer.startswith("Rica ederim")
 
 
+def test_english_greeting_and_faq_are_fully_localized(keyword_retriever):
+    service = ChatService(keyword_retriever)
+    greeting = service.reply("Hello, how are you?", locale="en-US")
+    bill = service.reply("Where can I pay my bill?", locale="en-US")
+
+    assert greeting.intent == "greeting"
+    assert greeting.answer.startswith("I’m doing well")
+    assert bill.source is not None
+    assert bill.source.entry_id == "bill-001"
+    assert bill.source.matched_question == "Where can I pay my bill?"
+    assert "The fictional DemoTel bill" in bill.answer
+    assert "Faturanızı" not in bill.answer
+
+
+def test_english_account_actions_are_safely_handed_off(keyword_retriever):
+    response = ChatService(keyword_retriever).reply("Please cancel my subscription", locale="en-US")
+    assert response.handoff is True
+    assert "authenticated customer support representative" in response.answer
+
+
 def test_chat_semantic_paraphrase_with_mock(knowledge_base, mock_embedder):
     retriever = SemanticRetriever(knowledge_base, mock_embedder, min_similarity=0.0)
     service = ChatService(retriever)

@@ -7,7 +7,7 @@ from app.services.retrieval.base import RetrievalHit
 from app.services.retrieval.embedding import EmbeddingModel
 from app.services.retrieval.similarity import cosine_similarity, l2_normalize
 
-DOCUMENT_REPRESENTATION_VERSION = "faq-question-keywords-v2"
+DOCUMENT_REPRESENTATION_VERSION = "faq-question-keywords-bilingual-v3"
 
 
 def build_document_text(entry: FAQEntry) -> str:
@@ -17,8 +17,8 @@ def build_document_text(entry: FAQEntry) -> str:
     answer is retained in the source payload for exact, grounded responses.
     Dense and BM25 indexing use the same representation and version.
     """
-    keywords = " ".join(entry.keywords)
-    return f"{entry.question} {keywords}".strip()
+    keywords = " ".join((*entry.keywords, *entry.keywords_en))
+    return f"{entry.question} {keywords} {entry.question_en or ''}".strip()
 
 
 class SemanticRetriever:

@@ -8,7 +8,7 @@ This project demonstrates a Turkish telecom support workflow with a practical up
 
 ![DemoTel support demo: cited billing answer, masked input and workflow details](docs/assets/demo-desktop.jpg)
 
-The demo website now presents DemoTel as a fictional consumer telecom brand. Open the floating support icon to try the assistant; the expanded [conversation guide](docs/conversation-design.md) explains the synthetic corpus, research references, support journeys and boundaries.
+The demo website now presents DemoTel as a fictional consumer telecom brand. Open the floating support icon to try the assistant; the chat-only panel offers a TR/EN selector above the conversation. Each language keeps its own session, FAQ answer, source citation and cache entry. The expanded [conversation guide](docs/conversation-design.md) explains the synthetic corpus, research references, support journeys and boundaries.
 
 The project includes focused tests for greeting/thanks, retrieval, source grounding, privacy masking and human handoff. See [verification evidence and limits](docs/verification.md) for the last full-suite run and its environment constraints.
 
@@ -30,7 +30,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 | Stateful workflow | LangGraph with typed state, routing, cache, retrieval and response validation | Default |
 | Privacy masking | Microsoft Presidio recognizers/anonymizer for e-mail, Turkish mobile phone, ID-like numbers, IBAN and card-like numbers | Default; pattern-based, limited coverage |
 | Guardrails | Local input policies and output/schema validation; optional Guardrails AI adapter | Built-in checks default; optional extra |
-| Retrieval baseline | Turkish keyword matching against local JSON FAQ | Default, offline |
+| Retrieval baseline | Turkish and English keyword matching against bilingual local JSON FAQ | Default, offline |
 | Dense retrieval | SentenceTransformers multilingual embeddings, in-memory cosine search | `semantic` extra and strategy |
 | Hybrid retrieval | Qdrant named dense and BM25 sparse vectors, RRF fusion, indexed tenant/locale/category filters | Enterprise profile |
 | Re-ranking | Optional multilingual `BAAI/bge-reranker-v2-m3` cross-encoder | Enterprise profile + configuration |
@@ -40,7 +40,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 | Evaluation | Hit@1/3, MRR, OOD false acceptance, latency p50/p95; MLflow tracking and Ragas judge adapter | Offline retrieval/export default; judge opt-in |
 | Delivery | uv lockfile, Ruff, pytest, GitHub Actions, non-root Docker, Compose, Kubernetes examples | Included |
 
-The app is a RAG chatbot: it retrieves FAQ evidence, then either returns the source answer or asks an optional LLM to write a natural Turkish reply grounded in that evidence. The LLM receives the latest redacted conversation turns and must return a Pydantic-validated source ID with its answer; unknown sources or provider errors fall back to the retrieved FAQ. A source citation proves provenance, but does not prove every generated sentence is factually correct, so review LLM replies before production use. Greetings and thanks receive conversational responses without querying the FAQ.
+The app is a RAG chatbot: it retrieves FAQ evidence, then either returns the source answer or asks an optional LLM to write a natural reply in the selected language grounded in that evidence. The LLM receives the latest redacted conversation turns and must return a Pydantic-validated source ID with its answer; unknown sources or provider errors fall back to the localized retrieved FAQ. A source citation proves provenance, but does not prove every generated sentence is factually correct, so review LLM replies before production use. Greetings and thanks receive conversational responses without querying the FAQ.
 
 ## Architecture
 

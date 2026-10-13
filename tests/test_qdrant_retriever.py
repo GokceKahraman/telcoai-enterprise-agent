@@ -53,7 +53,7 @@ def entry(entry_id: str, question: str, **kwargs) -> FAQEntry:
         id=entry_id,
         category=kwargs.pop("category", "billing"),
         question=question,
-        keywords=(),
+        keywords=kwargs.pop("keywords", ()),
         answer="approved answer",
         **kwargs,
     )
@@ -131,6 +131,24 @@ def test_category_filter_narrows_both_hybrid_branches(qdrant):
     hits = retriever(qdrant).retrieve("needle", category="technical")
     assert [hit.entry.id for hit in hits] == ["tech"]
     assert retriever(qdrant).retrieve("needle", category="unknown") == []
+
+
+def test_bilingual_payload_and_document_text_survive_hybrid_retrieval(qdrant):
+    bilingual = entry(
+        "billing-en",
+        "Faturamı nereden ödeyebilirim?",
+        keywords=("needle",),
+        question_en="Where can I pay my bill?",
+        keywords_en=("bill", "payment"),
+        answer_en="Pay in the DemoTel app.",
+    )
+    ingest(qdrant, [bilingual])
+
+    hit = retriever(qdrant).retrieve("needle")[0]
+    assert "Where can I pay my bill?" in bilingual.question_en
+    assert hit.entry.question_en == "Where can I pay my bill?"
+    assert hit.entry.keywords_en == ("bill", "payment")
+    assert hit.entry.answer_en == "Pay in the DemoTel app."
 
 
 def test_ingestion_is_idempotent_and_preserves_other_tenants(qdrant):

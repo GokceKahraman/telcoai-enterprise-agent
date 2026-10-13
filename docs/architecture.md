@@ -10,9 +10,11 @@ The default response copies the highest-ranked FAQ and needs no inference API ke
 
 ## Retrieval design
 
-`Retriever` decouples routing from the search backend. Keyword retrieval is the offline baseline. Local semantic retrieval computes one document matrix on initialization, embeds the query and uses cosine similarity. Qdrant combines a multilingual dense vector and FastEmbed BM25 sparse vector with reciprocal rank fusion (RRF). Both document encoders use question + curated keywords (`faq-question-keywords-v2`); full answers remain authoritative payload fields. This represents the FAQ intent without diluting it with long answer text.
+`Retriever` decouples routing from the search backend. Keyword retrieval is the offline baseline. Local semantic retrieval computes one document matrix on initialization, embeds the query and uses cosine similarity. Qdrant combines a multilingual dense vector and FastEmbed BM25 sparse vector with reciprocal rank fusion (RRF). Both document encoders use Turkish and English questions + curated keywords (`faq-question-keywords-bilingual-v3`); full localized answers remain authoritative payload fields. This represents the FAQ intent without diluting it with long answer text.
 
 Qdrant ingestion creates keyword `payload_index` entries on `tenant_id`, `locale` and `category` before upsert. Both dense and sparse prefetches receive the scope filter; the fused query also receives it. Dense similarity filtering controls the dense branch. RRF and sparse scores have different scales, so there is no claim that a fused score represents answer correctness. A sparse match can still accept an unrelated query; OOD false acceptance is measured explicitly.
+
+The chat request locale selects response language; it does not widen the server-owned tenant or corpus locale filter. Each FAQ point carries Turkish and English question, keyword and answer fields, and dense/BM25 document text includes both question vocabularies. English responses cite the English question and answer from the same matched record.
 
 Qdrant’s sparse BM25 collection uses its IDF modifier. Query encoding and document encoding use their respective model methods. The locale selects a supported sparse tokenizer language. CrossEncoder BGE re-ranking is optional because it adds model memory and inference time; it scores the retrieved candidates rather than the entire corpus.
 
@@ -23,6 +25,8 @@ See the primary references for [Qdrant hybrid queries](https://qdrant.tech/docum
 The API does not recreate or upsert its collection. `scripts/ingest.py` owns ingestion. A point ID is derived from tenant, locale and FAQ ID, so repeating the same ingestion updates matching points and preserves other records. Records absent from a new batch remain stored: withdrawing a document needs an explicit lifecycle operation.
 
 The ingestion command checks vector names, dense dimension/distance and sparse IDF configuration. A model change with the same vector dimension cannot be detected by those shape checks. Use a new collection for embedding-model or tokenizer changes, evaluate it, then switch the API configuration. Corpus hashes in evaluation reports describe the local file; they do not verify every point in a remote collection.
+
+The bilingual FAQ representation is `faq-question-keywords-bilingual-v3`. Re-ingest the corpus before using an existing Qdrant collection; use a fresh collection when deploying the representation change, then point the API at the successfully ingested collection.
 
 ## Storage, cache and observability
 
