@@ -12,6 +12,8 @@ The demo website now presents DemoTel as a fictional consumer telecom brand. Ope
 
 The main page is a fictional telecom company website in [`static/index.html`](static/index.html). The assistant opens from the floating icon at the lower-right corner. Its compact panel is anchored near the bottom edge and contains only the conversation, with a Turkish/English selector in the header. Switching to **ENG 🇺🇸** starts the English conversation; **TR 🇹🇷** starts the Turkish conversation. Each language has its own session.
 
+The chat supports multiple turns. After each answer it offers three topic-aware quick replies that send the next question immediately. Visitors can also type any follow-up, choose **Ask another question**, start a fresh chat, or end the chat while keeping the session history available.
+
 For a complete preview with working RAG responses, start the FastAPI app and open **http://127.0.0.1:8000/**. The interface uses same-origin static assets and API requests, so run it through FastAPI instead of opening the HTML file directly.
 
 The project includes focused tests for greeting/thanks, retrieval, source grounding, privacy masking and human handoff. See [verification evidence and limits](docs/verification.md) for the last full-suite run and its environment constraints.
@@ -23,7 +25,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 3. Ask for an account cancellation and inspect the human handoff decision.
 4. Ask an unrelated question and inspect the abstention/fallback behavior.
 5. Continue a session, inspect its redacted history, then delete it.
-6. Open the DemoTel homepage at `http://127.0.0.1:8000/`, open the lower-right assistant, say “Selam”, then follow a troubleshooting prompt.
+6. Open the DemoTel homepage at `http://127.0.0.1:8000/`, open the lower-right assistant, say “Selam”, then select a suggested next question or type a follow-up. Try ending the chat and opening it again.
 7. Run the retrieval benchmark and inspect individual failures instead of relying on a headline score.
 
 ## Stack and implementation
