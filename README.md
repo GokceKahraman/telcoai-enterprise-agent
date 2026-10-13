@@ -6,9 +6,13 @@ Türkçe telekom müşteri desteği için geliştirilen portföy projesi. Kurgus
 
 This project demonstrates a Turkish telecom support workflow with a practical upgrade path from a local demo to a containerized service. It uses **synthetic FAQ data**. It is an independent portfolio project, with no affiliation with Etiya or any telecom operator. “Enterprise” names the integration profile; it does not imply production certification.
 
-![DemoTel support demo: cited billing answer, masked input and workflow details](docs/assets/demo-desktop.jpg)
-
 The demo website now presents DemoTel as a fictional consumer telecom brand. Open the floating support icon to try the assistant; the chat-only panel offers a TR/EN selector above the conversation. Each language keeps its own session, FAQ answer, source citation and cache entry. The expanded [conversation guide](docs/conversation-design.md) explains the synthetic corpus, research references, support journeys and boundaries.
+
+## Website and chat preview
+
+The main page is a fictional telecom company website in [`static/index.html`](static/index.html). The assistant opens from the floating icon at the lower-right corner. Its compact panel is anchored near the bottom edge and contains only the conversation, with a Turkish/English selector in the header. Switching to **ENG 🇺🇸** starts the English conversation; **TR 🇹🇷** starts the Turkish conversation. Each language has its own session.
+
+For a complete preview with working RAG responses, start the FastAPI app and open **http://127.0.0.1:8000/**. Opening `static/index.html` directly from disk now loads its CSS and JavaScript for a visual preview, but browser security prevents `file://` pages from calling the local chat API.
 
 The project includes focused tests for greeting/thanks, retrieval, source grounding, privacy masking and human handoff. See [verification evidence and limits](docs/verification.md) for the last full-suite run and its environment constraints.
 
@@ -19,7 +23,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 3. Ask for an account cancellation and inspect the human handoff decision.
 4. Ask an unrelated question and inspect the abstention/fallback behavior.
 5. Continue a session, inspect its redacted history, then delete it.
-6. Open the floating assistant on the DemoTel homepage, try a greeting, then follow a troubleshooting prompt.
+6. Open the DemoTel homepage at `http://127.0.0.1:8000/`, open the lower-right assistant, say “Selam”, then follow a troubleshooting prompt.
 7. Run the retrieval benchmark and inspect individual failures instead of relying on a headline score.
 
 ## Stack and implementation
