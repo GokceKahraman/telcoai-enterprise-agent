@@ -1677,9 +1677,9 @@ body.chat-open .site-header {
 .chat-backdrop { background: transparent; backdrop-filter: none; }
 .chat-widget {
   right: 24px;
-  bottom: 88px;
+  bottom: 20px;
   width: min(410px,calc(100vw - 32px));
-  height: min(690px,calc(100dvh - 112px));
+  height: min(690px,calc(100dvh - 40px));
   border: 1px solid #dce8e5;
   border-radius: 18px;
 }
