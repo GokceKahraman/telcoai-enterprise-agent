@@ -14,7 +14,15 @@ const UI = {
     details:"Yanıt ayrıntıları",cached:"Önbellekten yanıtlandı",new:"Yeni yanıt",redacted:"Maskeleme uygulandı",noPattern:"Desteklenen veri örüntüsü bulunmadı",auth:"Servis erişim anahtarı gerektiriyor. Sağ üstteki bağlantı ayarlarından anahtarı girip yeniden deneyin.",
     errors:["Kısa sürede çok fazla istek gönderdiniz. Biraz bekleyip tekrar deneyin.","Mesajınızı kontrol edip tekrar gönderin. En fazla 2000 karakter kullanabilirsiniz.","Yanıt şu anda hazırlanamadı. Lütfen biraz sonra tekrar deneyin."], unavailable:"Servise ulaşılamadı veya yanıt süresi aşıldı. Bağlantınızı kontrol edip tekrar deneyin.",
     historyExpired:"Önceki sohbetin süresi dolmuş. Yeni bir sohbet başlatabilirsiniz.",historyError:"Sohbet geçmişi şu anda yüklenemiyor. Yeni bir soru sorabilir veya tekrar deneyebilirsiniz.",
-    suggestions:["Ev internet paketleriniz nelerdir?","Faturamı nereden ödeyebilirim?","İnternetim yavaş, ne yapabilirim?","Kurulum ve aktivasyon ücreti var mı?"]
+    suggestions:["Ev internet paketleriniz nelerdir?","Faturamı nereden ödeyebilirim?","İnternetim yavaş, ne yapabilirim?","Kurulum ve aktivasyon ücreti var mı?"],
+    followupTitle:"Buradan devam edebiliriz", anotherQuestion:"Başka bir soru sor", endChat:"Sohbeti bitir",
+    followups:{
+      greeting:["Ev internet paketleriniz nelerdir?","Faturamla ilgili yardım alabilir miyim?","İnternetim yavaş, ne yapabilirim?"],
+      billing:["Fatura kalemlerimi nasıl inceleyebilirim?","Fatura tutarım neden değişmiş olabilir?","Fatura itirazı için nasıl ilerlerim?"],
+      technical:["Modemi yeniden başlattım, sırada ne var?","Wi-Fi çekim alanını nasıl iyileştirebilirim?","Sorun devam ederse nasıl destek alırım?"],
+      packages:["İhtiyacıma uygun internet hızını nasıl seçerim?","Taahhüt ve cayma koşulları neler?","Kurulum süreci nasıl ilerliyor?"],
+      general:["Mobil paket seçenekleri nelerdir?","Fatura ödeme kanalları neler?","Teknik destek için nereden başlayabilirim?"]
+    }
   },
   "en-US": {
     lang:"CHAT LANGUAGE", agent:"DemoTel Assistant", status:"Online · Here to help", close:"Close chat", fresh:"Start a new chat", eyebrow:"DEMOTEL ASSISTANT",
@@ -26,7 +34,15 @@ const UI = {
     details:"Response details",cached:"Answered from cache",new:"Fresh answer",redacted:"Masking applied",noPattern:"No known sensitive pattern found",auth:"This service requires an access key. Enter it under connection settings above and try again.",
     errors:["You’ve sent too many requests. Please wait a moment and try again.","Please check your message and try again. Messages can be up to 2,000 characters.","I couldn’t prepare a response just now. Please try again shortly."], unavailable:"I couldn’t reach the service or the request timed out. Check your connection and try again.",
     historyExpired:"Your previous chat has expired. You can start a new conversation.",historyError:"Your chat history could not be loaded. Ask a new question or try again.",
-    suggestions:["What home internet plans do you offer?","Where can I pay my bill?","My internet is slow. What can I try?","Is there an installation fee?"]
+    suggestions:["What home internet plans do you offer?","Where can I pay my bill?","My internet is slow. What can I try?","Is there an installation fee?"],
+    followupTitle:"You can continue with", anotherQuestion:"Ask another question", endChat:"End chat",
+    followups:{
+      greeting:["What home internet plans do you offer?","Can you help me with my bill?","My internet is slow. What can I try?"],
+      billing:["How can I review my bill items?","Why might my bill have changed?","How do I dispute a bill?"],
+      technical:["I restarted my modem. What should I try next?","How can I improve Wi-Fi coverage?","How can I get help if this continues?"],
+      packages:["How do I choose the right internet speed?","What are the commitment and cancellation terms?","How does installation work?"],
+      general:["What mobile plans are available?","How can I pay my bill?","Where should I start with a technical issue?"]
+    }
   }
 };
 let locale = (() => { try { return localStorage.getItem(LANGUAGE_KEY) === "en-US" ? "en-US" : "tr-TR"; } catch { return "tr-TR"; } })();
@@ -266,7 +282,39 @@ function appendResponseDetails(content, data) {
   content.appendChild(details);
 }
 
-function appendMessage(text, role, data = null, isError = false) {
+function appendFollowups(content, data = null) {
+  if (!content) return;
+  const intent = data?.handoff || data?.fallback ? "general" : data?.intent || "general";
+  const questions = t().followups[intent] || t().followups.general;
+  const panel = node("div", "followup-panel");
+  panel.appendChild(node("p", "followup-title", t().followupTitle));
+  const options = node("div", "followup-options");
+  questions.forEach((question) => {
+    const button = node("button", "followup-chip", question);
+    button.type = "button";
+    button.addEventListener("click", () => {
+      if (busy) return;
+      input.value = question;
+      input.dispatchEvent(new Event("input"));
+      form.requestSubmit();
+    });
+    options.appendChild(button);
+  });
+  panel.appendChild(options);
+  const actions = node("div", "followup-actions");
+  const another = node("button", "followup-action", t().anotherQuestion);
+  another.type = "button";
+  another.addEventListener("click", () => input.focus());
+  const finish = node("button", "followup-action", t().endChat);
+  finish.type = "button";
+  finish.addEventListener("click", closeChat);
+  actions.append(another, finish);
+  panel.appendChild(actions);
+  content.appendChild(panel);
+}
+
+function appendMessage(text, role, data = null, isError = false, includeFollowups = true) {
+  if (role === "user") messagesEl.querySelectorAll(".followup-panel").forEach((panel) => panel.remove());
   welcomeEl.classList.add("hidden");
   const item = node("li", `message ${role}${isError ? " error" : ""}`);
   const content = node("div", "message-content");
@@ -284,6 +332,7 @@ function appendMessage(text, role, data = null, isError = false) {
     appendSource(content, data.source);
     appendResponseDetails(content, data);
   }
+  if (includeFollowups && role === "assistant" && !isError) appendFollowups(content, data);
   item.appendChild(content);
   messagesEl.appendChild(item);
   turnCount += 1;
@@ -354,8 +403,15 @@ async function restoreConversation() {
     turnCount = 0;
     welcomeEl.classList.remove("hidden");
     data.messages.forEach((message) => {
-      if (["user", "assistant"].includes(message.role) && typeof message.content === "string") appendMessage(message.content, message.role);
+      if (["user", "assistant"].includes(message.role) && typeof message.content === "string") {
+        appendMessage(message.content, message.role, null, false, false);
+      }
     });
+    const lastAssistant = [...messagesEl.children].reverse().find((message) => message.classList.contains("assistant"));
+    if (lastAssistant) {
+      appendFollowups(lastAssistant.querySelector(".message-content"));
+      scrollToLatest();
+    }
     updateSessionSummary();
     showNotice();
   } catch {
