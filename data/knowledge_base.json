@@ -130,7 +130,10 @@
         "vade",
         "fatura tarihi",
         "kesim",
-        "ne zaman"
+        "ne zaman",
+        "ödeme günü",
+        "vade tarihi",
+        "son ödeme günü"
       ],
       "answer": "Fatura kesim tarihiniz abonelik başlangıcına göre her ay aynı gün oluşur. Son ödeme tarihi fatura üzerinde ve uygulamada 'Faturalarım' bölümünde görünür. Gecikmede hatırlatma SMS'i gönderilir.",
       "question_en": "How do I find my billing date and due date?",
@@ -226,7 +229,10 @@
         "kesiliyor",
         "kopuyor",
         "kesilme",
-        "sürekli kopma"
+        "sürekli kopma",
+        "bağlantı gidip geliyor",
+        "kesintili bağlantı",
+        "sık sık kopuyor"
       ],
       "answer": "Önce modemi 30 saniye kapalı tutup yeniden başlatın. Mümkünse cihazı kablolu bağlayın veya modem ile bilgisayar arasında engel olmadığından emin olun. DemoTel uygulamasından 'Hız Testi' yapın; sorun devam ederse hat kaydı açılır ve uzaktan hat kontrolü yapılır.",
       "question_en": "My internet is slow or keeps disconnecting. What can I try?",
@@ -276,7 +282,9 @@
         "parola",
         "ssid",
         "ağ adı",
-        "modem arayüz"
+        "modem arayüz",
+        "kablosuz ağ parolası",
+        "wifi parolası değiştirme"
       ],
       "answer": "Modem arayüzüne tarayıcıdan 192.168.1.1 adresine giderek (varsayılan kullanıcı adı/şifre modem etiketinde) Kablosuz Ayarlar bölümünden Wi-Fi adını ve şifresini güncelleyebilirsiniz. DemoTel uygulamasındaki 'Modem Yönetimi' ile de adım adım yapılabilir.",
       "question_en": "How can I change my Wi-Fi password?",
@@ -298,7 +306,11 @@
         "aile",
         "wifi",
         "cihaz sayısı",
-        "video görüşme"
+        "video görüşme",
+        "aynı anda kişi",
+        "dizi ve görüntülü toplantı",
+        "çok kişi ev kullanımı",
+        "aynı anda dizi ve toplantı"
       ],
       "answer": "Wi-Fi deneyimi yalnızca paketin Mbps değerine değil; modem konumu, duvarlar, cihazların kablosuz standardı ve aynı anda yapılan işlere bağlıdır. Örneğin iki kişi 4K yayın izlerken bir başkası görüntülü görüşme yapıyorsa kablolu bağlantı veya mesh kapsama çözümü gerekebilir. DemoTel gerçek ev ağınızı ölçmez; önce bir cihazı modeme yakınken, sonra mümkünse Ethernet kablosuyla test ederek Wi-Fi ile hat performansını ayırın.",
       "question_en": "How many devices can we use at home at once?",
@@ -322,7 +334,9 @@
         "adres sorgulama",
         "kapsama",
         "altyapı kontrol",
-        "ev interneti başvuru"
+        "ev interneti başvuru",
+        "bina fiber uygunluğu",
+        "adresimde fiber altyapı"
       ],
       "answer": "Fiber uygunluğu bina ve daire adresine göre değişebildiği için yalnızca il/ilçe bilgisiyle kesinleştirilemez. DemoTel demosunda canlı altyapı sorgusu yoktur. Gerçek başvuruda resmi adres sorgulama ekranında il, ilçe, mahalle, sokak, bina ve daire bilgisini doğrulayın; sonuç yoksa bina yönetimi veya yetkili operatör kanalı üzerinden altyapı talebi olup olmadığını sorun. Buraya açık adres yazmayın.",
       "question_en": "Is fiber available at my address?",
@@ -341,7 +355,9 @@
         "numara taşıma",
         "hat taşıma",
         "geçiş",
-        "operatör değişikliği"
+        "operatör değişikliği",
+        "numaramı koruyarak geçiş",
+        "mevcut hattı kapatma"
       ],
       "answer": "Numara taşıma talebi ve geçiş zamanı alıcı operatörün resmi başvuru akışında doğrulanır; başvuru tamamlanmadan mevcut hattı kendiniz iptal etmek numaranın korunmasını riske atabilir. SIM/eSIM teslimi ve geçiş zamanı için resmi bildirimleri izleyin. Bu DemoTel asistanı gerçek taşıma başvurusu alamaz, uygunluk veya tamamlanma zamanı sorgulayamaz.",
       "question_en": "Will my current line close when I transfer my number?",
@@ -364,7 +380,9 @@
         "kampanya bitişi",
         "indirim sona erdi",
         "taahhüt",
-        "fiyat artışı"
+        "fiyat artışı",
+        "indirimli dönem bitince",
+        "kampanya sonrası fiyat"
       ],
       "answer": "Kampanya dönemindeki indirim sona erince, sözleşme veya tarife koşullarında yazan dönem sonrası ücret uygulanabilir; tutarı bu demo tahmin edemez. Örneğin ilk aylarda indirimli görünen sabit internet bedelini değerlendirirken kampanya süresi, sonraki dönem bedeli, modem/ek hizmet kalemleri ve varsa taahhüt koşullarını birlikte okuyun. Kendi teklifiniz için resmi sözleşme ve uygulamadaki kampanya ayrıntısı esas alınmalıdır.",
       "question_en": "What happens when a promotional price ends?",
@@ -386,7 +404,10 @@
         "cayma bedeli",
         "taahhüt bozma",
         "paket değiştirme",
-        "iptal ücreti"
+        "iptal ücreti",
+        "alt pakete geçiş",
+        "taahhüt sürerken paket değişikliği",
+        "paket değiştirince ücret"
       ],
       "answer": "Cayma bedeli veya indirim iadesi; sözleşme, kampanya şartları, kalan süre ve geçiş yapılacak pakete göre değişebilir. Asistan hesabınızı ve sözleşmenizi göremediği için tutar hesaplayamaz. İşlem öncesinde uygulamada taahhüt bitiş tarihini ve gösterilen toplam bedeli inceleyin, sonra resmi müşteri hizmetlerinden yazılı/izlenebilir teyit alın. Tahmini bir bedeli kesin bilgi gibi kabul etmeyin.",
       "question_en": "Will I pay an early cancellation fee if I change plans?",
@@ -410,7 +431,9 @@
         "fatura artışı",
         "ek ücret",
         "paket aşımı",
-        "fatura detayı"
+        "fatura detayı",
+        "fatura kalemlerini karşılaştır",
+        "ek kalem inceleme"
       ],
       "answer": "Fatura detayında bu dönem ile önceki dönemi yan yana karşılaştırın: sabit tarife, kampanya indirimi, paket aşımı, tek seferlik kurulum/cihaz, katma değerli servis ve dönemsel vergi/ücret satırlarını kontrol edin. Örneğin artış yalnızca bir kez görünüyorsa tek seferlik kaleme; her ay tekrarlıyorsa tarife veya indirim koşuluna bakın. Bu demo hesabınıza erişemez ve artışın kesin nedenini söyleyemez; anlaşılmayan kalem için resmi fatura itirazı kanalına başvurun.",
       "question_en": "My bill is higher than expected. How should I review it?",
@@ -433,7 +456,10 @@
         "ödeme yansıması",
         "borç görünüyor",
         "dekont",
-        "fatura ödedim"
+        "fatura ödedim",
+        "karttan çekilmiş",
+        "borç kapanmamış",
+        "ödeme ekranda görünmüyor"
       ],
       "answer": "Banka veya ödeme kanalının işlem durumu ile operatör ekranındaki borç bilgisinin güncellenmesi aynı anda olmayabilir. Önce işlemin tamamlandı durumunda olduğunu ve doğru müşteri/abonelik için yapıldığını kendi ödeme kanalınızdan doğrulayın; tekrar ödeme yapmadan önce resmi uygulamayı daha sonra yenileyip işlem referansını saklayın. Bu demoda ödeme sorgusu yapılmaz. Tutar çekildiği hâlde borç sürüyorsa dekontu yalnızca doğrulanmış resmi destek kanalına iletin.",
       "question_en": "I paid, but my bill still shows a balance. What should I do?",
@@ -480,7 +506,9 @@
         "ödenmemiş fatura",
         "hat kısıtlama",
         "gecikme",
-        "son ödeme tarihi"
+        "son ödeme tarihi",
+        "faturayı geç ödersem",
+        "gecikince hat kapanma"
       ],
       "answer": "Hattın kısıtlanması ve yeniden açılması operatörün bilgilendirme süreci, sözleşme ve geçerli düzenlemelere bağlıdır; bu demo kesin süre veya hesabınızın durumunu veremez. Faturadaki son ödeme tarihini ve resmi bildirimleri kontrol edin, borç varsa doğrulanmış kanaldan ödeme/ödeme seçeneklerini sorun. Ödeme yaptıysanız dekontu saklayın. Acil erişim gerekiyorsa resmi müşteri hizmetlerine başvurun.",
       "question_en": "Will my line be disconnected if I cannot pay my bill?",
@@ -502,7 +530,9 @@
         "e fatura",
         "elektronik fatura",
         "fatura eposta",
-        "kağıtsız fatura"
+        "kağıtsız fatura",
+        "faturanın e-posta güvenliği",
+        "e-posta faturası"
       ],
       "answer": "Elektronik fatura tercihinde e-posta adresinin doğru ve size ait olduğunu, hesabınızda güncel tutulduğunu kontrol edin; bildirim bağlantılarını açmadan önce göndereni ve alan adını doğrulayın. Fatura içeriği kişisel veri barındırabileceğinden ortak cihaz veya paylaşılan posta kutusu kullanırken dikkatli olun. DemoTel demosu gerçek e-fatura tercihinizi değiştiremez; bunu yalnızca resmi hesap ayarlarından yönetin.",
       "question_en": "Is it safe to receive my bill by email?",
@@ -522,7 +552,9 @@
         "fatura itirazı",
         "hatalı ücret",
         "başvuru",
-        "itiraz süreci"
+        "itiraz süreci",
+        "itiraz için belgeler",
+        "faturadaki hatalı ücret"
       ],
       "answer": "İtiraz edeceğiniz fatura dönemini ve kalem adını not edin; varsa aynı hizmetin önceki dönem faturası ve işlem referansını karşılaştırma için saklayın. Örneğin kullanmadığınızı düşündüğünüz bir servis kaleminde tarih ve açıklama, incelemeyi kolaylaştırır. Kimlik veya ödeme belgesi gerekiyorsa yalnızca resmi ve güvenli başvuru kanalına yükleyin. Bu sohbet üzerinden resmi itiraz kaydı açılmaz ve belge göndermeyin.",
       "question_en": "What information should I gather for a billing dispute?",
@@ -546,7 +578,9 @@
         "kapsama",
         "mesh",
         "sinyal zayıf",
-        "oda internet"
+        "oda internet",
+        "yatak odasında wifi",
+        "odada wifi çekmiyor"
       ],
       "answer": "Modemi kapalı dolap, TV arkası veya zeminden alıp evin daha merkezi ve açık bir noktasına yerleştirin; mikrodalga ve yoğun kablosuz cihazların yanından uzak tutun. Aynı odada telefon ve bilgisayarla karşılaştırmalı hız testi yapın. Sorun yalnızca uzak odadaysa kapsama/mesh konusu, her yerde ve kablolu bağlantıda da varsa hat veya modem konusu olabilir. DemoTel ev planınızı ölçmez; modem modeline uygun üretici talimatlarını kullanın.",
       "question_en": "Wi-Fi does not reach some rooms. What should I try?",
@@ -570,7 +604,9 @@
         "internet yok",
         "bağlantı kesildi",
         "modem yeniden başlatma",
-        "arıza"
+        "arıza",
+        "internet tamamen yok",
+        "modem bağlantısı kontrolü"
       ],
       "answer": "Önce bölgesel kesinti duyurusu bulunup bulunmadığını resmi hizmet durum ekranından kontrol edin. Modem güç, DSL/PON ve internet ışıklarını gözleyin; kabloları zorlamadan yerlerine oturduğunu kontrol edin, modemi bir kez kapatıp yaklaşık 30 saniye sonra açın ve yeniden başlaması için birkaç dakika bekleyin. Fiber kabloyu bükmeyin veya optik uca dokunmayın. Kablolu cihazda da bağlantı yoksa saat ve ışık durumunu not edip resmi arıza kanalına başvurun.",
       "question_en": "My internet is completely down. What should I check first?",
@@ -594,7 +630,9 @@
         "indirme hızı",
         "upload",
         "Mbps",
-        "wifi hız"
+        "wifi hız",
+        "ethernet ve wifi hız farkı",
+        "speedtest"
       ],
       "answer": "Karşılaştırılabilir sonuç için testi aynı cihazda, arka plandaki indirme/yayınları durdurarak ve mümkünse Ethernet bağlantısıyla tekrarlayın. Wi-Fi testi yapıyorsanız modem yakını/uzaklığı, 2.4 veya 5 GHz ağı ve bağlı cihaz sayısını not edin. Tek test anlık görüntüdür; birkaç farklı saatte ölçüm sorunun yoğun saatlere bağlı olup olmadığını gösterir. Ekrandaki Mbps paket hızının garanti edilen sürekli hızı anlamına gelmez; tarifedeki ölçüm koşullarını kontrol edin.",
       "question_en": "What should I consider when running a speed test?",
@@ -617,7 +655,9 @@
         "modem reset",
         "yeniden başlatma",
         "fabrika ayarları",
-        "modem ayarı"
+        "modem ayarı",
+        "reset ve yeniden başlatma farkı",
+        "modem yeniden başlatma"
       ],
       "answer": "Gücü kapatıp açmak genellikle yeniden başlatmadır; cihazın arkasındaki RESET düğmesine uzun basmak ise fabrika ayarlarına döndürebilir ve Wi-Fi adı/şifresi gibi ayarları silebilir. Örneğin yalnızca bağlantı yavaşlığında önce güç döngüsünü deneyin; RESET düğmesine basmayın. Modelin kullanım kılavuzunu kontrol etmeden sıfırlama yapmayın. Kurumsal/operatör yapılandırmalı cihazda resmi teknik destekten yönlendirme alın.",
       "question_en": "Will restarting my modem erase its settings?",
@@ -684,7 +724,9 @@
         "sim kart çalışmıyor",
         "sim aktivasyon",
         "pin puk",
-        "hat açılmadı"
+        "hat açılmadı",
+        "sim taktım şebeke yok",
+        "hat şebekeyi bulmuyor"
       ],
       "answer": "SIM’in cihaza doğru takıldığını ve cihazın yeniden başlatıldığını kontrol edin; ekranda görünen hata mesajını not edin. Yeni hat, SIM değişikliği veya numara taşıma aktivasyonu operatör sisteminde doğrulanmalıdır. PIN/PUK kodu veya kimlik belgesini sohbete yazmayın. Hata sürerse SIM ve hattın durumunu yalnızca resmi uygulama/mağaza/müşteri hizmetleri üzerinden doğrulatın.",
       "question_en": "My new SIM card is not working. What should I check?",
@@ -708,7 +750,9 @@
         "roaming",
         "yurt dışı",
         "dolaşım",
-        "uluslararası kullanım"
+        "uluslararası kullanım",
+        "yurt dışı dolaşım",
+        "data roaming"
       ],
       "answer": "Ülkeye gitmeden önce hattınızda yurt dışı kullanımın ve uygun paketin açık olup olmadığını resmi kanaldan doğrulayın; ücretler ülke ve anlaşmalı şebekeye göre değişebilir. Bağlanmıyorsa telefonu yeniden başlatın, otomatik operatör seçimini deneyin ve veri dolaşımını yalnızca olası ücretleri kabul ederek açın. Gemide/uçakta uydu şebekesi çok yüksek ücret çıkarabilir. DemoTel gerçek hattınızın dolaşım yetkisini veya fiyatını göremez.",
       "question_en": "My phone will not connect to a network abroad",
@@ -753,7 +797,8 @@
         "internet kesintisi",
         "sabit telefon",
         "acil çağrı",
-        "voip"
+        "voip",
+        "sabit telefon modem kapalıyken"
       ],
       "answer": "Sabit telefon hizmetinin çalışması bağlantı türüne, cihazın elektriğine ve operatör altyapısına bağlıdır; internet/elektrik kesintisinde VoIP tabanlı hizmet etkilenebilir. Bu nedenle acil çağrı erişimini bu demodan teyit etmeyin ve kritik iletişim için mobil alternatif bulundurun. Acil durumda yerel acil yardım numarasını kullanın; hizmetinize özel koşullar için operatörün resmi teknik bilgisine bakın.",
       "question_en": "Will my landline or emergency calling work during an internet outage?",
@@ -776,7 +821,9 @@
       "keywords": [
         "taahhüt bitiş tarihi",
         "sözleşme",
-        "kampanya süresi"
+        "kampanya süresi",
+        "kampanyalı sözleşme",
+        "sözleşme sona erme"
       ],
       "answer": "Taahhüt veya kampanya bitişi genellikle resmi uygulamadaki abonelik/taahhüt detayında ve sözleşme belgelerinde gösterilir. Birden fazla hattınız veya hizmetiniz varsa doğru aboneliği seçtiğinizi kontrol edin. Bu demo hesabınıza erişmez ve bitiş tarihini tahmin edemez; değişiklik yapmadan önce resmi ekranda görünen tarihi ve sonraki dönem koşullarını teyit edin.",
       "question_en": "Where can I see when my commitment ends?",
@@ -820,7 +867,9 @@
         "abonelik iptali",
         "hat dondurma",
         "fesih",
-        "cayma bedeli"
+        "cayma bedeli",
+        "iptal öncesi taahhüt",
+        "aboneliği sonlandırmadan önce"
       ],
       "answer": "İptal, dondurma ve numara taşıma farklı süreçlerdir. Başvuru öncesi kalan taahhüt, dönem sonu faturası, cihaz taksiti/iadeye tabi ekipman ve dondurma süresince devam edebilecek ücretleri sözleşme ve resmi hesap ekranından kontrol edin. İptal talebini yalnızca resmi kanaldan verin ve başvuru numarasını saklayın. Bu demo işlem yapmaz, ücret hesaplamaz veya talep açmaz.",
       "question_en": "What should I know before cancelling or suspending my subscription?",
@@ -886,7 +935,10 @@
         "kişisel veri",
         "gizlilik",
         "telefon numarası",
-        "kimlik bilgisi"
+        "kimlik bilgisi",
+        "sms kodu",
+        "tek kullanımlık kodu paylaşma",
+        "sohbete kod gönderme"
       ],
       "answer": "Hayır. Bu kurgusal demoda gerçek hesaba erişim yoktur; telefon numarası, T.C. kimlik numarası, açık adres, parola, kart bilgisi, tek kullanımlık kod veya PUK paylaşmayın. Bazı yaygın örüntüler maskeleme filtresiyle kapatılabilir, ancak bu her kişisel veriyi yakalama garantisi değildir. Gerçek kimlik doğrulamasını yalnızca operatörün resmi ve güvenli kanalında yapın.",
       "question_en": "Should I share personal information in this chat?",
@@ -908,7 +960,12 @@
         "sohbet geçmişi",
         "geçmiş silme",
         "oturum",
-        "gizlilik"
+        "gizlilik",
+        "konuşma geçmişi",
+        "konuşmayı temizleme",
+        "konuşmamı temizleme",
+        "önceki konuşma geçmişi",
+        "temizleyebilirim"
       ],
       "answer": "Bu demoda sohbet geçmişi yapılandırılmış depoda sınırlı oturum süresi boyunca tutulabilir; tarayıcıdaki oturum kimliği geçmişin kendisi değildir. Arayüzdeki sohbeti sil seçeneği etkin sunucu oturumu için silme isteği gönderir. Gerçek dağıtımda saklama süresi ortam ayarlarına bağlıdır; bu açık kaynak demosunda gerçek müşteri kaydı bulunmamalıdır. Hassas bilgi girmeyin.",
       "question_en": "How long is my chat history stored?",
@@ -929,7 +986,10 @@
         "yanlış yanıt",
         "emin değil",
         "kaynak",
-        "bilgi tabanı"
+        "bilgi tabanı",
+        "destek belgesi",
+        "yanıtın kaynağı",
+        "bilgiye dayanak kaynak"
       ],
       "answer": "Asistan ilgili bilgi tabanı kaynağı bulunmadığında kesin konuşmak yerine kapsamını belirtip genel yönlendirme yapmalıdır. Yanıtın altındaki kaynak kartı eşleşen kayıt başlığını gösterir; bu, hesabınıza özel bilgilerin doğrulandığı anlamına gelmez. Yanıt hatalı veya eksik görünüyorsa resmi operatör kanalından teyit edin; bu demoda geri bildirim gerçek bir vaka olarak ekibe iletilmez.",
       "question_en": "What happens if the assistant is unsure of an answer?",

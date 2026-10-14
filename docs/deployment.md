@@ -9,7 +9,7 @@ The default demo uses keyword retrieval, extractive responses and in-memory stor
 | `TELCOAI_RETRIEVAL_STRATEGY` | `keyword` | `keyword`, `semantic`, `qdrant_hybrid` |
 | `TELCOAI_TENANT_ID` / `TELCOAI_LOCALE` | `demotel` / `tr-TR` | Server-owned retrieval/storage scope |
 | `TELCOAI_RETRIEVAL_TOP_K` / `TELCOAI_RETRIEVAL_CANDIDATE_K` | `3` / `20` | Response candidates / hybrid re-ranking pool |
-| `TELCOAI_MIN_MATCH_SCORE` | `1.0` | Keyword acceptance threshold |
+| `TELCOAI_MIN_MATCH_SCORE` | `2.0` | Keyword acceptance threshold |
 | `TELCOAI_SEMANTIC_MIN_SIMILARITY` | `0.42` | Local dense / hybrid dense-branch threshold |
 | `TELCOAI_EMBEDDING_MODEL` | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | Dense model used for both ingest and query |
 | `TELCOAI_QDRANT_URL` / `TELCOAI_QDRANT_COLLECTION` | `http://localhost:6333` / `telcoai_faq` | Qdrant endpoint and collection |

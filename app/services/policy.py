@@ -15,6 +15,28 @@ class PolicyService:
         if self.is_smalltalk(text, locale):
             return True
         if locale == "en-US":
+            # DemoTel's catalog covers connectivity and mobile service, not TV
+            # channel subscriptions. Check this before the broad "package"
+            # support term so a TV package cannot borrow an internet FAQ.
+            unsupported_tv_terms = (
+                "tv package",
+                "television package",
+                "channel package",
+                "sports channel",
+            )
+            if any(term in query for term in unsupported_tv_terms):
+                return False
+            portfolio_faq_terms = (
+                "assistant",
+                "chat history",
+                "chatbot",
+                "personal information",
+                "sms code",
+                "one-time code",
+                "support source",
+            )
+            if any(term in query for term in portfolio_faq_terms):
+                return True
             english_terms = (
                 "demotel",
                 "internet",
@@ -54,6 +76,16 @@ class PolicyService:
                 "refund",
             )
             return any(term in query for term in english_terms)
+        # Generic package wording is in scope for DemoTel, but TV/channel
+        # subscriptions are not represented in this fictional catalog.
+        unsupported_tv_terms = (
+            "televizyon paket",
+            "tv paket",
+            "kanal paket",
+            "spor kanal",
+        )
+        if any(term in query for term in unsupported_tv_terms):
+            return False
         stems = (
             "demotel",
             "internet",
@@ -86,9 +118,37 @@ class PolicyService:
             "bağlanti",
             "baglanti",
             "ücretim",
+            "kampanya",
+            "sözleş",
+            "taahhüd",
+            "paket",
+            "roaming",
+            "dolaşım",
         )
         tokens = re.findall(r"[a-zçğöşü0-9]+", query)
-        return any(token.startswith(stem) for token in tokens for stem in stems)
+        general_faq_terms = (
+            "asistan",
+            "sohbet",
+            "konuşma",
+            "kişisel bilgi",
+            "sms kod",
+            "tek kullanımlık kod",
+            "destek belgesi",
+            "yanıtın kaynağı",
+            "bilgi tabanı",
+        )
+        explicit_support_context = (
+            "ayni anda",
+            "karttan çekilmiş",
+            "borc kapanmamis",
+            "data roaming",
+            "yurt disi dolasim",
+        )
+        return (
+            any(token.startswith(stem) for token in tokens for stem in stems)
+            or any(term in query for term in general_faq_terms)
+            or any(term in query for term in explicit_support_context)
+        )
 
     def is_smalltalk(self, text: str, locale: str = "tr-TR") -> bool:
         """Recognize short social turns without sending them to FAQ retrieval."""

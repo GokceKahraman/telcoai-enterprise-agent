@@ -76,6 +76,19 @@ class KeywordRetriever:
             | self._tokenize(" ".join(entry.keywords_en))
         )
         overlap = user_tokens & entry_tokens
+        # Turkish suffixes often turn an FAQ keyword into a longer query token
+        # (for example, "konuşma" -> "konuşmamı"). Count one prefix match per
+        # query token so suffix variation helps without inflating the score.
+        overlap |= {
+            query_token
+            for query_token in user_tokens
+            if len(query_token) >= 5
+            and any(
+                len(entry_token) >= 5
+                and (query_token.startswith(entry_token) or entry_token.startswith(query_token))
+                for entry_token in entry_tokens
+            )
+        }
         score += len(overlap) * 1.5
 
         for keyword in (*entry.keywords, *entry.keywords_en):
