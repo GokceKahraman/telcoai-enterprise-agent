@@ -14,6 +14,10 @@ Evaluation reports are evidence about a particular run, not a claim of productio
 
 The guarded keyword workflow initially answered 8/20 unsupported requests. After a broad account/live-information policy guard, the [keyword](holdout-keyword-workflow-after-guard.json), [dense](holdout-semantic-workflow-evaluation.json) and [hybrid](holdout-hybrid-workflow-evaluation.json) workflows answered 0/20; relevant source Hit@1 was 57.5%, 60% and 65% respectively. Ten relevant queries fell back in the keyword workflow. The v1 queries were inspected during this safety fix, so these after-guard results are regression evidence and **not a fresh held-out estimate**. Create v2 independently before claiming final generalization. Local timings exclude network service latency; no remote Qdrant index behavior or real customer data is measured.
 
+### Known regression replay (v1 is not an independent test)
+
+The Turkish search-tuning change caused a known v1 workflow regression: unsupported query `x17`, “Yeni televizyon paketimde hangi spor kanalları var?”, was answered from `pkg-001` (“Ev internet paketleriniz nelerdir?”). The broad `paket` support stem admitted a TV subscription request, and suffix-aware retrieval matched `paketimde` to the generic `paket` FAQ keyword strongly enough to pass the 2.0 threshold. The narrow policy correction explicitly rejects TV/channel package requests before applying generic telecom terms; ordinary internet-package questions still use the FAQ path. V1 was replayed to reproduce and verify this one regression only. Its 1/20 before-fix and post-fix regression-check counts must not be presented as final success metrics or independent validation; v1 was already inspected and influenced policy changes. Author a fresh v2 set before reporting generalization.
+
 ## Offline retrieval benchmark
 
 ```bash

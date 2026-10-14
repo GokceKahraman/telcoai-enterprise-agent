@@ -85,6 +85,45 @@ def test_general_troubleshooting_question_remains_on_faq_path(keyword_retriever)
     assert response.handoff is False
 
 
+def test_tv_channel_package_question_is_out_of_scope(keyword_retriever):
+    response = ChatService(keyword_retriever).reply(
+        "Yeni televizyon paketimde hangi spor kanalları var?"
+    )
+
+    assert response.fallback is True
+    assert response.handoff is True
+    assert response.source is None
+    assert "kanal" not in response.answer.lower()
+
+
+def test_english_tv_channel_package_question_is_out_of_scope(keyword_retriever):
+    response = ChatService(keyword_retriever).reply(
+        "What sports channels are included in my TV package?", locale="en-US"
+    )
+
+    assert response.fallback is True
+    assert response.handoff is True
+    assert response.source is None
+
+
+def test_generic_internet_package_question_remains_supported(keyword_retriever):
+    response = ChatService(keyword_retriever).reply("Paketleriniz nelerdir?")
+
+    assert response.fallback is False
+    assert response.source is not None
+    assert response.source.entry_id == "pkg-001"
+
+
+def test_english_internet_package_question_remains_supported(keyword_retriever):
+    response = ChatService(keyword_retriever).reply(
+        "What internet packages do you offer?", locale="en-US"
+    )
+
+    assert response.fallback is False
+    assert response.source is not None
+    assert response.source.entry_id == "pkg-001"
+
+
 @pytest.mark.parametrize(
     ("query", "entry_id"),
     [

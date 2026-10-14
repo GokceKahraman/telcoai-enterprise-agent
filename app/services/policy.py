@@ -15,6 +15,17 @@ class PolicyService:
         if self.is_smalltalk(text, locale):
             return True
         if locale == "en-US":
+            # DemoTel's catalog covers connectivity and mobile service, not TV
+            # channel subscriptions. Check this before the broad "package"
+            # support term so a TV package cannot borrow an internet FAQ.
+            unsupported_tv_terms = (
+                "tv package",
+                "television package",
+                "channel package",
+                "sports channel",
+            )
+            if any(term in query for term in unsupported_tv_terms):
+                return False
             portfolio_faq_terms = (
                 "assistant",
                 "chat history",
@@ -65,6 +76,16 @@ class PolicyService:
                 "refund",
             )
             return any(term in query for term in english_terms)
+        # Generic package wording is in scope for DemoTel, but TV/channel
+        # subscriptions are not represented in this fictional catalog.
+        unsupported_tv_terms = (
+            "televizyon paket",
+            "tv paket",
+            "kanal paket",
+            "spor kanal",
+        )
+        if any(term in query for term in unsupported_tv_terms):
+            return False
         stems = (
             "demotel",
             "internet",
