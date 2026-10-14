@@ -1,0 +1,1345 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-14T12:48:38.200486+00:00",
+  "evaluation_layer": "guarded_chat_service",
+  "dataset": {
+    "path": "data/evaluation/retrieval_holdout_v1.json",
+    "sha256": "44b1755d3f215807d987334767f8b5303ac851271bf2f9f05173d947ce7dd036"
+  },
+  "corpus": {
+    "path": "data/knowledge_base.json",
+    "sha256": "cb2fb6db417a72fd029cb86a4b9a5658ab9cad8c23019d809a30be5cc8e83d5b",
+    "entries": 40
+  },
+  "runtime": {
+    "python": "3.12.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "configuration": {
+    "strategy": "keyword",
+    "generation_backend": "extractive",
+    "storage_backend": "fresh_memory_per_query",
+    "session_cache_isolation": true,
+    "langfuse_enabled": false,
+    "top_k": 3,
+    "candidate_k": 20,
+    "min_match_score": 1.0,
+    "semantic_min_similarity": 0.42,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "document_representation_version": "faq-question-keywords-bilingual-v3",
+    "reranker_enabled": false,
+    "tenant_id": "demotel",
+    "locale": "tr-TR"
+  },
+  "initialization_ms": 0.042750005377456546,
+  "metrics": {
+    "source_hit_at_1": 0.575,
+    "ood_false_answer_rate": 0.0,
+    "source_grounding_rate": 1.0,
+    "relevant_count": 40,
+    "ood_count": 20,
+    "repeats": 1,
+    "hit1_count": 23,
+    "ood_false_answer_count": 0,
+    "fallback_count": 30,
+    "relevant_fallback_count": 10,
+    "ood_fallback_count": 20,
+    "handoff_count": 30,
+    "sourced_count": 30,
+    "grounded_count": 30,
+    "grounding_failure_count": 0,
+    "mean_latency_ms": 7.922316633630544,
+    "latency_p50_ms": 7.057562499539927,
+    "latency_p95_ms": 11.741300305584446
+  },
+  "queries": [
+    {
+      "id": "h01",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "source_entry_id": "pkg-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.57420899067074
+    },
+    {
+      "id": "h02",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "source_entry_id": "pkg-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.167833002517
+    },
+    {
+      "id": "h03",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "source_entry_id": "price-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 11.739042005501688
+    },
+    {
+      "id": "h04",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "source_entry_id": "price-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.590375004336238
+    },
+    {
+      "id": "h05",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "source_entry_id": "pkg-001",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.996916993055493
+    },
+    {
+      "id": "h06",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "source_entry_id": "bill-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.85008301702328
+    },
+    {
+      "id": "h07",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "source_entry_id": "bill-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 11.784208007156849
+    },
+    {
+      "id": "h08",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "source_entry_id": "bill-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.840834012720734
+    },
+    {
+      "id": "h09",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "source_entry_id": "price-002",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.41100001707673
+    },
+    {
+      "id": "h10",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "source_entry_id": "tech-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.690334012499079
+    },
+    {
+      "id": "h11",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-003"
+      ],
+      "source_entry_id": "pkg-001",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.757458999752998
+    },
+    {
+      "id": "h12",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-003"
+      ],
+      "source_entry_id": "pkg-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.331374992849305
+    },
+    {
+      "id": "h13",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-004"
+      ],
+      "source_entry_id": "pkg-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.230958996340632
+    },
+    {
+      "id": "h14",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-005"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 6.012375000864267
+    },
+    {
+      "id": "h15",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-003"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 6.839875015430152
+    },
+    {
+      "id": "h16",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-004"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.631000017980114
+    },
+    {
+      "id": "h17",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-005"
+      ],
+      "source_entry_id": "bill-004",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.997874985449016
+    },
+    {
+      "id": "h18",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-006"
+      ],
+      "source_entry_id": "bill-006",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 10.625291004544124
+    },
+    {
+      "id": "h19",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-007"
+      ],
+      "source_entry_id": "bill-007",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.817958005238324
+    },
+    {
+      "id": "h20",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-008"
+      ],
+      "source_entry_id": "bill-002",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.55200000316836
+    },
+    {
+      "id": "h21",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-009"
+      ],
+      "source_entry_id": "bill-009",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.309625012567267
+    },
+    {
+      "id": "h22",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-010"
+      ],
+      "source_entry_id": "bill-010",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.042874989565462
+    },
+    {
+      "id": "h23",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-004"
+      ],
+      "source_entry_id": "tech-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 6.875499995658174
+    },
+    {
+      "id": "h24",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-005"
+      ],
+      "source_entry_id": "tech-010",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 6.9068329758010805
+    },
+    {
+      "id": "h25",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-006"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.2573329992592335
+    },
+    {
+      "id": "h26",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-007"
+      ],
+      "source_entry_id": "tech-007",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 10.2417079906445
+    },
+    {
+      "id": "h27",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-008"
+      ],
+      "source_entry_id": "tech-008",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.463791989721358
+    },
+    {
+      "id": "h28",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-009"
+      ],
+      "source_entry_id": "tech-009",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.099500013282523
+    },
+    {
+      "id": "h29",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-010"
+      ],
+      "source_entry_id": "tech-010",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 13.101415999699384
+    },
+    {
+      "id": "h30",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-011"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.453999976860359
+    },
+    {
+      "id": "h31",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-012"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.25562501186505
+    },
+    {
+      "id": "h32",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-013"
+      ],
+      "source_entry_id": "tech-013",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.825415988918394
+    },
+    {
+      "id": "h33",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-001"
+      ],
+      "source_entry_id": "taahhut-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.136500003980473
+    },
+    {
+      "id": "h34",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-002"
+      ],
+      "source_entry_id": "taahhut-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.072250009514391
+    },
+    {
+      "id": "h35",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-003"
+      ],
+      "source_entry_id": "taahhut-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.083792006596923
+    },
+    {
+      "id": "h36",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-001"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.953374988166615
+    },
+    {
+      "id": "h37",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-002"
+      ],
+      "source_entry_id": "pkg-002",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 9.31720799417235
+    },
+    {
+      "id": "h38",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-003"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.431665991432965
+    },
+    {
+      "id": "h39",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-004"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.184917022939771
+    },
+    {
+      "id": "h40",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-005"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.391915979795158
+    },
+    {
+      "id": "x01",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.3369999912101775
+    },
+    {
+      "id": "x02",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.251833015587181
+    },
+    {
+      "id": "x03",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.326165992300957
+    },
+    {
+      "id": "x04",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.262750007910654
+    },
+    {
+      "id": "x05",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.145332990447059
+    },
+    {
+      "id": "x06",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.8281670024152845
+    },
+    {
+      "id": "x07",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.197166010271758
+    },
+    {
+      "id": "x08",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 6.7298749927431345
+    },
+    {
+      "id": "x09",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.323665983974934
+    },
+    {
+      "id": "x10",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.32045801426284
+    },
+    {
+      "id": "x11",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.077499994309619
+    },
+    {
+      "id": "x12",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.184916993835941
+    },
+    {
+      "id": "x13",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.173124994849786
+    },
+    {
+      "id": "x14",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.305458995280787
+    },
+    {
+      "id": "x15",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.324792011175305
+    },
+    {
+      "id": "x16",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.483124997932464
+    },
+    {
+      "id": "x17",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.946624994976446
+    },
+    {
+      "id": "x18",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.7814999998081475
+    },
+    {
+      "id": "x19",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 64.06808400060982
+    },
+    {
+      "id": "x20",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 11.425208009313792
+    }
+  ],
+  "limitations": [
+    "Small synthetic development dataset; no held-out or production quality claim.",
+    "Source grounding means exact masked FAQ agreement, not answer relevance.",
+    "Fresh service/session/cache per query; no multi-turn or cache performance evaluation.",
+    "Latency includes ChatService, excluding graph construction, warmup and API transport.",
+    "Domain rules may reject supported queries; human review/larger OOD sets are needed.",
+    "LLM generation, Langfuse, Redis and BGE re-ranking are disabled for this measurement."
+  ]
+}

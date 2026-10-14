@@ -8,6 +8,21 @@ Supported PII patterns are masked before the message enters LangGraph state. The
 
 The default response copies the highest-ranked FAQ and needs no inference API key. Exact greetings, thanks and farewells are handled as small talk without retrieval. Optional LLM mode receives the masked query, up to six recent redacted messages and retrieved FAQ evidence. It returns a concise natural-language answer plus a source ID under a strict Pydantic contract; the ID must match a retrieved candidate. Provider errors or invalid output fall back to the best retrieved FAQ. The model can paraphrase source content, so a valid citation establishes provenance but does not guarantee every generated claim is supported. Review and evaluate generated answers before production use. Stored history is bounded by message count and a refresh-on-write session TTL.
 
+## Synthetic support action
+
+The separate `/api/v1/demo` endpoints read only fictional account fixtures. A published demo code illustrates account scoping, not real user authentication. The browser shows the bill source, prepares a draft and asks for explicit confirmation before writing a SQLite ticket. Retrying with the same idempotency key returns the same ticket; an account-scoped lookup can retrieve its reference after restart. Compose mounts a named volume for this local database. Public FAQ requests continue through LangGraph retrieval.
+
+```mermaid
+flowchart LR
+    UI[Chat sample bill action] --> Bill[Mock billing API]
+    Bill --> Fixture[Synthetic account fixture]
+    Bill --> Draft[Prepare ticket draft]
+    Draft --> Approval{User confirms?}
+    Approval -- Yes --> Ticket[Idempotent SQLite ticket]
+    Approval -- No --> Stop[No write]
+    UI --> FAQ[Ordinary question: LangGraph + FAQ retrieval]
+```
+
 ## Retrieval design
 
 `Retriever` decouples routing from the search backend. Keyword retrieval is the offline baseline. Local semantic retrieval computes one document matrix on initialization, embeds the query and uses cosine similarity. Qdrant combines a multilingual dense vector and FastEmbed BM25 sparse vector with reciprocal rank fusion (RRF). Both document encoders use Turkish and English questions + curated keywords (`faq-question-keywords-bilingual-v3`); full localized answers remain authoritative payload fields. This represents the FAQ intent without diluting it with long answer text.

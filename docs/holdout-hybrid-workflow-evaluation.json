@@ -1,0 +1,1356 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-14T12:48:59.036631+00:00",
+  "dataset": {
+    "path": "data/evaluation/retrieval_holdout_v1.json",
+    "sha256": "44b1755d3f215807d987334767f8b5303ac851271bf2f9f05173d947ce7dd036",
+    "version": "1.0"
+  },
+  "corpus": {
+    "path": "data/knowledge_base.json",
+    "sha256": "cb2fb6db417a72fd029cb86a4b9a5658ab9cad8c23019d809a30be5cc8e83d5b",
+    "entries": 40
+  },
+  "runtime": {
+    "python": "3.12.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "qdrant_mode": "in_memory_local_query_engine",
+    "packages": {
+      "qdrant-client": "1.19.1",
+      "sentence-transformers": "6.1.0",
+      "fastembed": "0.9.0"
+    }
+  },
+  "configuration": {
+    "strategy": "qdrant_hybrid",
+    "fusion": "RRF",
+    "document_representation_version": "faq-question-keywords-bilingual-v3",
+    "top_k": 3,
+    "repeats": 1,
+    "semantic_min_similarity": 0.42,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "sparse_model": "Qdrant/bm25",
+    "candidate_k": 20,
+    "reranker_enabled": false,
+    "tenant_id": "demotel",
+    "locale": "tr-TR",
+    "generation_backend": "extractive",
+    "storage_backend": "fresh_memory_per_query",
+    "session_cache_isolation": true,
+    "langfuse_enabled": false
+  },
+  "initialization_ms": 2720.4809579998255,
+  "metrics": {
+    "source_hit_at_1": 0.65,
+    "ood_false_answer_rate": 0.0,
+    "source_grounding_rate": 1.0,
+    "relevant_count": 40,
+    "ood_count": 20,
+    "repeats": 1,
+    "hit1_count": 26,
+    "ood_false_answer_count": 0,
+    "fallback_count": 30,
+    "relevant_fallback_count": 10,
+    "ood_fallback_count": 20,
+    "handoff_count": 30,
+    "sourced_count": 30,
+    "grounded_count": 30,
+    "grounding_failure_count": 0,
+    "mean_latency_ms": 17.15560356969945,
+    "latency_p50_ms": 17.20497950736899,
+    "latency_p95_ms": 20.209752050868694
+  },
+  "queries": [
+    {
+      "id": "h01",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "source_entry_id": "pkg-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 19.4526250124909
+    },
+    {
+      "id": "h02",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "source_entry_id": "pkg-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 308.2483750185929
+    },
+    {
+      "id": "h03",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "source_entry_id": "price-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 19.581166008720174
+    },
+    {
+      "id": "h04",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "source_entry_id": "price-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 22.20716601004824
+    },
+    {
+      "id": "h05",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "source_entry_id": "bill-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 20.104625000385568
+    },
+    {
+      "id": "h06",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "source_entry_id": "bill-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 20.08300001034513
+    },
+    {
+      "id": "h07",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "source_entry_id": "bill-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 19.945416977861896
+    },
+    {
+      "id": "h08",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "source_entry_id": "bill-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.937125016236678
+    },
+    {
+      "id": "h09",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "source_entry_id": "pkg-003",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.49570800550282
+    },
+    {
+      "id": "h10",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "source_entry_id": "tech-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.17670901073143
+    },
+    {
+      "id": "h11",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-003"
+      ],
+      "source_entry_id": "tech-008",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.586999998660758
+    },
+    {
+      "id": "h12",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-003"
+      ],
+      "source_entry_id": "pkg-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.939167009899393
+    },
+    {
+      "id": "h13",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-004"
+      ],
+      "source_entry_id": "pkg-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.94595899991691
+    },
+    {
+      "id": "h14",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-005"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.602542001521215
+    },
+    {
+      "id": "h15",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-003"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.188167018583044
+    },
+    {
+      "id": "h16",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-004"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.309083014959469
+    },
+    {
+      "id": "h17",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-005"
+      ],
+      "source_entry_id": "bill-005",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.17441699677147
+    },
+    {
+      "id": "h18",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-006"
+      ],
+      "source_entry_id": "bill-006",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.57587500126101
+    },
+    {
+      "id": "h19",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-007"
+      ],
+      "source_entry_id": "bill-007",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.497624987503514
+    },
+    {
+      "id": "h20",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-008"
+      ],
+      "source_entry_id": "tech-005",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.02208400820382
+    },
+    {
+      "id": "h21",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-009"
+      ],
+      "source_entry_id": "bill-009",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 19.75387500715442
+    },
+    {
+      "id": "h22",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-010"
+      ],
+      "source_entry_id": "bill-010",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.61683401511982
+    },
+    {
+      "id": "h23",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-004"
+      ],
+      "source_entry_id": "tech-004",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.948708002222702
+    },
+    {
+      "id": "h24",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-005"
+      ],
+      "source_entry_id": "tech-005",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.06408300762996
+    },
+    {
+      "id": "h25",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-006"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.42849998944439
+    },
+    {
+      "id": "h26",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-007"
+      ],
+      "source_entry_id": "tech-007",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.791499994928017
+    },
+    {
+      "id": "h27",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-008"
+      ],
+      "source_entry_id": "tech-008",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.169499991927296
+    },
+    {
+      "id": "h28",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-009"
+      ],
+      "source_entry_id": "tech-009",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.020958988927305
+    },
+    {
+      "id": "h29",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-010"
+      ],
+      "source_entry_id": "tech-010",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.38787500653416
+    },
+    {
+      "id": "h30",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-011"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.34474999201484
+    },
+    {
+      "id": "h31",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-012"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.182250024517998
+    },
+    {
+      "id": "h32",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-013"
+      ],
+      "source_entry_id": "tech-013",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.873458011308685
+    },
+    {
+      "id": "h33",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-001"
+      ],
+      "source_entry_id": "taahhut-001",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.219374993350357
+    },
+    {
+      "id": "h34",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-002"
+      ],
+      "source_entry_id": "taahhut-002",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.671208013780415
+    },
+    {
+      "id": "h35",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-003"
+      ],
+      "source_entry_id": "taahhut-003",
+      "failure_type": null,
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 17.805334005970508
+    },
+    {
+      "id": "h36",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-001"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.518375004408881
+    },
+    {
+      "id": "h37",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-002"
+      ],
+      "source_entry_id": "tech-011",
+      "failure_type": "wrong_source",
+      "fallback": false,
+      "handoff": false,
+      "grounded": true,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "cache_lookup",
+        "retrieve",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 18.004707992076874
+    },
+    {
+      "id": "h38",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-003"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.57883402123116
+    },
+    {
+      "id": "h39",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-004"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.92291699629277
+    },
+    {
+      "id": "h40",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-005"
+      ],
+      "source_entry_id": null,
+      "failure_type": "relevant_fallback",
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.302415996789932
+    },
+    {
+      "id": "x01",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.33091601007618
+    },
+    {
+      "id": "x02",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.242708993842825
+    },
+    {
+      "id": "x03",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.1914999892469496
+    },
+    {
+      "id": "x04",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.02683300874196
+    },
+    {
+      "id": "x05",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.160125012276694
+    },
+    {
+      "id": "x06",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.249999998137355
+    },
+    {
+      "id": "x07",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.509124992182478
+    },
+    {
+      "id": "x08",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.78158300393261
+    },
+    {
+      "id": "x09",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.53133400878869
+    },
+    {
+      "id": "x10",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.470624990062788
+    },
+    {
+      "id": "x11",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 8.197917020879686
+    },
+    {
+      "id": "x12",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.639499995391816
+    },
+    {
+      "id": "x13",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.71825001295656
+    },
+    {
+      "id": "x14",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 4.68608399387449
+    },
+    {
+      "id": "x15",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 5.63804098055698
+    },
+    {
+      "id": "x16",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 24.459334003040567
+    },
+    {
+      "id": "x17",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 10.36358400597237
+    },
+    {
+      "id": "x18",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 10.221459000604227
+    },
+    {
+      "id": "x19",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 7.968916994286701
+    },
+    {
+      "id": "x20",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "source_entry_id": null,
+      "failure_type": null,
+      "fallback": true,
+      "handoff": true,
+      "grounded": null,
+      "cache_hit": false,
+      "steps": [
+        "redact",
+        "classify",
+        "answer",
+        "validate"
+      ],
+      "latency_ms": 11.269084003288299
+    }
+  ],
+  "limitations": [
+    "Small synthetic development dataset; no heldout or production quality claim.",
+    "Source grounding means exact masked FAQ agreement, not answer relevance.",
+    "Fresh service/session/cache per query; no multi-turn or cache evaluation.",
+    "Latency includes ChatService, excluding graph construction and API transport.",
+    "Local Qdrant has no payload indexes; server integration was not executed.",
+    "Domain rules may reject supported queries; larger OOD sets are needed.",
+    "LLM, Langfuse, Redis and BGE reranking are disabled in this measurement."
+  ],
+  "evaluation_layer": "guarded_chat_service",
+  "raw_retrieval_report": "docs/holdout-hybrid-evaluation.json"
+}

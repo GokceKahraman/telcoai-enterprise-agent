@@ -38,6 +38,12 @@ jobs:
         run: uv run --frozen --no-sync python scripts/evaluate_retrieval.py --output artifacts/retrieval-evaluation.json
       - name: Guarded workflow benchmark (no model downloads)
         run: uv run --frozen --no-sync python scripts/evaluate_workflow.py --output artifacts/workflow-evaluation.json
+      - name: V1 retrieval regression (synthetic, no model downloads)
+        run: uv run --frozen --no-sync python scripts/evaluate_retrieval.py --dataset data/evaluation/retrieval_holdout_v1.json --output artifacts/holdout-keyword.json
+      - name: V1 guarded workflow regression (synthetic, no model downloads)
+        run: |
+          uv run --frozen --no-sync python scripts/evaluate_workflow.py --dataset data/evaluation/retrieval_holdout_v1.json --output artifacts/holdout-keyword-workflow.json
+          uv run --frozen --no-sync python -c 'import json; report=json.load(open("artifacts/holdout-keyword-workflow.json")); assert report["metrics"]["ood_false_answer_count"] == 0'
       - name: Ragas input export (no judge calls)
         run: uv run --frozen --no-sync python scripts/evaluate_ragas.py --output artifacts/ragas-inputs.json
       - uses: actions/upload-artifact@v4

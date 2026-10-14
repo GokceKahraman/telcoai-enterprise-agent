@@ -27,6 +27,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 5. Continue a session, inspect its redacted history, then delete it.
 6. Open the DemoTel homepage at `http://127.0.0.1:8000/`, open the lower-right assistant, say “Selam”, then select a suggested next question or type a follow-up. Try ending the chat and opening it again.
 7. Run the retrieval benchmark and inspect individual failures instead of relying on a headline score.
+8. After a billing answer, choose “Örnek faturayı incele”, prepare a dispute, inspect the draft, then explicitly confirm it. The returned `DT-…` reference belongs only to the fictional demo database.
 
 ## Stack and implementation
 
@@ -45,6 +46,7 @@ The project includes focused tests for greeting/thanks, retrieval, source ground
 | Observability | Loguru queued structured logging, optional Langfuse tracing | Logging default; Langfuse opt-in |
 | Evaluation | Hit@1/3, MRR, OOD false acceptance, latency p50/p95; MLflow tracking and Ragas judge adapter | Offline retrieval/export default; judge opt-in |
 | Delivery | uv lockfile, Ruff, pytest, GitHub Actions, non-root Docker, Compose, Kubernetes examples | Included |
+| Synthetic support action | Account-scoped mock billing API, confirmation-gated SQLite ticket, idempotency key | Demo only; disable with `TELCOAI_DEMO_ACTIONS_ENABLED=false` |
 
 The app is a RAG chatbot: it retrieves FAQ evidence, then either returns the source answer or asks an optional LLM to write a natural reply in the selected language grounded in that evidence. The LLM receives the latest redacted conversation turns and must return a Pydantic-validated source ID with its answer; unknown sources or provider errors fall back to the localized retrieved FAQ. A source citation proves provenance, but does not prove every generated sentence is factually correct, so review LLM replies before production use. Greetings and thanks receive conversational responses without querying the FAQ.
 
@@ -166,13 +168,19 @@ uv run --frozen --no-sync python scripts/evaluate_retrieval.py --strategy qdrant
 
 The hybrid reports use real MiniLM/BM25 models and Qdrant’s local query engine; it does not validate server-side payload indexes, HNSW or network performance. Workflow scope checks can abstain before retrieval, so raw retrieval and guarded-answer metrics are different measurements. Corpus/representation improvements were made on this development set; [the change audit](docs/retrieval-development-changes.json) preserves the before/after hashes and limitations.
 
+The [retrieval roadmap](docs/telcoai-development-roadmap.md) now includes a 40-relevant/20-unsupported [v1 comparison](docs/holdout-comparison-v1.json). On this synthetic set, keyword/dense/local hybrid Hit@1 measured 80%/77.5%/85%. Raw hybrid returned a result for 90% of unsupported queries, which shows why retrieval scores cannot replace the guarded workflow. The first workflow run answered 8/20 unsupported queries; a general live/account-data guard reduced that to 0/20 in a second run. Because this v1 suite guided that guard, it is now an exploratory regression suite, not an untouched final holdout. A separately authored v2 suite is needed for an unbiased final claim. See [evaluation](docs/evaluation.md) for configurations and limitations.
+
+The chatbot also includes an **explicitly fictional billing journey**. After a billing answer, choose “Örnek faturayı incele” / “Inspect a sample bill”. The UI reads an account-scoped fixture via `/api/v1/demo/bills`, prepares a bill-dispute draft, then asks for confirmation before creating a SQLite-backed mock ticket. The reference survives service restarts and duplicate confirmation requests return the same ticket. The published `DEMO-1001` / `PORTFOLIO-1001` values are fixture credentials for the portfolio demo, not real identity verification. Docker Compose persists tickets in `demo_actions_data`; set `TELCOAI_DEMO_ACTIONS_ENABLED=false` to disable the example. Public FAQ chat remains on the RAG path.
+
+![Synthetic support-ticket confirmation in the DemoTel chat](docs/demo-ticket-flow.png)
+
 Ragas export uses actual extracted FAQ answers and retrieved contexts from synthetic queries. The default export makes **no external judge calls**. Paid judging requires an explicit model, key and `--judge --allow-external-judge`; one sample can trigger multiple API calls. Faithfulness alone cannot detect a wrong but internally consistent FAQ choice. MLflow and Ragas execution instructions, limitations and report fields are in [evaluation](docs/evaluation.md).
 
 GitHub Actions is configured to validate lint/formatting, offline tests, evaluation exports, Compose configuration, a Docker build, container readiness and real Qdrant payload indexes/filtered hybrid queries with synthetic vectors. Real model tests are opt-in; CI does not assert production accuracy or silently download large models.
 
 ## Scope and next engineering steps
 
-This prototype provides read-only FAQ assistance. It has no real billing, CRM, payment, cancellation or ticketing integration. Human handoff is a structured decision, with no message sent to a real support team. Before use with customer data, the next steps are authenticated tenant/user identity, authorization for session access, TLS and rate limits, validated PII coverage, dependency hardening, monitored retention/deletion, backups, a larger held-out dataset and operational load testing.
+This prototype provides read-only FAQ assistance plus a separate synthetic billing/ticket demonstration. It has no real billing, CRM, payment, cancellation or ticketing integration. Human handoff is a structured decision, with no message sent to a real support team. Before use with customer data, the next steps are authenticated tenant/user identity, authorization for session access, TLS and rate limits, validated PII coverage, dependency hardening, monitored retention/deletion, backups, a fresh held-out dataset and operational load testing.
 
 The Kubernetes manifests are single-replica learning examples. Presidio masking supports data minimization; it is **not a KVKK compliance certificate**. See [privacy](docs/privacy.md) for known omissions and storage behavior.
 

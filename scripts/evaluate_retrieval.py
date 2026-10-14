@@ -129,6 +129,10 @@ def evaluate_strategy(
                 latency = (time.perf_counter() - started) * 1000
                 latencies.append(latency)
                 expected = item.get("expected_entry_ids", [])
+                first_expected_rank = next(
+                    (rank for rank, hit in enumerate(hits, 1) if hit.entry.id in expected),
+                    None,
+                )
                 if group == "relevant":
                     hit1 += hit_at_k(hits, expected, 1)
                     hit3 += hit_at_k(hits, expected, 3)
@@ -143,6 +147,16 @@ def evaluate_strategy(
                         "expected_entry_ids": expected,
                         "retrieved_entry_ids": [hit.entry.id for hit in hits],
                         "scores": [float(hit.score) for hit in hits],
+                        "first_expected_rank": first_expected_rank,
+                        "failure_type": (
+                            None
+                            if first_expected_rank == 1 or (group == "ood" and not hits)
+                            else "missing_expected"
+                            if group == "relevant" and first_expected_rank is None
+                            else "wrong_first"
+                            if group == "relevant"
+                            else "ood_false_accept"
+                        ),
                         "latency_ms": latency,
                     }
                 )

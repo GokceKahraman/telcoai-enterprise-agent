@@ -1,0 +1,35 @@
+{
+  "accounts": [
+    {
+      "account_id": "DEMO-1001",
+      "access_code": "PORTFOLIO-1001",
+      "bills": [
+        {
+          "bill_id": "BILL-2026-09-A",
+          "period": "2026-09",
+          "amount_try": "549.90",
+          "status": "unpaid",
+          "items": [
+            {"label": "Fiber 100 Mbps", "amount_try": "499.90"},
+            {"label": "Modem rental", "amount_try": "50.00"}
+          ]
+        }
+      ]
+    },
+    {
+      "account_id": "DEMO-1002",
+      "access_code": "PORTFOLIO-1002",
+      "bills": [
+        {
+          "bill_id": "BILL-2026-09-B",
+          "period": "2026-09",
+          "amount_try": "329.90",
+          "status": "paid",
+          "items": [
+            {"label": "Mobile 20 GB", "amount_try": "329.90"}
+          ]
+        }
+      ]
+    }
+  ]
+}

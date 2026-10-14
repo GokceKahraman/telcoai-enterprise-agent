@@ -3,10 +3,12 @@ from fastapi import APIRouter, Depends, Request
 from app import __version__
 from app.api.dependencies import require_access
 from app.api.v1.chat import router as chat_router
+from app.api.v1.demo_actions import router as demo_router
 from app.api.v1.sessions import router as session_router
 
 api_v1_router = APIRouter(prefix="/api/v1", dependencies=[Depends(require_access)])
 api_v1_router.include_router(chat_router)
+api_v1_router.include_router(demo_router)
 api_v1_router.include_router(session_router)
 
 

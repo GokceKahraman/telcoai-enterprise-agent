@@ -46,6 +46,8 @@ class Settings(BaseSettings):
     api_key: SecretStr | None = None
     grpc_host: str = "127.0.0.1"
     grpc_port: int = Field(default=50051, ge=1, le=65535)
+    demo_actions_enabled: bool = True
+    demo_action_db_path: Path = Path("artifacts/demo_actions.sqlite3")
 
     @model_validator(mode="after")
     def check_modes(self) -> "Settings":

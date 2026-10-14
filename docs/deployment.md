@@ -19,6 +19,7 @@ The default demo uses keyword retrieval, extractive responses and in-memory stor
 | `TELCOAI_SESSION_TTL_SECONDS` / `TELCOAI_SESSION_MAX_MESSAGES` | `1800` / `40` | Session retention and message bound |
 | `TELCOAI_CACHE_TTL_SECONDS` | `300` | FAQ response cache TTL |
 | `TELCOAI_SEMANTIC_CACHE_ENABLED` / `TELCOAI_SEMANTIC_CACHE_THRESHOLD` | `false` / `0.97` | Conservative semantic reuse (requires semantic/hybrid) |
+| `TELCOAI_DEMO_ACTIONS_ENABLED` / `TELCOAI_DEMO_ACTION_DB_PATH` | `true` / `artifacts/demo_actions.sqlite3` | Fictional billing/ticket demo; Compose persists its SQLite file |
 | `TELCOAI_GENERATION_BACKEND` | `extractive` | `extractive` or optional `llm` |
 | `TELCOAI_LLM_BASE_URL` / `TELCOAI_LLM_MODEL` | `http://localhost:11434/v1` / `qwen3:8b` | Compatible LLM endpoint and model; the server/model is provisioned separately |
 | `TELCOAI_LLM_API_KEY` | Local demo placeholder | Provider credential when required |
@@ -103,5 +104,7 @@ kubectl -n telcoai rollout status deployment/telcoai-api
 ```
 
 A missing collection keeps the API unready until the explicit ingestion job succeeds. Model caches are ephemeral in this Kubernetes example; a restart may download models again. Configure a persistent/prepopulated model cache and deployment-specific startup timeout for larger models. The optional `telcoai-secrets` references are placeholders, not supplied credentials. Setting a Qdrant API key on the API also requires configuring matching authentication on the Qdrant server.
+
+The Kubernetes example disables the SQLite-backed synthetic ticket journey because its root filesystem is read-only. The Compose demo mounts `demo_actions_data` for that journey. A Kubernetes deployment that enables it needs an explicit writable persistent volume and an independently reviewed access design.
 
 If you changed embedding/tokenizer configuration, select a new collection and ingest it before routing traffic. Reapplying a Job with the same immutable name requires a deliberate job lifecycle change after the previous job finishes; routine API restarts never trigger ingestion.

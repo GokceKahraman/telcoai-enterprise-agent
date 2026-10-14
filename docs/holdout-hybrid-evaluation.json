@@ -1,0 +1,1798 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-14T12:48:59.036631+00:00",
+  "dataset": {
+    "path": "data/evaluation/retrieval_holdout_v1.json",
+    "sha256": "44b1755d3f215807d987334767f8b5303ac851271bf2f9f05173d947ce7dd036",
+    "version": "1.0"
+  },
+  "corpus": {
+    "path": "data/knowledge_base.json",
+    "sha256": "cb2fb6db417a72fd029cb86a4b9a5658ab9cad8c23019d809a30be5cc8e83d5b",
+    "entries": 40
+  },
+  "runtime": {
+    "python": "3.12.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "qdrant_mode": "in_memory_local_query_engine",
+    "packages": {
+      "qdrant-client": "1.19.1",
+      "sentence-transformers": "6.1.0",
+      "fastembed": "0.9.0"
+    }
+  },
+  "configuration": {
+    "strategy": "qdrant_hybrid",
+    "fusion": "RRF",
+    "document_representation_version": "faq-question-keywords-bilingual-v3",
+    "top_k": 10,
+    "repeats": 1,
+    "semantic_min_similarity": 0.42,
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "sparse_model": "Qdrant/bm25",
+    "candidate_k": 20,
+    "reranker_enabled": false,
+    "tenant_id": "demotel",
+    "locale": "tr-TR"
+  },
+  "initialization_ms": 2720.4809579998255,
+  "metrics": {
+    "name": "qdrant_hybrid",
+    "hit_at_1": 0.85,
+    "hit_at_3": 0.925,
+    "mrr": 0.89875,
+    "mrr_cutoff": 10,
+    "ood_false_accept_rate": 0.9,
+    "mean_latency_ms": 12.968209733662661,
+    "latency_p50_ms": 12.847500009229407,
+    "latency_p95_ms": 14.3689330201596,
+    "relevant_count": 40,
+    "ood_count": 20,
+    "repeats": 1,
+    "hit1_count": 34,
+    "hit3_count": 37,
+    "false_accept_count": 18
+  },
+  "queries": [
+    {
+      "id": "h01",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "pkg-004",
+        "pkg-003",
+        "price-001",
+        "tech-004",
+        "tech-002",
+        "taahhut-002",
+        "tech-005",
+        "tech-013",
+        "general-001"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.8333333333333333,
+        0.39285714285714285,
+        0.3333333333333333,
+        0.25555555555555554,
+        0.25,
+        0.2,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 14.066125004319474
+    },
+    {
+      "id": "h02",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-002"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "tech-011",
+        "pkg-003",
+        "pkg-001",
+        "pkg-004",
+        "tech-009",
+        "price-002",
+        "taahhut-002",
+        "tech-002",
+        "price-001"
+      ],
+      "scores": [
+        0.75,
+        0.5,
+        0.41025641025641024,
+        0.4,
+        0.3333333333333333,
+        0.25757575757575757,
+        0.25,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.354791997699067
+    },
+    {
+      "id": "h03",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-001"
+      ],
+      "retrieved_entry_ids": [
+        "price-001",
+        "general-004",
+        "bill-004",
+        "tech-001",
+        "price-002",
+        "tech-012",
+        "tech-002",
+        "tech-005"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.9195420013275
+    },
+    {
+      "id": "h04",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-002"
+      ],
+      "retrieved_entry_ids": [
+        "price-002",
+        "price-004",
+        "general-002",
+        "taahhut-003",
+        "bill-004"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.691291991155595
+    },
+    {
+      "id": "h05",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-001"
+      ],
+      "retrieved_entry_ids": [
+        "bill-001",
+        "bill-004",
+        "bill-009",
+        "bill-008",
+        "bill-005",
+        "bill-006",
+        "pkg-001",
+        "taahhut-002",
+        "tech-002",
+        "price-001"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.5,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.926499981200323
+    },
+    {
+      "id": "h06",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-002"
+      ],
+      "retrieved_entry_ids": [
+        "bill-002",
+        "taahhut-001",
+        "bill-008",
+        "bill-001",
+        "bill-006"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.998791014775634
+    },
+    {
+      "id": "h07",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-003",
+        "price-002",
+        "pkg-002",
+        "pkg-004",
+        "bill-004",
+        "bill-001",
+        "bill-009",
+        "bill-008",
+        "bill-005",
+        "bill-006"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.06379197537899
+    },
+    {
+      "id": "h08",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-004"
+      ],
+      "retrieved_entry_ids": [
+        "bill-004",
+        "bill-003",
+        "bill-006",
+        "bill-010",
+        "bill-005",
+        "general-001",
+        "bill-001",
+        "bill-009",
+        "bill-008",
+        "tech-006"
+      ],
+      "scores": [
+        1.0,
+        0.5,
+        0.41025641025641024,
+        0.34285714285714286,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.717916990164667
+    },
+    {
+      "id": "h09",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-001"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-003",
+        "bill-001",
+        "taahhut-001",
+        "tech-001",
+        "price-002",
+        "tech-012",
+        "tech-002",
+        "tech-005"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 4,
+      "failure_type": "wrong_first",
+      "latency_ms": 12.804625002900138
+    },
+    {
+      "id": "h10",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-002",
+        "tech-007",
+        "tech-003",
+        "tech-012",
+        "tech-005",
+        "tech-001"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.601833004737273
+    },
+    {
+      "id": "h11",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-003"
+      ],
+      "retrieved_entry_ids": [
+        "tech-008",
+        "tech-003",
+        "bill-001",
+        "taahhut-001",
+        "pkg-001",
+        "pkg-003",
+        "pkg-004",
+        "price-001",
+        "taahhut-002",
+        "tech-013"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": 2,
+      "failure_type": "wrong_first",
+      "latency_ms": 12.327541975537315
+    },
+    {
+      "id": "h12",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-003"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-003",
+        "pkg-001",
+        "tech-011",
+        "tech-013",
+        "price-003",
+        "pkg-002",
+        "general-003",
+        "price-002",
+        "pkg-004",
+        "price-001"
+      ],
+      "scores": [
+        1.0,
+        0.4583333333333333,
+        0.39285714285714285,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.788667005021125
+    },
+    {
+      "id": "h13",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-004"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-004",
+        "pkg-001",
+        "general-002",
+        "bill-004",
+        "bill-009",
+        "tech-007",
+        "taahhut-002",
+        "tech-002",
+        "tech-005",
+        "tech-010"
+      ],
+      "scores": [
+        1.0,
+        0.5333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.547041998710483
+    },
+    {
+      "id": "h14",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "pkg-005"
+      ],
+      "retrieved_entry_ids": [
+        "pkg-005",
+        "tech-008",
+        "pkg-003",
+        "tech-003",
+        "price-004",
+        "bill-009",
+        "tech-007",
+        "taahhut-002"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.433792009484023
+    },
+    {
+      "id": "h15",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-003"
+      ],
+      "retrieved_entry_ids": [
+        "price-003",
+        "price-004",
+        "taahhut-001",
+        "price-001",
+        "bill-004"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.55483300681226
+    },
+    {
+      "id": "h16",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "price-004"
+      ],
+      "retrieved_entry_ids": [
+        "price-004",
+        "bill-008",
+        "taahhut-001",
+        "bill-005",
+        "bill-004"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 11.771249992307276
+    },
+    {
+      "id": "h17",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-005"
+      ],
+      "retrieved_entry_ids": [
+        "bill-005",
+        "bill-004",
+        "bill-006",
+        "bill-001",
+        "price-002",
+        "bill-002",
+        "bill-003",
+        "bill-009",
+        "price-001",
+        "bill-010"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.4242424242424242,
+        0.34285714285714286,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.252916989382356
+    },
+    {
+      "id": "h18",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-006"
+      ],
+      "retrieved_entry_ids": [
+        "bill-006",
+        "bill-001",
+        "bill-007"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.353917001746595
+    },
+    {
+      "id": "h19",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-007"
+      ],
+      "retrieved_entry_ids": [
+        "bill-007",
+        "bill-006",
+        "general-001",
+        "pkg-001",
+        "tech-010"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.099042000249028
+    },
+    {
+      "id": "h20",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-008"
+      ],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "taahhut-002",
+        "tech-001",
+        "bill-002",
+        "bill-008",
+        "bill-009",
+        "tech-007",
+        "pkg-001",
+        "tech-002",
+        "price-001"
+      ],
+      "scores": [
+        0.6,
+        0.5,
+        0.41025641025641024,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 5,
+      "failure_type": "wrong_first",
+      "latency_ms": 13.205875002313405
+    },
+    {
+      "id": "h21",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-009"
+      ],
+      "retrieved_entry_ids": [
+        "bill-009",
+        "bill-001",
+        "tech-007",
+        "taahhut-002",
+        "tech-005",
+        "bill-005",
+        "bill-010",
+        "bill-002",
+        "bill-004",
+        "bill-003"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.951207976788282
+    },
+    {
+      "id": "h22",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "bill-010"
+      ],
+      "retrieved_entry_ids": [
+        "bill-010",
+        "bill-003",
+        "bill-004",
+        "general-001",
+        "tech-006",
+        "tech-012",
+        "tech-005",
+        "bill-009",
+        "bill-005",
+        "bill-001"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 14.715208002598956
+    },
+    {
+      "id": "h23",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-004"
+      ],
+      "retrieved_entry_ids": [
+        "tech-004",
+        "tech-008",
+        "tech-003",
+        "tech-002",
+        "tech-001",
+        "tech-005",
+        "bill-002",
+        "tech-009",
+        "bill-008",
+        "tech-011"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.4444444444444444,
+        0.39285714285714285,
+        0.30000000000000004,
+        0.25396825396825395,
+        0.2,
+        0.16666666666666666,
+        0.16666666666666666,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.670292013557628
+    },
+    {
+      "id": "h24",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-005"
+      ],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "tech-010",
+        "tech-007",
+        "tech-002",
+        "tech-004",
+        "bill-007",
+        "tech-008",
+        "tech-001",
+        "tech-012",
+        "tech-009"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.6428571428571428,
+        0.43333333333333335,
+        0.3666666666666667,
+        0.25,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.757915992755443
+    },
+    {
+      "id": "h25",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-006"
+      ],
+      "retrieved_entry_ids": [
+        "tech-006",
+        "pkg-001",
+        "tech-001",
+        "general-001",
+        "bill-007",
+        "tech-010"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.930249999044463
+    },
+    {
+      "id": "h26",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-007"
+      ],
+      "retrieved_entry_ids": [
+        "tech-007",
+        "tech-008",
+        "tech-002",
+        "tech-003",
+        "tech-012",
+        "tech-005",
+        "tech-001"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.062959013041109
+    },
+    {
+      "id": "h27",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-008"
+      ],
+      "retrieved_entry_ids": [
+        "tech-008",
+        "tech-003",
+        "tech-011"
+      ],
+      "scores": [
+        1.0,
+        0.6666666666666666,
+        0.25
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.854417018592358
+    },
+    {
+      "id": "h28",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-009"
+      ],
+      "retrieved_entry_ids": [
+        "tech-009",
+        "tech-011",
+        "pkg-002",
+        "general-003",
+        "tech-007",
+        "bill-001",
+        "taahhut-001",
+        "tech-001",
+        "tech-013"
+      ],
+      "scores": [
+        1.0,
+        0.43333333333333335,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.730584003496915
+    },
+    {
+      "id": "h29",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-010"
+      ],
+      "retrieved_entry_ids": [
+        "tech-010",
+        "tech-011",
+        "tech-009",
+        "taahhut-002",
+        "tech-008",
+        "tech-013",
+        "general-003",
+        "pkg-002",
+        "bill-003",
+        "tech-005"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.309749978361651
+    },
+    {
+      "id": "h30",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-011"
+      ],
+      "retrieved_entry_ids": [
+        "tech-011",
+        "tech-008",
+        "pkg-003",
+        "tech-009",
+        "tech-004",
+        "bill-004"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.2
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.733624986140057
+    },
+    {
+      "id": "h31",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-012"
+      ],
+      "retrieved_entry_ids": [
+        "general-002",
+        "tech-012",
+        "tech-005",
+        "bill-004",
+        "general-001",
+        "bill-010",
+        "tech-006"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125
+      ],
+      "first_expected_rank": 2,
+      "failure_type": "wrong_first",
+      "latency_ms": 15.877791011007503
+    },
+    {
+      "id": "h32",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "tech-013"
+      ],
+      "retrieved_entry_ids": [
+        "tech-013",
+        "tech-011",
+        "tech-009",
+        "pkg-002",
+        "tech-005",
+        "tech-001",
+        "pkg-005",
+        "bill-008",
+        "general-003",
+        "bill-004"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 20.009416999528185
+    },
+    {
+      "id": "h33",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-001"
+      ],
+      "retrieved_entry_ids": [
+        "taahhut-001",
+        "bill-002",
+        "bill-008",
+        "price-003",
+        "price-004",
+        "bill-004",
+        "bill-001",
+        "general-001",
+        "bill-010",
+        "tech-012"
+      ],
+      "scores": [
+        1.0,
+        0.5333333333333333,
+        0.39285714285714285,
+        0.3333333333333333,
+        0.325,
+        0.25,
+        0.16666666666666666,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.328417000593618
+    },
+    {
+      "id": "h34",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-002"
+      ],
+      "retrieved_entry_ids": [
+        "taahhut-002",
+        "pkg-001",
+        "general-004",
+        "tech-011",
+        "taahhut-003",
+        "price-001",
+        "pkg-003",
+        "tech-013",
+        "pkg-004",
+        "tech-010"
+      ],
+      "scores": [
+        1.0,
+        0.5333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.25,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.736834021983668
+    },
+    {
+      "id": "h35",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "taahhut-003"
+      ],
+      "retrieved_entry_ids": [
+        "taahhut-003",
+        "tech-010",
+        "pkg-005",
+        "bill-008",
+        "general-001",
+        "pkg-001",
+        "bill-007",
+        "pkg-002"
+      ],
+      "scores": [
+        1.0,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 14.350708021083847
+    },
+    {
+      "id": "h36",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-001"
+      ],
+      "retrieved_entry_ids": [
+        "general-001",
+        "general-005",
+        "general-004",
+        "bill-010",
+        "tech-012",
+        "tech-006",
+        "tech-005",
+        "bill-004"
+      ],
+      "scores": [
+        1.0,
+        0.5833333333333333,
+        0.3333333333333333,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.87562500895001
+    },
+    {
+      "id": "h37",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-002"
+      ],
+      "retrieved_entry_ids": [
+        "tech-011",
+        "tech-013",
+        "pkg-002",
+        "general-003"
+      ],
+      "scores": [
+        0.7,
+        0.5,
+        0.3333333333333333,
+        0.25
+      ],
+      "first_expected_rank": null,
+      "failure_type": "missing_expected",
+      "latency_ms": 13.35841600666754
+    },
+    {
+      "id": "h38",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-003"
+      ],
+      "retrieved_entry_ids": [
+        "bill-009",
+        "general-003",
+        "bill-001",
+        "bill-007"
+      ],
+      "scores": [
+        0.5,
+        0.5,
+        0.3333333333333333,
+        0.25
+      ],
+      "first_expected_rank": 2,
+      "failure_type": "wrong_first",
+      "latency_ms": 12.081249995389953
+    },
+    {
+      "id": "h39",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-004"
+      ],
+      "retrieved_entry_ids": [
+        "general-004",
+        "taahhut-001",
+        "bill-002",
+        "price-001",
+        "tech-008",
+        "general-005"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 12.783874990418553
+    },
+    {
+      "id": "h40",
+      "group": "relevant",
+      "repeat": 0,
+      "expected_entry_ids": [
+        "general-005"
+      ],
+      "retrieved_entry_ids": [
+        "general-005",
+        "general-001",
+        "tech-002",
+        "bill-001",
+        "bill-007",
+        "general-003",
+        "tech-009",
+        "bill-010",
+        "tech-005"
+      ],
+      "scores": [
+        1.0,
+        0.6666666666666666,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": 1,
+      "failure_type": null,
+      "latency_ms": 13.89395899605006
+    },
+    {
+      "id": "x01",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "price-003",
+        "bill-003",
+        "tech-005",
+        "price-004",
+        "bill-006",
+        "tech-001",
+        "bill-001",
+        "tech-003",
+        "taahhut-001",
+        "general-003"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 13.820624997606501
+    },
+    {
+      "id": "x02",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "tech-013"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 13.002541003515944
+    },
+    {
+      "id": "x03",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "taahhut-002",
+        "bill-007",
+        "bill-009",
+        "tech-007",
+        "pkg-003",
+        "pkg-004",
+        "price-001",
+        "tech-013"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 11.698999995132908
+    },
+    {
+      "id": "x04",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "general-001",
+        "bill-010",
+        "tech-006",
+        "tech-012",
+        "tech-005",
+        "bill-004"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.126125016948208
+    },
+    {
+      "id": "x05",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "price-001",
+        "pkg-003"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.0243749988731
+    },
+    {
+      "id": "x06",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "tech-005",
+        "bill-010",
+        "tech-006",
+        "tech-012",
+        "general-001",
+        "bill-004",
+        "bill-003",
+        "price-004",
+        "bill-006",
+        "tech-001"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 11.896000010892749
+    },
+    {
+      "id": "x07",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "general-003",
+        "bill-010"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.397834012517706
+    },
+    {
+      "id": "x08",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "first_expected_rank": null,
+      "failure_type": null,
+      "latency_ms": 13.728416990488768
+    },
+    {
+      "id": "x09",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "bill-009",
+        "tech-007",
+        "taahhut-002"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 13.524082984076813
+    },
+    {
+      "id": "x10",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [],
+      "scores": [],
+      "first_expected_rank": null,
+      "failure_type": null,
+      "latency_ms": 13.169500016374514
+    },
+    {
+      "id": "x11",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "tech-013",
+        "pkg-001",
+        "tech-009",
+        "price-002",
+        "pkg-002",
+        "pkg-004",
+        "pkg-003",
+        "bill-003",
+        "general-005",
+        "price-004"
+      ],
+      "scores": [
+        0.75,
+        0.6,
+        0.39999999999999997,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 11.966999998549
+    },
+    {
+      "id": "x12",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "tech-009",
+        "tech-005",
+        "taahhut-003",
+        "pkg-004",
+        "tech-010",
+        "pkg-001",
+        "taahhut-002",
+        "tech-002",
+        "price-001"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.5,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.53579100011848
+    },
+    {
+      "id": "x13",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "bill-008",
+        "bill-006",
+        "bill-001",
+        "bill-002",
+        "bill-009",
+        "bill-003",
+        "bill-005",
+        "bill-010",
+        "bill-004",
+        "bill-007"
+      ],
+      "scores": [
+        0.75,
+        0.5909090909090909,
+        0.5333333333333333,
+        0.34285714285714286,
+        0.3333333333333333,
+        0.2777777777777778,
+        0.25,
+        0.16666666666666666,
+        0.125,
+        0.1
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.890375015558675
+    },
+    {
+      "id": "x14",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-004",
+        "pkg-001",
+        "general-002",
+        "pkg-005",
+        "tech-002"
+      ],
+      "scores": [
+        1.0,
+        0.5333333333333333,
+        0.3333333333333333,
+        0.25,
+        0.16666666666666666
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.180791003629565
+    },
+    {
+      "id": "x15",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "general-001",
+        "bill-007",
+        "tech-010",
+        "pkg-003",
+        "pkg-004",
+        "price-001",
+        "taahhut-002",
+        "tech-013"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.961375003214926
+    },
+    {
+      "id": "x16",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "price-004",
+        "general-003",
+        "taahhut-003",
+        "price-003",
+        "taahhut-001",
+        "bill-004"
+      ],
+      "scores": [
+        0.5,
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.37691700225696
+    },
+    {
+      "id": "x17",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "bill-004",
+        "taahhut-002",
+        "tech-010",
+        "price-002",
+        "pkg-004",
+        "pkg-001",
+        "price-004",
+        "general-001",
+        "price-001"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 13.188332988647744
+    },
+    {
+      "id": "x18",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "bill-002",
+        "tech-012",
+        "bill-008",
+        "tech-005"
+      ],
+      "scores": [
+        0.5,
+        0.3333333333333333,
+        0.25,
+        0.2
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.746708001941442
+    },
+    {
+      "id": "x19",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-002",
+        "tech-013",
+        "tech-011",
+        "tech-009",
+        "general-003"
+      ],
+      "scores": [
+        0.8333333333333333,
+        0.5,
+        0.45,
+        0.3333333333333333,
+        0.25
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.033791019348428
+    },
+    {
+      "id": "x20",
+      "group": "ood",
+      "repeat": 0,
+      "expected_entry_ids": [],
+      "retrieved_entry_ids": [
+        "pkg-001",
+        "tech-009",
+        "price-002",
+        "taahhut-002",
+        "price-001",
+        "pkg-003",
+        "tech-013",
+        "pkg-004",
+        "general-003",
+        "tech-002"
+      ],
+      "scores": [
+        0.75,
+        0.5,
+        0.3333333333333333,
+        0.2,
+        0.16666666666666666,
+        0.14285714285714285,
+        0.125,
+        0.1111111111111111,
+        0.1,
+        0.09090909090909091
+      ],
+      "first_expected_rank": null,
+      "failure_type": "ood_false_accept",
+      "latency_ms": 12.330415978794917
+    }
+  ],
+  "limitations": [
+    "Synthetic, small FAQ corpus; results do not establish production quality.",
+    "Real model embeddings and Qdrant local queries; no remote server transport or HNSW.",
+    "Local Qdrant has no payload indexes; validation requires opt-in server integration.",
+    "Latency excludes construction/warmup, privacy, cache and graph overhead.",
+    "No BGE reranker was enabled or downloaded in this measurement.",
+    "Retriever scores and model confidence are not calibrated probabilities."
+  ]
+}

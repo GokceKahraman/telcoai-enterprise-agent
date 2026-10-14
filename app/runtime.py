@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from app.config import Settings
 from app.services.chat_service import ChatService
+from app.services.demo_actions import DemoActionService
 from app.services.generation import StructuredGenerator
 from app.services.knowledge_base import KnowledgeBase
 from app.services.retrieval.factory import build_retriever, get_embedding_model
@@ -19,6 +20,7 @@ class Runtime:
     settings: Settings
     knowledge_base: KnowledgeBase
     service: ChatService
+    demo_actions: DemoActionService | None = None
 
     def readiness(self) -> dict[str, bool]:
         checks = {"storage": False, "retrieval": False}
@@ -99,4 +101,12 @@ def build_runtime(settings: Settings) -> Runtime:
         generator=generator,
         telemetry=Telemetry(settings.langfuse_enabled),
     )
-    return Runtime(settings, kb, service)
+    demo_actions = None
+    if settings.demo_actions_enabled:
+        database_path = settings.demo_action_db_path
+        if not database_path.is_absolute():
+            database_path = settings.project_root / database_path
+        demo_actions = DemoActionService(
+            settings.project_root / "data" / "demo_billing.json", database_path
+        )
+    return Runtime(settings, kb, service, demo_actions)

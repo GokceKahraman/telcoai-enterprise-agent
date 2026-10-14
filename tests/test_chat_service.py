@@ -1,3 +1,5 @@
+import pytest
+
 from app.services.chat_service import ChatService
 from app.services.retrieval.semantic_retriever import SemanticRetriever
 
@@ -54,6 +56,33 @@ def test_english_account_actions_are_safely_handed_off(keyword_retriever):
     response = ChatService(keyword_retriever).reply("Please cancel my subscription", locale="en-US")
     assert response.handoff is True
     assert "authenticated customer support representative" in response.answer
+
+
+@pytest.mark.parametrize(
+    ("query", "locale"),
+    [
+        ("Mahallemde şu anda internet kesintisi var mı?", "tr-TR"),
+        ("Hesabımın kalan internetini kontrol et", "tr-TR"),
+        ("Hattıma eSIM tanımla", "tr-TR"),
+        ("Bugün kesin kurulum randevusu ver", "tr-TR"),
+        ("Show my remaining data balance", "en-US"),
+        ("Is there a live outage right now?", "en-US"),
+    ],
+)
+def test_live_or_account_specific_request_bypasses_faq(query, locale):
+    class NoSearch:
+        def retrieve(self, *args, **kwargs):
+            raise AssertionError("Live/account requests must not use FAQ retrieval")
+
+    response = ChatService(NoSearch()).reply(query, locale=locale)
+    assert response.handoff is True
+    assert response.source is None
+    assert response.fallback is True
+
+
+def test_general_troubleshooting_question_remains_on_faq_path(keyword_retriever):
+    response = ChatService(keyword_retriever).reply("Modemde neyi kontrol et?")
+    assert response.handoff is False
 
 
 def test_chat_semantic_paraphrase_with_mock(knowledge_base, mock_embedder):

@@ -2,7 +2,11 @@
 
 const API_URL = "/api/v1/chat";
 const SESSION_KEY = "demotel.session_id";
+const FOLLOWUP_KEY = "demotel.last_followup";
+const DEMO_TICKET_KEY = "demotel.last_demo_ticket";
 const LANGUAGE_KEY = "demotel.locale";
+// Public, fictional fixture credentials: this is a portfolio demonstration only.
+const DEMO_ACCOUNT = {account_id: "DEMO-1001", access_code: "PORTFOLIO-1001"};
 const UI = {
   "tr-TR": {
     lang:"SOHBET DİLİ", agent:"DemoTel Asistan", status:"Çevrimiçi · Sana yardımcı olmaya hazır", close:"Sohbeti kapat", fresh:"Yeni sohbet başlat", eyebrow:"DEMOTEL ASİSTAN",
@@ -16,12 +20,18 @@ const UI = {
     historyExpired:"Önceki sohbetin süresi dolmuş. Yeni bir sohbet başlatabilirsiniz.",historyError:"Sohbet geçmişi şu anda yüklenemiyor. Yeni bir soru sorabilir veya tekrar deneyebilirsiniz.",
     suggestions:["Ev internet paketleriniz nelerdir?","Faturamı nereden ödeyebilirim?","İnternetim yavaş, ne yapabilirim?","Kurulum ve aktivasyon ücreti var mı?"],
     followupTitle:"Buradan devam edebiliriz", anotherQuestion:"Başka bir soru sor", endChat:"Sohbeti bitir",
+    demoBill:"Örnek faturayı incele", demoBillUser:"Örnek faturamı incelemek istiyorum.",
+    demoBillIntro:"Kurgusal DemoTel hesabındaki fatura, örnek fatura API'sinden okundu:",
+    demoBillSource:"Kaynak: Kurgusal fatura verisi · Gerçek müşteri hesabı değil.",
+    demoPrepare:"Fatura itirazı taslağı hazırla", demoPrepared:"Destek kaydı taslağı hazır. Bu işlem henüz kayıt açmadı.",
+    demoApprove:"Onayla ve örnek destek kaydı aç", demoCancel:"Vazgeç", demoCanceled:"İşlem iptal edildi; destek kaydı açılmadı.",
+    demoDone:"Örnek destek kaydı oluşturuldu. Kayıt numarası:", demoLastTicket:"Son örnek destek kaydı:", demoError:"Örnek işlem tamamlanamadı. Daha sonra yeniden deneyebilirsiniz.",
     followups:{
       greeting:["Ev internet paketleriniz nelerdir?","Faturamla ilgili yardım alabilir miyim?","İnternetim yavaş, ne yapabilirim?"],
-      billing:["Fatura kalemlerimi nasıl inceleyebilirim?","Fatura tutarım neden değişmiş olabilir?","Fatura itirazı için nasıl ilerlerim?"],
+      billing:["Fatura kalemlerimi nasıl inceleyebilirim?","Fatura itirazı için nasıl ilerlerim?","Örnek faturayı incele"],
       technical:["Modemi yeniden başlattım, sırada ne var?","Wi-Fi çekim alanını nasıl iyileştirebilirim?","Sorun devam ederse nasıl destek alırım?"],
       packages:["İhtiyacıma uygun internet hızını nasıl seçerim?","Taahhüt ve cayma koşulları neler?","Kurulum süreci nasıl ilerliyor?"],
-      general:["Mobil paket seçenekleri nelerdir?","Fatura ödeme kanalları neler?","Teknik destek için nereden başlayabilirim?"]
+      general:["Mobil paket seçenekleri nelerdir?","Örnek faturayı incele","Teknik destek için nereden başlayabilirim?"]
     }
   },
   "en-US": {
@@ -36,12 +46,18 @@ const UI = {
     historyExpired:"Your previous chat has expired. You can start a new conversation.",historyError:"Your chat history could not be loaded. Ask a new question or try again.",
     suggestions:["What home internet plans do you offer?","Where can I pay my bill?","My internet is slow. What can I try?","Is there an installation fee?"],
     followupTitle:"You can continue with", anotherQuestion:"Ask another question", endChat:"End chat",
+    demoBill:"Inspect a sample bill", demoBillUser:"I want to inspect a sample bill.",
+    demoBillIntro:"This bill was read from a fictional DemoTel account through the sample billing API:",
+    demoBillSource:"Source: Fictional billing fixture · No real customer account.",
+    demoPrepare:"Prepare a bill dispute", demoPrepared:"A support ticket draft is ready. No ticket has been created yet.",
+    demoApprove:"Confirm and create a sample ticket", demoCancel:"Cancel", demoCanceled:"Canceled; no support ticket was created.",
+    demoDone:"A sample support ticket was created. Reference:", demoLastTicket:"Latest sample ticket:", demoError:"The sample action could not be completed. Please try again later.",
     followups:{
       greeting:["What home internet plans do you offer?","Can you help me with my bill?","My internet is slow. What can I try?"],
-      billing:["How can I review my bill items?","Why might my bill have changed?","How do I dispute a bill?"],
+      billing:["How can I review my bill items?","How do I dispute a bill?","Inspect a sample bill"],
       technical:["I restarted my modem. What should I try next?","How can I improve Wi-Fi coverage?","How can I get help if this continues?"],
       packages:["How do I choose the right internet speed?","What are the commitment and cancellation terms?","How does installation work?"],
-      general:["What mobile plans are available?","How can I pay my bill?","Where should I start with a technical issue?"]
+      general:["What mobile plans are available?","Inspect a sample bill","Where should I start with a technical issue?"]
     }
   }
 };
@@ -83,6 +99,17 @@ let busy = false;
 let statusBusy = false;
 let turnCount = 0;
 let chatWasOpened = false;
+
+function savedItem(key) {
+  try { return sessionStorage.getItem(`${key}.${locale}`); } catch { return null; }
+}
+
+function saveItem(key, value) {
+  try {
+    if (value) sessionStorage.setItem(`${key}.${locale}`, value);
+    else sessionStorage.removeItem(`${key}.${locale}`);
+  } catch { /* The chat continues in memory. */ }
+}
 
 function localizedPrompt(prompt) {
   if (locale !== "en-US") return prompt;
@@ -294,6 +321,10 @@ function appendFollowups(content, data = null) {
     button.type = "button";
     button.addEventListener("click", () => {
       if (busy) return;
+      if (question === t().demoBill) {
+        runDemoBillJourney();
+        return;
+      }
       input.value = question;
       input.dispatchEvent(new Event("input"));
       form.requestSubmit();
@@ -311,6 +342,90 @@ function appendFollowups(content, data = null) {
   actions.append(another, finish);
   panel.appendChild(actions);
   content.appendChild(panel);
+}
+
+function demoAction(content, label, handler) {
+  const button = node("button", "followup-action demo-action", label);
+  button.type = "button";
+  button.addEventListener("click", () => { if (!busy) handler(); });
+  content.appendChild(button);
+  return button;
+}
+
+async function demoPost(path, payload) {
+  const response = await request(`/api/v1/demo/${path}`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({...DEMO_ACCOUNT, ...payload}),
+  });
+  if (!response.ok) throw new Error(`demo_${response.status}`);
+  return response.json();
+}
+
+async function runDemoBillJourney() {
+  if (busy) return;
+  showNotice();
+  appendMessage(t().demoBillUser, "user");
+  setBusy(true);
+  try {
+    const result = await demoPost("bills", {});
+    const bill = result.bills?.[0];
+    if (!bill || !Array.isArray(bill.items)) throw new Error("missing_demo_bill");
+    const lines = bill.items.map((item) => `• ${item.label}: ${item.amount_try} TRY`).join("\n");
+    const text = `${t().demoBillIntro}\n${bill.bill_id} · ${bill.period} · ${bill.amount_try} TRY\n${lines}\n${t().demoBillSource}`;
+    const body = appendMessage(text, "assistant", null, false, false);
+    const prepare = demoAction(body.parentElement, t().demoPrepare, () => prepareDemoTicket(bill.bill_id, prepare));
+  } catch {
+    appendMessage(t().demoError, "assistant", null, true);
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function prepareDemoTicket(billId, prepareButton) {
+  if (busy) return;
+  prepareButton.disabled = true;
+  setBusy(true);
+  try {
+    const draft = await demoPost("tickets/prepare", {bill_id: billId, issue: "billing_dispute"});
+    prepareButton.remove();
+    const body = appendMessage(
+      `${t().demoPrepared}\n${draft.bill_id} · ${draft.amount_try} TRY\n${t().demoBillSource}`,
+      "assistant", null, false, false
+    );
+    const content = body.parentElement;
+    const approve = demoAction(content, t().demoApprove, () => confirmDemoTicket(draft, approve, cancel));
+    const cancel = demoAction(content, t().demoCancel, () => {
+      approve.remove();
+      cancel.remove();
+      appendMessage(t().demoCanceled, "assistant");
+    });
+  } catch {
+    prepareButton.disabled = false;
+    appendMessage(t().demoError, "assistant", null, true);
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function confirmDemoTicket(draft, approve, cancel) {
+  if (busy) return;
+  const idempotencyKey = approve.dataset.idempotencyKey || crypto.randomUUID();
+  approve.dataset.idempotencyKey = idempotencyKey;
+  setBusy(true);
+  try {
+    const ticket = await demoPost("tickets/confirm", {
+      draft_id: draft.draft_id, idempotency_key: idempotencyKey
+    });
+    approve.remove();
+    cancel.remove();
+    saveItem(DEMO_TICKET_KEY, ticket.id);
+    appendMessage(`${t().demoDone} ${ticket.id}`, "assistant");
+  } catch {
+    showNotice(t().demoError);
+  } finally {
+    setBusy(false);
+  }
 }
 
 function appendMessage(text, role, data = null, isError = false, includeFollowups = true) {
@@ -371,6 +486,8 @@ async function request(url, options = {}) {
 
 function resetConversation() {
   saveSession(null);
+  saveItem(FOLLOWUP_KEY, null);
+  saveItem(DEMO_TICKET_KEY, null);
   messagesEl.replaceChildren();
   turnCount = 0;
   welcomeEl.classList.remove("hidden");
@@ -409,11 +526,14 @@ async function restoreConversation() {
     });
     const lastAssistant = [...messagesEl.children].reverse().find((message) => message.classList.contains("assistant"));
     if (lastAssistant) {
-      appendFollowups(lastAssistant.querySelector(".message-content"));
+      let last = null;
+      try { last = JSON.parse(savedItem(FOLLOWUP_KEY)); } catch { /* Old sessions use general prompts. */ }
+      appendFollowups(lastAssistant.querySelector(".message-content"), last);
       scrollToLatest();
     }
     updateSessionSummary();
-    showNotice();
+    const ticket = savedItem(DEMO_TICKET_KEY);
+    showNotice(ticket && /^DT-[A-F0-9]{32}$/.test(ticket) ? `${t().demoLastTicket} ${ticket}` : "");
   } catch {
     showNotice(t().historyError);
   } finally {
@@ -516,6 +636,7 @@ form.addEventListener("submit", async (event) => {
     if (typeof data.answer !== "string") throw new Error("invalid_response");
     if (typeof data.safe_message === "string") userBody.textContent = data.safe_message;
     if (typeof data.session_id === "string" && UUID_PATTERN.test(data.session_id)) saveSession(data.session_id);
+    saveItem(FOLLOWUP_KEY, JSON.stringify({intent: data.intent, fallback: data.fallback, handoff: data.handoff}));
     appendMessage(data.answer, "assistant", data);
   } catch {
     appendMessage(t().unavailable, "assistant", null, true);

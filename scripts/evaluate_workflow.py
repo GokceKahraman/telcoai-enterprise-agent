@@ -86,6 +86,17 @@ def evaluate_workflow(
                         "repeat": repeat,
                         "expected_entry_ids": expected,
                         "source_entry_id": source_id,
+                        "failure_type": (
+                            "relevant_fallback"
+                            if group == "relevant" and response.fallback
+                            else "wrong_source"
+                            if group == "relevant" and source_id not in expected
+                            else "ungrounded"
+                            if group == "relevant" and not answer_grounded
+                            else "ood_false_answer"
+                            if group == "ood" and has_answer
+                            else None
+                        ),
                         "fallback": response.fallback,
                         "handoff": response.handoff,
                         "grounded": answer_grounded if source_id is not None else None,

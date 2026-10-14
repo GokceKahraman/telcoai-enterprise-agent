@@ -183,6 +183,8 @@ class PolicyService:
 
     def handoff(self, text: str, locale: str = "tr-TR") -> bool:
         query = self.normalize(text)
+        if self.requires_live_account_or_current_data(text, locale):
+            return True
         if locale == "en-US":
             return any(
                 phrase in query
@@ -212,6 +214,65 @@ class PolicyService:
                 "taahhüdümü iptal",
                 "taahhudumu iptal",
             )
+        )
+
+    def requires_live_account_or_current_data(self, text: str, locale: str = "tr-TR") -> bool:
+        """Never answer account operations or live facts from a static FAQ citation."""
+        query = self.normalize(text)
+        if locale == "en-US":
+            current = ("right now", "currently", "today", "live", "latest", "nearest")
+            account = (
+                "my account balance",
+                "my bill amount",
+                "my unpaid bill",
+                "my balance",
+                "my remaining",
+                "my usage",
+            )
+            actions = (
+                "check my",
+                "show my",
+                "book",
+                "schedule",
+                "activate",
+                "assign",
+                "calculate my",
+                "open my ticket",
+                "ticket status",
+            )
+        else:
+            current = (
+                "şu anda",
+                "su anda",
+                "bugün",
+                "bugun",
+                "canli",
+                "anlik",
+                "en yakin",
+                "son durum",
+                "kesin randevu",
+            )
+            account = (
+                "aboneligimde",
+                "hesabimin",
+                "benim hesab",
+                "benim fatura",
+                "kalan mobil",
+                "kalan internet",
+                "hattima",
+                "sokak numaram",
+            )
+            actions = (
+                "sorgula",
+                "getir",
+                "tanimla",
+                "randevu ver",
+                "hesapla",
+                "kayit ac",
+                "kaydi ac",
+            )
+        return any(phrase in query for phrase in (*current, *account)) or any(
+            re.search(rf"\b{re.escape(phrase)}\b", query) for phrase in actions
         )
 
     def intent(self, text: str, locale: str = "tr-TR") -> str:

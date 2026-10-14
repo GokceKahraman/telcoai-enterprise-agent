@@ -2,6 +2,18 @@
 
 Evaluation reports are evidence about a particular run, not a claim of production quality. The expanded development set has 54 relevant paraphrases and 10 unrelated queries across the 40-entry fictional FAQ corpus. All labels can be inspected in `data/evaluation/retrieval_eval.json`. It is not a held-out test set.
 
+## v1 reserved set, now exploratory
+
+`data/evaluation/retrieval_holdout_v1.json` has 40 relevant and 20 unsupported synthetic queries. The corpus and dataset hashes match across the checked-in [keyword](holdout-keyword-evaluation.json), [dense](holdout-semantic-evaluation.json) and [local hybrid](holdout-hybrid-evaluation.json) reports. The [comparison JSON](holdout-comparison-v1.json) lists per-query failures. `scripts/compare_retrieval.py` rejects reports with different input hashes or label counts.
+
+| Raw retrieval | Hit@1 | Hit@3 | Unsupported accepted |
+| --- | ---: | ---: | ---: |
+| Keyword | 80% | 87.5% | 60% |
+| Dense | 77.5% | 82.5% | 35% |
+| Local Qdrant hybrid | 85% | 92.5% | 90% |
+
+The guarded keyword workflow initially answered 8/20 unsupported requests. After a broad account/live-information policy guard, the [keyword](holdout-keyword-workflow-after-guard.json), [dense](holdout-semantic-workflow-evaluation.json) and [hybrid](holdout-hybrid-workflow-evaluation.json) workflows answered 0/20; relevant source Hit@1 was 57.5%, 60% and 65% respectively. Ten relevant queries fell back in the keyword workflow. The v1 queries were inspected during this safety fix, so these after-guard results are regression evidence and **not a fresh held-out estimate**. Create v2 independently before claiming final generalization. Local timings exclude network service latency; no remote Qdrant index behavior or real customer data is measured.
+
 ## Offline retrieval benchmark
 
 ```bash

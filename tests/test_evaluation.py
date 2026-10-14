@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 from app.services.retrieval.base import RetrievalHit
+from scripts.compare_retrieval import compare_reports
 from scripts.evaluate_ragas import build_samples, judge_samples
 from scripts.evaluate_ragas import main as ragas_main
 from scripts.evaluate_retrieval import (
@@ -48,6 +49,9 @@ def test_retrieval_metrics_use_ranks_and_ood_denominator(knowledge_base):
     assert metrics.ood_false_accept_rate == 0.5
     assert metrics.false_accept_count == 2
     assert len(rows) == 8
+    assert rows[0]["first_expected_rank"] == 2
+    assert rows[0]["failure_type"] == "wrong_first"
+    assert rows[2]["failure_type"] == "ood_false_accept"
     assert metrics.latency_p95_ms >= metrics.latency_p50_ms >= 0
 
 
@@ -80,6 +84,37 @@ def test_duplicate_dataset_ids_are_rejected(tmp_path):
     )
     with pytest.raises(ValueError, match="unique"):
         load_dataset(path)
+
+
+def test_comparison_refuses_different_corpus_or_labels(tmp_path):
+    def report(name, corpus_hash):
+        return {
+            "dataset": {"sha256": "labels"},
+            "corpus": {"sha256": corpus_hash},
+            "metrics": {
+                "name": name,
+                "relevant_count": 1,
+                "ood_count": 1,
+                "hit_at_1": 1,
+                "hit_at_3": 1,
+                "mrr": 1,
+                "ood_false_accept_rate": 0,
+                "latency_p50_ms": 1,
+                "latency_p95_ms": 2,
+            },
+            "queries": [{"id": "x", "repeat": 0, "failure_type": "ood_false_accept"}],
+        }
+
+    paths = [tmp_path / "a.json", tmp_path / "b.json"]
+    for path, item in zip(
+        paths, (report("keyword", "same"), report("semantic", "same")), strict=True
+    ):
+        path.write_text(json.dumps(item), encoding="utf-8")
+    result = compare_reports(paths)
+    assert result["strategies"][0]["failures"] == [{"id": "x", "type": "ood_false_accept"}]
+    paths[1].write_text(json.dumps(report("semantic", "different")), encoding="utf-8")
+    with pytest.raises(ValueError, match="hashes must match"):
+        compare_reports(paths)
 
 
 def test_ragas_export_contains_actual_retrieval_and_reference(knowledge_base):

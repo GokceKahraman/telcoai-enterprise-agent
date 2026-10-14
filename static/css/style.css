@@ -1816,6 +1816,19 @@ body.chat-open .site-header {
   cursor: pointer;
 }
 .followup-action:hover { color: #216c62; }
+.demo-action {
+  display: inline-flex;
+  margin: 12px 8px 0 0;
+  padding: 8px 12px;
+  border: 1px solid #8dbbad;
+  border-radius: 999px;
+  background: #eaf6ef;
+  color: #18594f;
+  font-size: 10px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.demo-action:hover { background: #d8efe2; }
 
 @media (max-width: 760px) {
   .chat-widget {
