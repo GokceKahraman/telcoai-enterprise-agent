@@ -97,6 +97,20 @@ def test_hybrid_rrf_preserves_dense_only_and_sparse_only_candidates(qdrant):
     assert all(0 <= hit.confidence <= 1 for hit in hits)
 
 
+def test_bm25_only_mode_uses_sparse_candidates(qdrant):
+    ingest(
+        qdrant,
+        [entry("semantic", "dense semantic document"), entry("lexical", "lexical-only needle")],
+    )
+    hits = retriever(qdrant, search_mode="bm25").retrieve("needle", top_k=2)
+    assert hits[0].entry.id == "lexical"
+
+
+def test_qdrant_rejects_unknown_search_mode(qdrant):
+    with pytest.raises(ValueError, match="search_mode"):
+        retriever(qdrant, search_mode="dense")
+
+
 def test_tenant_locale_filters_apply_before_candidate_limits(qdrant, monkeypatch):
     ingest(
         qdrant,

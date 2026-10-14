@@ -156,7 +156,19 @@ The expanded benchmark contains **54 relevant queries and 10 out-of-domain queri
 ```bash
 uv run --frozen --no-sync python scripts/evaluate_retrieval.py --strategy semantic
 uv run --frozen --no-sync python scripts/evaluate_retrieval.py --strategy qdrant_hybrid --repeats 3
+uv run --frozen --no-sync python scripts/evaluate_search_matrix.py
 ```
+
+The [same-data search matrix](docs/retrieval-comparison.md) compares keyword, dense semantic, BM25 sparse and dense+BM25 hybrid on one dataset/corpus hash, with per-query failures in [the JSON report](docs/search-matrix-development.json). BGE reranking is optional; its weights were not available in the run environment, and the report marks it unmeasured. Use the [short demo narration](docs/demo-narration-tr.md) for a portfolio walkthrough.
+
+| Method, current 54/10 development set | Hit@1 | Hit@3 | MRR@10 | OOD accepted | p50 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Keyword | 87.0% | 98.1% | 0.927 | 10.0% | 1.4 ms |
+| Dense semantic | 68.5% | 75.9% | 0.734 | 0.0% | 8.3 ms |
+| BM25 sparse | 81.5% | 98.1% | 0.892 | 80.0% | 0.8 ms |
+| Dense + BM25 hybrid | 81.5% | 94.4% | 0.888 | 80.0% | 10.9 ms |
+
+These are tuning measurements on a synthetic development set. The BGE row is unmeasured; the local Qdrant timings do not represent server payload-index or network latency.
 
 | Recorded layer | Hit@1 | Hit@3 | Unrelated-query error |
 | --- | --- | --- | --- |
