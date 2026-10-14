@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     )
     app_name: str = "TelcoAI"
     retrieval_strategy: Literal["keyword", "semantic", "qdrant_hybrid"] = "keyword"
-    min_match_score: float = Field(default=1.0, ge=0)
+    min_match_score: float = Field(default=2.0, ge=0)
     embedding_model_name: str = Field(
         default="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
         validation_alias="TELCOAI_EMBEDDING_MODEL",

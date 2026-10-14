@@ -54,6 +54,12 @@ JSON reports include timestamps, runtime, corpus/dataset SHA-256 hashes, public 
 
 The three earlier reports use the same 25 relevant/10 OOD labels and an earlier corpus; they are preserved for historical comparison and do not describe the expanded corpus. The expanded dense run used cached MiniLM weights. Local mode does not exercise remote payload indexes, HNSW, server latency or BGE re-ranking. The expanded development scores show that broadening the FAQ corpus created more retrieval ambiguity; the expanded semantic model ranked the expected answer first on 40/54 queries. Improve or re-label the corpus with a separate holdout before presenting a quality claim. Earlier hybrid results also expose a limitation of rank fusion: candidate retrieval alone does not decide whether a query belongs to the support domain.
 
+## Keyword retrieval tuning on the development set
+
+On 2026-10-14, Turkish FAQ aliases and suffix-aware token matching were adjusted using the 54-query development set. At the original threshold of 1.0, Hit@1/Hit@3 were 59.3%/77.8%, MRR@10 was 0.700 and raw OOD false acceptance was 20%. The changes at threshold 1.0 reached 87.0%/98.1% Hit@1/Hit@3 but raised raw OOD false acceptance to 30% ([report](keyword-dev-after-update-evaluation.json)). Raising `TELCOAI_MIN_MATCH_SCORE` to 2.0 preserved those retrieval scores, reduced raw OOD false acceptance to 10%, and gave MRR@10 of 0.927. The pre-change [report](keyword-dev-before-update-evaluation.json) and current [threshold-2 report](keyword-dev-threshold-2-evaluation.json) preserve run details and input hashes.
+
+The complete keyword workflow at threshold 2.0 measured source Hit@1 **85.2% (46/54)**, unsupported false answers **0/10**, and exact grounding for **53/53** sourced responses ([report](keyword-workflow-threshold-2-evaluation.json)). Threshold 1.0 produced the same workflow source Hit@1 on this set, so 2.0 reduces weak raw matches without losing measured relevant answers here. These examples were used to tune the system and are development evidence only. The explored v1 set is not independent validation; keep its regression caveat and author a new v2 before making generalization claims.
+
 ## Guarded workflow evaluation
 
 ```bash
