@@ -20,6 +20,15 @@ The Turkish search-tuning change caused a known v1 workflow regression: unsuppor
 
 ## Offline retrieval benchmark
 
+For a same-input comparison across keyword, dense semantic, BM25 sparse, Qdrant dense+BM25 hybrid and optional BGE reranking, run:
+
+```bash
+uv sync --frozen --extra dev --extra semantic
+uv run --frozen --no-sync python scripts/evaluate_search_matrix.py
+```
+
+The [comparison notes](retrieval-comparison.md) summarize the current development measurements and show representative errors. The JSON report records matching data hashes and per-query rankings. If BGE weights are unavailable, the script records the skipped reranker and still completes the other methods. This development set has guided tuning; it is not independent validation. The v1 dataset is only for replaying the known policy regression, and a new v2 is needed for unbiased validation.
+
 ```bash
 uv sync --frozen --extra dev
 uv run --frozen --no-sync python scripts/evaluate_retrieval.py

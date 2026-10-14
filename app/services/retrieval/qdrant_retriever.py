@@ -166,11 +166,14 @@ class QdrantRetriever:
         candidate_k: int = 20,
         min_dense_similarity: float = 0.42,
         validate_payload_indexes: bool = True,
+        search_mode: str = "hybrid",
     ) -> None:
         if not tenant_id.strip() or not locale.strip():
             raise ValueError("Tenant and locale scope are required")
         if candidate_k < 1:
             raise ValueError("candidate_k must be positive")
+        if search_mode not in {"hybrid", "bm25"}:
+            raise ValueError("search_mode must be 'hybrid' or 'bm25'")
         self._client = client
         self._dense_embedder = dense_embedder
         self._sparse_embedder = sparse_embedder
@@ -180,6 +183,7 @@ class QdrantRetriever:
         self._candidate_k = candidate_k
         self._min_dense_similarity = min_dense_similarity
         self._validate_payload_indexes = validate_payload_indexes
+        self._search_mode = search_mode
 
     def ready(self) -> bool:
         """Check schema and scoped data without triggering creation or reindexing.
@@ -241,33 +245,44 @@ class QdrantRetriever:
         query = query.strip()
         if not query or top_k <= 0:
             return []
-        dense = _dense_vectors(self._dense_embedder, [query])[0].tolist()
         sparse = _sparse_vector(self._sparse_embedder.encode_query(query))
         scope = self._filter(category)
         candidate_k = max(top_k, self._candidate_k)
-        results = self._client.query_points(
-            collection_name=self._collection,
-            prefetch=[
-                models.Prefetch(
-                    query=dense,
-                    using=DENSE_VECTOR,
-                    filter=scope,
-                    score_threshold=self._min_dense_similarity,
-                    limit=candidate_k,
-                ),
-                models.Prefetch(
-                    query=sparse,
-                    using=SPARSE_VECTOR,
-                    filter=scope,
-                    limit=candidate_k,
-                ),
-            ],
-            query=models.FusionQuery(fusion=models.Fusion.RRF),
-            query_filter=scope,
-            limit=top_k,
-            with_payload=True,
-            with_vectors=False,
-        )
+        if self._search_mode == "bm25":
+            results = self._client.query_points(
+                collection_name=self._collection,
+                query=sparse,
+                using=SPARSE_VECTOR,
+                query_filter=scope,
+                limit=top_k,
+                with_payload=True,
+                with_vectors=False,
+            )
+        else:
+            dense = _dense_vectors(self._dense_embedder, [query])[0].tolist()
+            results = self._client.query_points(
+                collection_name=self._collection,
+                prefetch=[
+                    models.Prefetch(
+                        query=dense,
+                        using=DENSE_VECTOR,
+                        filter=scope,
+                        score_threshold=self._min_dense_similarity,
+                        limit=candidate_k,
+                    ),
+                    models.Prefetch(
+                        query=sparse,
+                        using=SPARSE_VECTOR,
+                        filter=scope,
+                        limit=candidate_k,
+                    ),
+                ],
+                query=models.FusionQuery(fusion=models.Fusion.RRF),
+                query_filter=scope,
+                limit=top_k,
+                with_payload=True,
+                with_vectors=False,
+            )
         hits: list[RetrievalHit] = []
         for point in results.points:
             payload = point.payload or {}

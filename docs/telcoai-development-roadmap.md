@@ -13,7 +13,7 @@ The project already implements keyword search, local multilingual semantic searc
 
 Which option works best for DemoTel must be measured against the same FAQ corpus and labeled questions. Keep the lightweight keyword mode available for an offline demo. Use the optional model-backed modes when their dependencies are installed and the benchmark justifies the extra cost.
 
-## Step 1: compare search modes (v1 measured)
+## Step 1: compare search modes (development matrix measured; v1 regression only)
 
 `data/evaluation/retrieval_holdout_v1.json` contains a new set of paraphrases, one for each of the 40 fictional FAQ records, and unsupported questions from both telecom and unrelated topics. Its labels are separate from `data/evaluation/retrieval_eval.json`, the current development set.
 
@@ -26,7 +26,7 @@ uv run --frozen --no-sync python scripts/evaluate_retrieval.py \
   --output artifacts/holdout-keyword.json
 ```
 
-Run semantic retrieval after installing the optional model extra. Run hybrid retrieval with the existing local Qdrant evaluator. Compare Hit@1/3, MRR, unsupported-query false acceptance, latency, and individual failures. The current benchmark reports Hit@1/3, MRR, false acceptance, latency percentiles, and per-query results. The guarded workflow evaluator separately reports relevant-query fallbacks, unsupported answers, and source agreement.
+The [same-data development matrix](retrieval-comparison.md) compares keyword, dense semantic, BM25 sparse, and Qdrant dense+BM25 hybrid on one 54-relevant/10-unsupported dataset and one 40-entry corpus. It records Hit@1/3, MRR, unsupported acceptance, p50/p95 latency and every failure. The BGE reranker row is marked unmeasured because its weights were unavailable in the run environment. The [report JSON](search-matrix-development.json) includes matching dataset and corpus hashes. The guarded workflow evaluator separately reports relevant-query fallbacks, unsupported answers, and source agreement.
 
 The v1 labels were first evaluated with unchanged retrieval configuration. They exposed unsafe FAQ answers for live/account-specific requests, so v1 was subsequently used to check a new policy guard. **v1 is now an exploratory regression set, not an untouched final holdout.** Author a new independently labeled v2 before claiming an unbiased final comparison. The reports contain dataset and corpus hashes; the [comparison](holdout-comparison-v1.json) refuses to combine mismatched inputs. These synthetic examples are portfolio measurements, not production accuracy claims.
 
@@ -46,7 +46,7 @@ Implemented as separate synthetic demo endpoints and a chat UI action. The fixtu
 
 ## Step 4: show service behavior clearly
 
-The comparison reports and existing architecture diagram are checked in. A short recording and independently authored v2 set remain open portfolio deliverables.
+The search matrix, [error analysis](retrieval-comparison.md), [short demo narration](demo-narration-tr.md) and existing architecture diagram are checked in. A short recording, a completed reranker measurement and independently authored v2 set remain open portfolio deliverables.
 
 Use the existing Docker, Compose, and CI setup to produce a repeatable demo. Add a brief recording of the search comparison and safe support journey. Report model downloads, latency, and fallbacks honestly. Keep paid LLM judging opt-in.
 
